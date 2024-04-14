@@ -1,11 +1,11 @@
 site_name: "OpenSWPC"
 site_description: "OpenSWPC User's Guide"
 site_author: 'Takuto Maeda'
-site_url: 'https://tktmyd.github.io/OpenSWPC'
+site_url: 'https://OpenSPWC.github.io'
 
 # Repository
-repo_name: tktmyd/OpenSWPC
-repo_url: https://github.com/tktmyd/OpenSWPC
+repo_name: OpenSWPC/OpenSWPC
+repo_url: https://github.com/OpenSWPC/OpenSWPC
 edit_uri: ""
 
 copyright: 'Copyright &copy Takuto Maeda. All Rights Reserved'

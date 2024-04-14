@@ -55,9 +55,6 @@ read_snp.x -i snapshotfile [-h] [-ppm|-bmp] [-pall]
     surface (`ob`, `fs`), the topography color map will be overlaid. For
     other cross sections, the velocity structure in the section will be
     overlaid.
-
-!!! bug "Limitation of the BMP format"
-    Output to `bmp` format occasionally fails as this format has a restriction to the image size. `ppm` format is recommended. 
       
   `-pall`
   : Visualize including the absorbing boundary region. This option works

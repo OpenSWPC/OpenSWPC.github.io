@@ -157,7 +157,7 @@ When the moment tensor component is given directly, there is a trade-off regardi
 Based on the input parameters, the final seismic moment $\overline{M}_0$ is
 
 $$
-    \overline{M}_0 =\times \frac{ M_0 }{\sqrt{2}} \sqrt{m_{xx}^2 +m_{yy}^2 +m_{zz}^2 + 2(m_{yz}^2+m_{xz}^2+m_{xy}^2)}
+    \overline{M}_0 = \frac{ M_0 }{\sqrt{2}} \times \sqrt{m_{xx}^2 +m_{yy}^2 +m_{zz}^2 + 2(m_{yz}^2+m_{xz}^2+m_{xy}^2)}
 $$
 
 which is determined by If more than one point source is specified, the sum of all source elements in the above equation becomes the total seismic moment; in the case of 2D P-SV and SH calculations, only the components valid for each cross section are evaluated. Because of this notation of separable magnitudes, the moment tensor component is implicitly assumed to normalized to 

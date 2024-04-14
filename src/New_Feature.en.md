@@ -1,5 +1,25 @@
 # New features
 
+## Version 5.3.1 (2024-04-14)
+
+### Version information option
+
+All executables (binaries with a `.x` filename extension in the `bin/` directory) now accept `-v` or `--version` options to display the current version number, as shown below. 
+
+```
+% ./bin/swpc_psv.x -v
+swpc_psv (OpenSWPC) version 5.3.1
+```
+
+### Repository changes
+
+Starting with version 5.3.1, code will be released from the new organizational repository (https://github.com/OpenSWPC/OpenSWPC). Links to the old repository will be redirected to the new one, and the old version of the information will not be lost.
+Also, starting with this release, the online documentation will be maintained separately from the OpenSWPC source code. The documentation repository is https://github.com/OpenSWPC/OpenSWPC.github.io.
+
+Translated with www.DeepL.com/Translator (free version)
+
+A new organization repository (https://github.com/OpenSWPC/OpenSWPC) 
+
 ## Version 5.3.0 (2023-02-02)
 
 ### Better parallel partitioning
