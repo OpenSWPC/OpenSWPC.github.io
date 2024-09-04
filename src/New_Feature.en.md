@@ -32,15 +32,10 @@ Let $N$ be the number of grid, and $P$ the number of MPI partitions. If $N$ is d
 
 | Node ID | Number of Grids $N_P$ |
 | ------- | -------------------- |
-| 0 | $N_P = (N-M)/P$ |
-| 1 to $M$ | $N_P = (N-M)/P + 1$ |
-| $M+1$ to $P-1$ | $N_P = (N-M)/P$ |
+| 0 to $P$-$M$-1 | $N_P = (N-M)/P$ |
+| $P$-$M$ to $P$-1 | $N_P = (N-M)/P + 1$ |
 
 (where $M = \mod(N,P)$)
-
-#### Example
-
-![](./fig/5.3.0_partition.png)
 
 
 ### Python integration

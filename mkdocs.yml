@@ -31,38 +31,38 @@ theme:
   logo: fig/icon.png
 
 nav:
-  - index.en.md
+  - index.md
   - New_Feature.md
   - How to build:
-    - 1._SetUp/0100_trial.en.md
-    - 1._SetUp/0101_env.en.md    
-    - 1._SetUp/0102_tree.en.md
-    - 1._SetUp/0103_compile.en.md
-    - 1._SetUp/0104_dataset.en.md
-    - 1._SetUp/0105_parallel.en.md
+    - 1._SetUp/0100_trial.md
+    - 1._SetUp/0101_env.md    
+    - 1._SetUp/0102_tree.md
+    - 1._SetUp/0103_compile.md
+    - 1._SetUp/0104_dataset.md
+    - 1._SetUp/0105_parallel.md
   - Parameter settings:
-    - 2._Parameters/0201_description.en.md
-    - 2._Parameters/0202_env.en.md
-    - 2._Parameters/0203_coord.en.md
-    - 2._Parameters/0204_visco.en.md
-    - 2._Parameters/0205_output.en.md
-    - 2._Parameters/0206_vmodel.en.md
-    - 2._Parameters/0207_source.en.md
-    - 2._Parameters/0208_abc.en.md
-    - 2._Parameters/0209_checkpoint.en.md
-    - 2._Parameters/0210_reciprocity.en.md
-    - 2._Parameters/0211_2dcode.en.md
+    - 2._Parameters/0201_description.md
+    - 2._Parameters/0202_env.md
+    - 2._Parameters/0203_coord.md
+    - 2._Parameters/0204_visco.md
+    - 2._Parameters/0205_output.md
+    - 2._Parameters/0206_vmodel.md
+    - 2._Parameters/0207_source.md
+    - 2._Parameters/0208_abc.md
+    - 2._Parameters/0209_checkpoint.md
+    - 2._Parameters/0210_reciprocity.md
+    - 2._Parameters/0211_2dcode.md
   - Tools:
-    - 3._Tools/0301_snapshot.en.md
-    - 3._Tools/0302_vmodel.en.md
-    - 3._Tools/0303_parameter.en.md
-    - 3._Tools/0304_rmedia.en.md
-    - 3._Tools/0305_python.en.md
-    - 3._Tools/0306_misc.en.md
+    - 3._Tools/0301_snapshot.md
+    - 3._Tools/0302_vmodel.md
+    - 3._Tools/0303_parameter.md
+    - 3._Tools/0304_rmedia.md
+    - 3._Tools/0305_python.md
+    - 3._Tools/0306_misc.md
   - Hints:
-    - 4._Hints/0401_modelset.en.md
-    - 4._Hints/0402_modification.en.md
-  - License.en.md
+    - 4._Hints/0401_modelset.md
+    - 4._Hints/0402_modification.md
+  - License.md
 
 extra_css:
   - "https://fonts.googleapis.com/earlyaccess/notosansjp.css"
@@ -76,17 +76,25 @@ plugins:
         - en
         - ja
   - i18n:
-      default_language: en
-      languages:
-        en: English
-        ja: Japanese
-      nav_translations:
-        ja:
-          New features: 新機能
-          How to build: ビルドから実行まで
-          Parameter settings: パラメタ設定
-          Tools: 関連ツール
-          Hints: 計算のヒント
+        docs_structure: suffix
+        fallback_to_default: true
+        languages:
+          - build: true
+            default: true
+            locale: en
+            name: English
+          - build: true
+            default: false
+            locale: ja
+            name: Japanese
+            nav_translations:
+              Hints: 計算のヒント
+              How to build: ビルドから実行まで
+              New features: 新機能
+              Parameter settings: パラメタ設定
+              Tools: 関連ツール
+        reconfigure_material: true
+        reconfigure_search: true
 extra:
   font:
     code: 'Consolas'
