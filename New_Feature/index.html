@@ -54,8 +54,6 @@
     
       <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjp.css">
     
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:600,800">
-    
       <link rel="stylesheet" href="../css/custom.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -459,6 +457,66 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#version-2409-2024-09-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version 24.09 (2024-09-13)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Version 24.09 (2024-09-13)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#high-speed-snapshot-data-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      High-speed snapshot data export
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waveform-output-during-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Waveform output during calculation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-checkpointingrestarting-functionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remove Checkpointing/Restarting functionality
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#netcdf-is-always-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      NetCDF is always needed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-modernization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Modernization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#version-531-2024-04-14" class="md-nav__link">
@@ -1334,6 +1392,18 @@
 
 
 <h1 id="new-features">New features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h1>
+<h2 id="version-2409-2024-09-13">Version 24.09 (2024-09-13)<a class="headerlink" href="#version-2409-2024-09-13" title="Permanent link">&para;</a></h2>
+<p>Starting with this release, OpenSWPC uses the <a href="https://calver.org/">Calender Versioning</a> scheme. The version number is determined by <code>YY.0M</code> (year and month with zero padding).</p>
+<h3 id="high-speed-snapshot-data-export">High-speed snapshot data export<a class="headerlink" href="#high-speed-snapshot-data-export" title="Permanent link">&para;</a></h3>
+<p>By using a new algorithm, snapshot data export is significantly accelerated, resulting in a maximum reduction of ~20% of the total computation time for 3D simulation. </p>
+<h3 id="waveform-output-during-calculation">Waveform output during calculation<a class="headerlink" href="#waveform-output-during-calculation" title="Permanent link">&para;</a></h3>
+<p>Previously, seismic waveform files were not created at a station until all calculations were completed. By setting the new parameter <code>ntdec_wav_prg</code>, waveforms are periodically output during the computation. The waveform amplitudes for the parts of the waveform that have not yet been computed are filled with zeros. This new feature allows users to monitor the computation in the middle of a calculation. However, be careful not to use too frequent output, as it may affect the speed of the computation.</p>
+<h3 id="remove-checkpointingrestarting-functionality">Remove Checkpointing/Restarting functionality<a class="headerlink" href="#remove-checkpointingrestarting-functionality" title="Permanent link">&para;</a></h3>
+<p>In order to continue to improve the code, we have decided to remove the Checkpointing/Restarting feature, which we believe is now rarely used. If you wish to use this feature, we recommend that you continue to use Version 5.3.1. There is no difference in calculation results between this version and Version 5.3.1.</p>
+<h3 id="netcdf-is-always-needed">NetCDF is always needed<a class="headerlink" href="#netcdf-is-always-needed" title="Permanent link">&para;</a></h3>
+<p>Until now, it was not impossible to compile without the NetCDF library. However, since it is impractical to use this tool without NetCDF, we have simplified the code by always requiring a link to the NetCDF library at compile time.</p>
+<h3 id="code-modernization">Code Modernization<a class="headerlink" href="#code-modernization" title="Permanent link">&para;</a></h3>
+<p>We have eliminated the old Fortran90/95 era syntax and #ifdef-#endif macro branches that were maintained for compatibility with some past supercomputers, and rewritten much of the code in the simpler and more modern notation of Fortran2003 and later. Some newer Fortran 2008 syntax is included, but we are pretty confident that it is within the scope of most compilers currently available.</p>
 <h2 id="version-531-2024-04-14">Version 5.3.1 (2024-04-14)<a class="headerlink" href="#version-531-2024-04-14" title="Permanent link">&para;</a></h2>
 <h3 id="version-information-option">Version information option<a class="headerlink" href="#version-information-option" title="Permanent link">&para;</a></h3>
 <p>All executables (binaries with a <code>.x</code> filename extension in the <code>bin/</code> directory) now accept <code>-v</code> or <code>--version</code> options to display the current version number, as shown below. </p>

@@ -54,8 +54,6 @@
     
       <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjp.css">
     
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:600,800">
-    
       <link rel="stylesheet" href="../../css/custom.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -1192,6 +1190,13 @@
 
 
 <h1 id="checkpointing-and-restarting">Checkpointing and Restarting<a class="headerlink" href="#checkpointing-and-restarting" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Removed feature</p>
+<p>This functionality has been removed from the code since version 24.09. </p>
+<p>If you wish to use this feature, we recommend that you continue to use
+Version 5.3.1. There is no difference in calculation results between
+versions 24.09 and 5.3.1.</p>
+</div>
 <p>Some large-scale computers limit the computational time of a single job.
 To achieve long-duration computation, <code>OpenSWPC</code> can export all memory
 contents to files at specific times (checkpointing), and then continue

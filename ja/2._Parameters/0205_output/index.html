@@ -54,8 +54,6 @@
     
       <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjp.css">
     
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:600,800">
-    
       <link rel="stylesheet" href="../../../css/custom.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -861,13 +859,22 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      波形出力のタイミング
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       出力ファイル名
     </span>
@@ -1316,9 +1323,8 @@
 
 <h1 id="_1">出力ファイルの設定<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h2 id="_2">出力ファイル形式<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>スナップショットファイル出力には，FortranのStream I/O機能を用いた独自形式（以下native形式；旧形式のため非推奨）のバイナリデータもしくは<code>NetCDF</code>形式のデータ（推奨）を選択できる．波形出力は<code>SAC</code>形式で行われる．
-出力に際して明示的なエンディアン変換は行わないため，生成されるファイルは実行環境のエンディアンに依存する．
-しかし，SACおよびNetCDFのライブラリはエンディアンに依存せずファイルを読むことができるため，これらのフォーマットを使っている限り，エンディアンについて意識する必要はほとんど無い．</p>
+<p>スナップショットファイル出力には，FortranのStream I/O機能を用いた独自形式（以下native形式；旧形式のため非推奨）のバイナリデータもしくは<code>NetCDF</code>形式のデータ（推奨）を選択できる．波形出力は<code>SAC</code>形式もしくはそれを結合した独自形式（<code>CSF</code>）で行われる．</p>
+<p>出力に際して明示的なエンディアン変換は行わないため，生成されるファイルは実行環境のエンディアンに依存する．ただし，SACおよびNetCDFのライブラリはエンディアンに依存せずファイルを読むことができるため，これらのフォーマットを使っている限り，エンディアンについて意識する必要はほとんど無い．</p>
 <p>独自形式のスナップショットは，開発の都合でフォーマットに微細な変更がなされることがある．
 後方互換性は確保されているが，同じバージョンのコードに同梱されているプログラム経由でデータを読むのが確実である．</p>
 <p>波形出力のSACファイルには，SACで必須とされる標準的なヘッダの他，以下の表のヘッダが付加される．
@@ -1501,93 +1507,7 @@
 丸印が<span class="arithmatex"><script type="math/tex">i</script></span>方向の座標グリッドで，点線がMPIのドメイン境界を示す．間引き要素はidec=3の場合を示している．青色に塗りつぶされたグリッドからのデータがスナップショットとして出力される．</p>
 </div>
 <p>このとき，各MPIノード内で出力されるグリッド点数は一定とは限らない（一定となるように出力間隔やグリッドサイズを調整する必要は無い）．
-データはすべて特定のノードに集約されて，<code>snp_format</code>パラメタの値により，独自形式（<code>native</code>）もしくは<code>NetCDF</code>形式のバイナリファイルとして出力される．データ出力に伴う負荷を分散するため，出力を行うノードは次表のようにスナップショット種別毎に異なっている．</p>
-<table>
-<thead>
-<tr>
-<th>section</th>
-<th>type</th>
-<th>node</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>yz</td>
-<td>PS</td>
-<td><span class="arithmatex"><script type="math/tex">0</script></span></td>
-</tr>
-<tr>
-<td>xz</td>
-<td>PS</td>
-<td><code>mod(1, nproc)</code></td>
-</tr>
-<tr>
-<td>xy</td>
-<td>PS</td>
-<td><code>mod(2, nproc)</code></td>
-</tr>
-<tr>
-<td>fs</td>
-<td>PS</td>
-<td><code>mod(3, nproc)</code></td>
-</tr>
-<tr>
-<td>ob</td>
-<td>PS</td>
-<td><code>mod(4, nproc)</code></td>
-</tr>
-<tr>
-<td>yz</td>
-<td>V</td>
-<td><code>mod(5, nproc)</code></td>
-</tr>
-<tr>
-<td>xz</td>
-<td>V</td>
-<td><code>mod(6, nproc)</code></td>
-</tr>
-<tr>
-<td>xy</td>
-<td>V</td>
-<td><code>mod(7, nproc)</code></td>
-</tr>
-<tr>
-<td>fs</td>
-<td>V</td>
-<td><code>mod(8, nproc)</code></td>
-</tr>
-<tr>
-<td>ob</td>
-<td>V</td>
-<td><code>mod(9, nproc)</code></td>
-</tr>
-<tr>
-<td>yz</td>
-<td>U</td>
-<td><code>mod(10, nproc)</code></td>
-</tr>
-<tr>
-<td>xz</td>
-<td>U</td>
-<td><code>mod(11, nproc)</code></td>
-</tr>
-<tr>
-<td>xy</td>
-<td>U</td>
-<td><code>mod(12, nproc)</code></td>
-</tr>
-<tr>
-<td>fs</td>
-<td>U</td>
-<td><code>mod(13, nproc)</code></td>
-</tr>
-<tr>
-<td>ob</td>
-<td>U</td>
-<td><code>mod(14, nproc)</code></td>
-</tr>
-</tbody>
-</table>
+データはすべて特定のノードに集約されて，<code>snp_format</code>パラメタの値により，独自形式（<code>native</code>）もしくは<code>NetCDF</code>形式のバイナリファイルとして出力される．</p>
 <p>入力パラメータでは各スナップショット断面の出力の有無や間引き要素を制御する．なお，2次元SH計算では1成分しかないためP波S波出力は生成されない．</p>
 <div class="admonition info">
 <p class="admonition-title">Parameters</p>
@@ -1720,7 +1640,9 @@
 <dd><code>.true.</code>のとき震央距離をSACデータに保存する．</dd>
 </dl>
 </div>
-<h2 id="_9">出力ファイル名<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h3 id="_9">波形出力のタイミング<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>観測点における地震波形は計算中にはメモリ内に蓄積され，計算終了時にまとめてファイルに出力される．ただし，パラメタ <code>ntdec_w_prg</code> を <code>1</code> 以上の整数に設定すると，その数値の時間ステップ毎に波形を出力することができる．その際，波形の長さは常に <code>nt</code> で決まる時間長のままで，計算が完了していない部分はゼロ埋めされる．この機能は計算途中に計算の正常性をモニターするためであるが，あまり <code>ntdec_w_prg</code> を小さくすると，出力の負荷によって計算時間が増加する場合があることに注意が必要である．</p>
+<h2 id="_10">出力ファイル名<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <p>計算結果は以下のようなファイル名で出力される．</p>
 <ul>
 <li>スナップショット     <code>(odir)/(title).(section).(type).(ext)</code></li>

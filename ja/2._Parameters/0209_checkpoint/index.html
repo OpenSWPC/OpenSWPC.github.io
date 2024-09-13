@@ -54,8 +54,6 @@
     
       <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjp.css">
     
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:600,800">
-    
       <link rel="stylesheet" href="../../../css/custom.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -1192,6 +1190,11 @@
 
 
 <h1 id="_1">チェックポイント・リスタート<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Removed feature</p>
+<p>この機能はバージョン 24.09 で削除されました．</p>
+<p>この機能を使用したい場合は，バージョン 5.3.1 を引き続き使用することをお勧めします．バージョン24.09と 5.3.1 との間に計算結果の違いはありません．</p>
+</div>
 <p>大型計算機のバッチシステムでは，一度のジョブで計算できる継続時間に限りがあるため，一定の経過時間（チェックポイント）でメモリの内容をすべて一時ファイルに出力し，別のジョブでそのファイルを読み込んで途中から計算を再開する（リスタート）ことが行われる．</p>
 <p><code>OpenSWPC</code>では．動作時間が<code>ckp_time</code>（秒）を超えるとチェックポイントを通過したと見なされ，すべての計算途中配列イメージをファイルに吐き出して終了する．</p>
 <p>同じ環境下で同じ実行タイトル（<code>title</code>）の計算が実行されると，はまずディレクトリcdirを確認し，そこにチェックポイントファイルがあるようであれば途中から計算を再開する．
