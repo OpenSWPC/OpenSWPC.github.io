@@ -1,5 +1,12 @@
 # Checkpointing and Restarting
 
+!!! Important "Removed feature"
+    This functionality has been removed from the code since version 24.09. 
+
+    If you wish to use this feature, we recommend that you continue to use
+    Version 5.3.1. There is no difference in calculation results between
+    versions 24.09 and 5.3.1.
+
 Some large-scale computers limit the computational time of a single job.
 To achieve long-duration computation, `OpenSWPC` can export all memory
 contents to files at specific times (checkpointing), and then continue

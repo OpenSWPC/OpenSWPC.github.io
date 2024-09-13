@@ -7,10 +7,9 @@
 the seismic waveform at stations.
 
 For snapshot files, the user may choose from an originally defined
-binary format (obsolete and not recommended) or a `NetCDF` file (recommended). The waveforms are
-usually exported in `SAC` format. The endian conversion is not performed
-at the time of the data output. However, the official libraries of
-`NetCDF` and `SAC` automatically detect the endian format and convert
+binary format (obsolete and not recommended) or a `NetCDF` file (recommended). The waveforms are usually exported in `SAC` format. Optionally, users can choose the `CSF` format which is concatenated `SAC` data into s single binary file. 
+
+The endian conversion is not performed at the time of the data output. Notice that the official libraries of `NetCDF` and `SAC` automatically detect the endian format and convert
 them if necessary. Therefore, users do not have to worry about the
 differences in endian formats between machines.
 
@@ -98,28 +97,6 @@ amplitudes of these snapshot points will be gathered to specific nodes and expor
 !!! Info "Figure"
     ![](../fig/snapshot_decimation.png)
     Schematic of the spatial decimation for the snapshot output. The vertical dotted lines show the borders of the MPI nodes. In this example, the data at the blue grids will be exported as the snapshot data.
-
-The snapshot data will be exported from different node of computation to ballance the computational loads. 
-
-| section | type | output node      |
-| ------- | ---- | ---------------- |
-| yz      | PS   | $0$              |
-| xz      | PS   | `mod(1, nproc)`  |
-| xy      | PS   | `mod(2, nproc)`  |
-| fs      | PS   | `mod(3, nproc)`  |
-| ob      | PS   | `mod(4, nproc)`  |
-| yz      | V    | `mod(5, nproc)`  |
-| xz      | V    | `mod(6, nproc)`  |
-| xy      | V    | `mod(7, nproc)`  |
-| fs      | V    | `mod(8, nproc)`  |
-| ob      | V    | `mod(9, nproc)`  |
-| yz      | U    | `mod(10, nproc)` |
-| xz      | U    | `mod(11, nproc)` |
-| xy      | U    | `mod(12, nproc)` |
-| fs      | U    | `mod(13, nproc)` |
-| ob      | U    | `mod(14, nproc)` |
-
-
 
 !!! Info "Parameters"
 
@@ -256,6 +233,13 @@ It is assumed that the number of samples (`ntpts`) are in common in the `csf` fo
 
 !!! Caution "Exporting large number of waveform dataset"
     Large-scale computer systems often adopt the parallel lustre file system, which is *not* good at treating small but many files such as seismic wave traces in SAC format. In this case, it is recommended to use concatnated CSF format.
+
+### Timing of waveform output
+
+The seismic waveforms at the stations are stored in memory during the computation and are output to a file at the end of the computation. However, if the parameter `ntdec_w_prg` is set to an integer greater than or equal to `1`, waveforms can be output at each time step of that number. The length of the waveform is always the length determined by `nt`, and the part of the waveform that has not been computed yet is filled with zeros. This function is intended to monitor the normality of the computation during the computation, but it should be noted that if `ntdec_w_prg` is set too small, the computation time may increase due to the output load.
+
+`ntdec_w_prg` is available in Version 24.09 and later.
+
 
 ## Output Filename Conventions
 

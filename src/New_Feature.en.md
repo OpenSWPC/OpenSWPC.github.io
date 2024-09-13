@@ -1,5 +1,29 @@
 # New features
 
+## Version 24.09 (2024-09-13)
+
+Starting with this release, OpenSWPC uses the [Calender Versioning](https://calver.org/) scheme. The version number is determined by `YY.0M` (year and month with zero padding).
+
+### High-speed snapshot data export
+
+By using a new algorithm, snapshot data export is significantly accelerated, resulting in a maximum reduction of ~20% of the total computation time for 3D simulation. 
+
+### Waveform output during calculation
+
+Previously, seismic waveform files were not created at a station until all calculations were completed. By setting the new parameter `ntdec_wav_prg`, waveforms are periodically output during the computation. The waveform amplitudes for the parts of the waveform that have not yet been computed are filled with zeros. This new feature allows users to monitor the computation in the middle of a calculation. However, be careful not to use too frequent output, as it may affect the speed of the computation.
+
+### Remove Checkpointing/Restarting functionality
+
+In order to continue to improve the code, we have decided to remove the Checkpointing/Restarting feature, which we believe is now rarely used. If you wish to use this feature, we recommend that you continue to use Version 5.3.1. There is no difference in calculation results between this version and Version 5.3.1.
+
+### NetCDF is always needed
+
+Until now, it was not impossible to compile without the NetCDF library. However, since it is impractical to use this tool without NetCDF, we have simplified the code by always requiring a link to the NetCDF library at compile time.
+
+### Code Modernization
+
+We have eliminated the old Fortran90/95 era syntax and #ifdef-#endif macro branches that were maintained for compatibility with some past supercomputers, and rewritten much of the code in the simpler and more modern notation of Fortran2003 and later. Some newer Fortran 2008 syntax is included, but we are pretty confident that it is within the scope of most compilers currently available.
+
 ## Version 5.3.1 (2024-04-14)
 
 ### Version information option
