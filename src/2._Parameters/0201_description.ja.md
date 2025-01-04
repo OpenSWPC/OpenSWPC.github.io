@@ -4,16 +4,15 @@
 本章では主として3次元コードの入力を説明するが，2次元P-SV,
 SHコードについても， 一部変数が不要なだけで同じパラメータで動作する．
 
-1行に1変数を
+パラメタファイルには，1行に1変数を
 
 ```Fortran
 (変数名) = (変数の値)
 ```
 
-の形式で記述する．変数値の表現にはFortranの記法を用いる．たとえば論理型は
-`.true.` や `.false.`で記述される．
+の形式で記述する．変数値の表現にはFortranの記法を用いる．たとえば論理型は `.true.` や `.false.`で記述される．
 
-原則として自由書式であり，上記変数行以外には何を書いてあってもよいが，特に`!`と`#`で始まる行は
+Fortranといってもその記法は自由書式であり，桁数に制約はない．上記変数行以外には何を書いてあってもよいが，特に`!`と`#`で始まる行は
 明示的にコメント行として読みとばされる．コメントは変数と同じ行にあっても良い．たとえば
 
 ```Fortran
@@ -38,9 +37,12 @@ nx = 1024   ! number of grids
     この記載を見逃すと予期せぬ動作につながることがある．
 
 
+!!! Note
+    もし `strict_mode` が `.true.` に設定されている場合，全てのパラメタが明示的に指定されている必要がある．このモードが有効で，かつパラメタファイルに指定されていないパラメタが存在する場合，プログラムはエラーメッセージを表示して終了する．
+
 ## パラメタファイルの例
 
-以下にサンプルパラメタを示す．以降の各節で，機能ごとに挙動とパラメタの解説を行う．
+以下にサンプルパラメタを示す．以下の各節では，機能ごとにパラメタの詳細について述べる．
 
 ```Fortran
 
@@ -65,7 +67,7 @@ nx = 1024   ! number of grids
   !!
 
   nproc_x          = 2                !! parallelization in x-dir
-  nproc_y          = 2                !! parallelization in x-dir
+  nproc_y          = 2                !! parallelization in y-dir
   nx               = 384              !! total grid number in x-dir
   ny               = 384              !! total grid number in y-dir
   nz               = 384              !! total grid number in z-dir
@@ -141,7 +143,7 @@ nx = 1024   ! number of grids
   st_format        = 'xy'             !! station format: 'xy' or 'll'
   fn_stloc         = './example/stloc.xy'  !! station location file
   wav_format       = 'sac'            !! 'sac' or 'csf' ('sac' recommended)
-  wav_calc_dist    = .false.          !! Calculate epicentral distance
+  ntdec_w_prg      = 0                !!  waveform output during computation (0:off)
   
   !! ----------------------------------------------------------------------- !!
   !! Earthquake Source
@@ -259,6 +261,6 @@ nx = 1024   ! number of grids
   ipad             = 0                !! memory padding size for tuning
   jpad             = 0                !! memory padding size for tuning
   kpad             = 0                !! memory padding size for tuning
+
 ```
 
-以下の各節では，機能ごとにパラメタの詳細について述べる．

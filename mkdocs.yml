@@ -1,27 +1,27 @@
 site_name: "OpenSWPC"
 site_description: "OpenSWPC User's Guide"
-site_author: 'Takuto Maeda'
-site_url: 'https://OpenSPWC.github.io'
+site_author: "Takuto Maeda"
+site_url: "https://OpenSPWC.github.io"
 
 # Repository
 repo_name: OpenSWPC/OpenSWPC
 repo_url: https://github.com/OpenSWPC/OpenSWPC
 edit_uri: ""
 
-copyright: 'Copyright &copy Takuto Maeda. All Rights Reserved'
+copyright: "Copyright &copy Takuto Maeda. All Rights Reserved"
 
-docs_dir: 'src'
+docs_dir: "src"
 
-site_dir: 'docs'
+site_dir: "docs"
 
 use_directory_urls: true
 
 theme:
-  language: 'en'
-  name: 'material'
+  language: "en"
+  name: "material"
   palette:
-    primary: 'green'
-    accent: 'black'
+    primary: "green"
+    accent: "black"
   features:
     - navigation.tabs
     - navigation.top
@@ -34,34 +34,34 @@ nav:
   - index.md
   - New_Feature.md
   - How to build:
-    - 1._SetUp/0100_trial.md
-    - 1._SetUp/0101_env.md    
-    - 1._SetUp/0102_tree.md
-    - 1._SetUp/0103_compile.md
-    - 1._SetUp/0104_dataset.md
-    - 1._SetUp/0105_parallel.md
+      - 1._SetUp/0100_trial.md
+      - 1._SetUp/0101_env.md
+      - 1._SetUp/0102_tree.md
+      - 1._SetUp/0103_compile.md
+      - 1._SetUp/0104_dataset.md
+      - 1._SetUp/0105_parallel.md
   - Parameter settings:
-    - 2._Parameters/0201_description.md
-    - 2._Parameters/0202_env.md
-    - 2._Parameters/0203_coord.md
-    - 2._Parameters/0204_visco.md
-    - 2._Parameters/0205_output.md
-    - 2._Parameters/0206_vmodel.md
-    - 2._Parameters/0207_source.md
-    - 2._Parameters/0208_abc.md
-    - 2._Parameters/0209_checkpoint.md
-    - 2._Parameters/0210_reciprocity.md
-    - 2._Parameters/0211_2dcode.md
+      - 2._Parameters/0201_description.md
+      - 2._Parameters/0202_control.md
+      - 2._Parameters/0203_coord.md
+      - 2._Parameters/0204_visco.md
+      - 2._Parameters/0205_output.md
+      - 2._Parameters/0206_vmodel.md
+      - 2._Parameters/0207_source.md
+      - 2._Parameters/0208_abc.md
+      - 2._Parameters/0209_checkpoint.md
+      - 2._Parameters/0210_reciprocity.md
+      - 2._Parameters/0211_2dcode.md
   - Tools:
-    - 3._Tools/0301_snapshot.md
-    - 3._Tools/0302_vmodel.md
-    - 3._Tools/0303_parameter.md
-    - 3._Tools/0304_rmedia.md
-    - 3._Tools/0305_python.md
-    - 3._Tools/0306_misc.md
+      - 3._Tools/0301_snapshot.md
+      - 3._Tools/0302_vmodel.md
+      - 3._Tools/0303_parameter.md
+      - 3._Tools/0304_rmedia.md
+      - 3._Tools/0305_python.md
+      - 3._Tools/0306_misc.md
   - Hints:
-    - 4._Hints/0401_modelset.md
-    - 4._Hints/0402_modification.md
+      - 4._Hints/0401_modelset.md
+      - 4._Hints/0402_modification.md
   - License.md
 
 extra_css:
@@ -75,28 +75,28 @@ plugins:
         - en
         - ja
   - i18n:
-        docs_structure: suffix
-        fallback_to_default: true
-        languages:
-          - build: true
-            default: true
-            locale: en
-            name: English
-          - build: true
-            default: false
-            locale: ja
-            name: Japanese
-            nav_translations:
-              Hints: 計算のヒント
-              How to build: ビルドから実行まで
-              New features: 新機能
-              Parameter settings: パラメタ設定
-              Tools: 関連ツール
-        reconfigure_material: true
-        reconfigure_search: true
+      docs_structure: suffix
+      fallback_to_default: true
+      languages:
+        - build: true
+          default: true
+          locale: en
+          name: English
+        - build: true
+          default: false
+          locale: ja
+          name: Japanese
+          nav_translations:
+            Hints: 計算のヒント
+            How to build: ビルドから実行まで
+            New features: 新機能
+            Parameter settings: パラメタ設定
+            Tools: 関連ツール
+      reconfigure_material: true
+      reconfigure_search: true
 extra:
   font:
-    code: 'Consolas'
+    code: "Consolas"
 
 markdown_extensions:
   - pymdownx.superfences
@@ -114,9 +114,8 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.magiclink
   - def_list
+  - pymdownx.blocks.caption
 
 extra_javascript:
   - mathjax-config.js
   - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-
-

@@ -7,8 +7,8 @@ following format.
 variable_name = value
 ```
 
-The description of the values should follow Fortran notation. For
-example, logical (Boolean) values are denoted as `.true.` or `.false.`.
+The description of the values should follow Fortran (Free-form) notation. For
+example, logical (Boolean) values are denoted as `.true.` or `.false.`. There is no restriction on column locations for the parameter file.
 
 Lines that do not contain an equal sign (`=`) will be neglected; in
 addition, lines starting with `!` or `#` are regarded as comment lines
@@ -34,6 +34,9 @@ Without them, the directory path character ('/') may be unexpectedly interpreted
     [info] key XXXX is not found. 
     [info]     Use default value YYYY instead.
     ```
+
+!!! Note
+    If `strict_mode = .true.` is specified in the parameter file, all parameters must be explicitly defined. If a parameter is not defined under this mode, the program will abort with an error message.
 
 ## An Example Parameter File
 
@@ -63,7 +66,7 @@ sections, detailed descriptions of each parameter will be given.
   !!
 
   nproc_x          = 2                !! parallelization in x-dir
-  nproc_y          = 2                !! parallelization in x-dir
+  nproc_y          = 2                !! parallelization in y-dir
   nx               = 384              !! total grid number in x-dir
   ny               = 384              !! total grid number in y-dir
   nz               = 384              !! total grid number in z-dir
@@ -139,7 +142,7 @@ sections, detailed descriptions of each parameter will be given.
   st_format        = 'xy'             !! station format: 'xy' or 'll'
   fn_stloc         = './example/stloc.xy'  !! station location file
   wav_format       = 'sac'            !! 'sac' or 'csf' ('sac' recommended)
-  wav_calc_dist    = .false.          !! Calculate epicentral distance
+  ntdec_w_prg      = 0                !!  waveform output during computation (0:off)
   
   !! ----------------------------------------------------------------------- !!
   !! Earthquake Source

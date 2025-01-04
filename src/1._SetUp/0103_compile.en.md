@@ -23,7 +23,6 @@ the environment:
 | `NCINC`  | location of the  `NetCDF` header file directory|
 | `NETCDF` | linker option for `NetCDF`|
 
-
 If `NCFLAG = -D_NETCDF` is specified, the `make` command will try to compile `OpenSWPC` with `NetCDF` library.
 
 A set of the above variables under different computer environments is
@@ -46,17 +45,17 @@ The list of pre-defined architecture (`arch`) options is described in the follow
 
 | `arch` name | target  |`NetCDF` location |
 | ------------------ | ---------------------------------------- |  ----------------------- |
-|  mac-intel     | Mac OSX + Intel Compiler + OpenMPI  |    `${HOME}/local` |
-|  mac-gfortran  | Mac OSX + gfortran + Open MPI   |     `/usr/local` |
-|  eic           | EIC (ERI, UTokyo) with the Intel Compiler  |    `${HOME}/local` |
-|  fx            | Fujitsu FX10, FX100 and the K-computer | `${HOME}/xlocal` |
-|  es3           | The Earth Simulator 3 (obsolete)            |   Provided by the system  |
-|  es4           | The Earth Simulator 4                       |   Provided by the system  |
+| mac-m1  | macOS + gfortran (Apple Silicon + Homebrew) | `/opt/homebrew/` |
 |  ubuntu-gfortran   | Ubuntu 16.04LTS + gfortran + Open MPI  |  Installation by `apt` |
+| bdec-o |Wisteria/BDEC-01 (Odyssey)  of the University of Tokyo  | automatically specified by the `module` command |
+|  eic           | EIC2015 (ERI, UTokyo) with the Intel Compiler  | automatically specified by the `module` command |
+|  fx   (obsolete)  | Fujitsu FX10, FX100 and the K-computer | `${HOME}/xlocal` |
+|  es3  (obsolete)  | The Earth Simulator 3 (obsolete)            |   Provided by the system  |
+|  es4   (obsolete)  | The Earth Simulator 4                       |   Provided by the system  |
 | ofp (or oak) | Oakforest-PACS of the University of Tokyo (obsolete) | automatically specified by the `module` command |
 | obcx | Oakbridge-CX of the University of Tokyo (obsolete) | automatically specified by the `module` command |
-| bdec-o |Wisteria/BDEC-01 (Odyssey)  of the University of Tokyo  | automatically specified by the `module` command |
-| mac-m1  | macOS + gfortran (Apple Silicon (M1/M2) + Homebrew) | `/opt/homebrew/` |
+|  mac-intel    (obsolete) | Mac OSX + Intel Compiler + OpenMPI  |    `${HOME}/local` |
+|  mac-gfortran (obsolete) | Mac OSX + gfortran + Open MPI   |     `/usr/local` |
 
 
 ## More about the `NetCDF` library
@@ -88,3 +87,5 @@ Although most of the controlling parameter of the `OpenSWPC` are given in the in
 
     **`NM`**
     : Number of viscoelastic bodies adopted in the generalized Zener body. If this number is greater than `1`, anelastic attenuation is automatically adjusted so that Q-values are approximately frequency independent in a frequency range specified by the paramreters `fq_*`. If this parameter is zero, the simulation is performed under the assumption of perfectly elastic body, and thus no intrinsic attenuation is taken into account. For 3D simulations, this parameter significantly affects the computation time and required memory size. 
+
+

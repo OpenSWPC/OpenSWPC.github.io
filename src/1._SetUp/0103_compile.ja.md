@@ -27,16 +27,17 @@ makefileでは以下の変数を指定する必要がある．
 
 | archオプション名 | 対象                                   | NetCDFライブラリの場所  |
 | ---------------- | -------------------------------------- | ----------------------- |
-| mac-intel        | Mac OSX + Intel Compiler + OpenMPI     | `${HOME}/local`         |
-| mac-gfortran     | Mac OSX + gfortran + Open MPI          | `/usr/local`            |
-| eic              | EIC2015環境下のIntel Compiler          | `${HOME}/local`         |
-| fx  (obsolete) | 富士通FX10, FX100 および京コンピュータ | `${HOME}/xlocal`        |
-| es3 (obsolete)             | 地球シミュレータ                       | システム提供            |
+| mac-m1  | macOS + gfortran (Apple Silicon + Homebrew) | `/opt/homebrew/` |
 | ubuntu-gfortran  | Ubuntu 16.04LTS + gfortran + Open MPI  | `apt`によるインストール |
+| bdec-o |  東京大学情報基盤センター Wisteria-Odyssey/BDEC01 |  `module` コマンドを通じて自動指定 |
+| eic              | 東大地震研EIC2015環境下のIntel Compiler   |  `module` コマンドを通じて自動指定 |
 | ofp (or oak)  (obsolete)| 東京大学情報基盤センター Oakforest-PACS | `module` コマンドを通じて自動指定 |
 | obcx (obsolete) | 東京大学情報基盤センター Oakbridge-CX | `module` コマンドを通じて自動指定 |
-| bdec-o |  東京大学情報基盤センター Wisteria-Odyssey/BDEC01 |  `module` コマンドを通じて自動指定 |
-| mac-m1  | macOS + gfortran (Apple Silicon M1/M2 + Homebrew) | `/opt/homebrew/` |
+| mac-gfortran (obsolete)     | Mac OSX + gfortran + Open MPI          | `/usr/local`            |
+| mac-intel (obsolete)  | Mac OSX + Intel Compiler + OpenMPI     | `${HOME}/local`         |
+| fx  (obsolete) | 富士通FX10, FX100 および京コンピュータ | `${HOME}/xlocal`        |
+| es3 (obsolete)             | 地球シミュレータ第3世代                 | システム提供            |
+| es4 (obsolete)             | 地球シミュレータ第4世代                 | システム提供            |
 
 
 たとえば`mac-gfortran`に相当する環境では，
@@ -52,7 +53,8 @@ make arch=eic debug=true
 ```
 
 のように`debug=true`オプションを付けると，コンパイルオプション`FFLAGS`がデバッグに適したものに変更されるようになっている．これらの変数は
-`src/shared/makefile.arch`と`src/shared/makefile-tools.arch`に定義されている．新たな環境を追加するには，これらのファイルにオプションを追記するのが簡単であろう．
+`src/shared/makefile.arch`と`src/shared/makefile-tools.arch`に定義されている．
+新たな環境を追加するには，これらのファイルにオプションを追記するのが簡単であろう．
 
 
 ## `NetCDF`の利用

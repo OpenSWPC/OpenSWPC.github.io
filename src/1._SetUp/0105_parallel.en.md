@@ -21,7 +21,7 @@ Then, one will have the standard error output as follows. This result is contain
 ```text
 
  ------------------------------------------------------------------------------
-  SWPC_3D                                                                     
+  SWPC_3D version 25.01
  ------------------------------------------------------------------------------
 
   Grid Size               :      384 x    384 x    384
@@ -36,32 +36,32 @@ Then, one will have the standard error output as follows. This result is contain
 
  ------------------------------------------------------------------------------
 
-  it=0000050, 1.024 s/loop, eta 000:16:12, ( 2.94E-05  2.94E-05  1.59E-04 )
-  it=0000100, 1.028 s/loop, eta 000:15:25, ( 1.95E-04  1.95E-04  8.87E-04 )
-  it=0000150, 1.023 s/loop, eta 000:14:29, ( 1.04E-04  1.04E-04  4.87E-04 )
-  it=0000200, 1.014 s/loop, eta 000:13:31, ( 2.62E-05  2.62E-05  4.89E-05 )
-  it=0000250, 1.010 s/loop, eta 000:12:37, ( 1.32E-05  1.32E-05  3.59E-05 )
-  it=0000300, 1.001 s/loop, eta 000:11:40, ( 1.13E-05  1.13E-05  3.16E-05 )
-  it=0000350, 0.996 s/loop, eta 000:10:47, ( 1.26E-05  1.26E-05  2.67E-05 )
-  it=0000400, 0.992 s/loop, eta 000:09:55, ( 1.13E-05  1.13E-05  2.33E-05 )
-  it=0000450, 0.991 s/loop, eta 000:09:05, ( 9.68E-06  9.68E-06  2.07E-05 )
-  it=0000500, 0.987 s/loop, eta 000:08:13, ( 9.22E-06  9.22E-06  1.98E-05 )
-  it=0000550, 0.984 s/loop, eta 000:07:22, ( 8.90E-06  8.90E-06  1.90E-05 )
-  it=0000600, 0.981 s/loop, eta 000:06:32, ( 8.37E-06  8.37E-06  1.78E-05 )
-  it=0000650, 0.978 s/loop, eta 000:05:42, ( 7.78E-06  7.78E-06  1.68E-05 )
-  it=0000700, 0.975 s/loop, eta 000:04:52, ( 7.63E-06  7.63E-06  1.59E-05 )
-  it=0000750, 0.973 s/loop, eta 000:04:03, ( 7.47E-06  7.47E-06  1.53E-05 )
-  it=0000800, 0.972 s/loop, eta 000:03:14, ( 7.01E-06  7.01E-06  1.45E-05 )
-  it=0000850, 0.974 s/loop, eta 000:02:26, ( 6.79E-06  6.79E-06  1.35E-05 )
-  it=0000900, 0.974 s/loop, eta 000:01:37, ( 7.07E-06  7.07E-06  1.28E-05 )
-  it=0000950, 0.973 s/loop, eta 000:00:48, ( 7.38E-06  7.38E-06  1.20E-05 )
-  it=0001000, 0.973 s/loop, eta 000:00:00, ( 7.22E-06  7.22E-06  1.14E-05 )
+  it=0000050, 0.250 s/loop, eta 000:03:57, ( 2.94E-05  2.94E-05  1.59E-04 )
+  it=0000100, 0.257 s/loop, eta 000:03:50, ( 1.95E-04  1.95E-04  8.87E-04 )
+  it=0000150, 0.259 s/loop, eta 000:03:39, ( 1.04E-04  1.04E-04  4.87E-04 )
+  it=0000200, 0.259 s/loop, eta 000:03:27, ( 2.62E-05  2.62E-05  4.89E-05 )
+  it=0000250, 0.259 s/loop, eta 000:03:14, ( 1.32E-05  1.32E-05  3.59E-05 )
+  it=0000300, 0.259 s/loop, eta 000:03:01, ( 1.13E-05  1.13E-05  3.16E-05 )
+  it=0000350, 0.261 s/loop, eta 000:02:49, ( 1.26E-05  1.26E-05  2.67E-05 )
+  it=0000400, 0.261 s/loop, eta 000:02:36, ( 1.13E-05  1.13E-05  2.33E-05 )
+  it=0000450, 0.261 s/loop, eta 000:02:23, ( 9.68E-06  9.68E-06  2.07E-05 )
+  it=0000500, 0.260 s/loop, eta 000:02:10, ( 9.22E-06  9.22E-06  1.98E-05 )
+  it=0000550, 0.261 s/loop, eta 000:01:57, ( 8.90E-06  8.90E-06  1.90E-05 )
+  it=0000600, 0.261 s/loop, eta 000:01:44, ( 8.37E-06  8.37E-06  1.78E-05 )
+  it=0000650, 0.261 s/loop, eta 000:01:31, ( 7.78E-06  7.78E-06  1.68E-05 )
+  it=0000700, 0.261 s/loop, eta 000:01:18, ( 7.63E-06  7.63E-06  1.59E-05 )
+  it=0000750, 0.261 s/loop, eta 000:01:05, ( 7.47E-06  7.47E-06  1.53E-05 )
+  it=0000800, 0.261 s/loop, eta 000:00:52, ( 7.01E-06  7.01E-06  1.45E-05 )
+  it=0000850, 0.262 s/loop, eta 000:00:39, ( 6.79E-06  6.79E-06  1.35E-05 )
+  it=0000900, 0.262 s/loop, eta 000:00:26, ( 7.07E-06  7.07E-06  1.28E-05 )
+  it=0000950, 0.262 s/loop, eta 000:00:13, ( 7.38E-06  7.38E-06  1.20E-05 )
+  it=0001000, 0.262 s/loop, eta 000:00:00, ( 7.22E-06  7.22E-06  1.14E-05 )
 
  ------------------------------------------------------------------------------
  
-  Total time             :         972.827 s
+  Total time             :         261.625 s
 
- ------------------------------------------------------------------------------```
+ ------------------------------------------------------------------------------
 ```
 
 The first part of the message contains information such as the estimated
@@ -72,7 +72,7 @@ aborts immediately. In addition, the wavelength condition (the ratio of
 spatial grid size and minimum wavelength) is recommended to $r>5-10$.
 During the computation, the computational speed, remaining time (eta;
 estimated time of arrival), and maximum velocity amplitude of the
-components are shown. Among them, numbers related to the computational speed may vary depending on the environment. If the computation is successful, the maximum amplitude (the three numbers in the last `()`) should be the same.
+components are shown. Among them, numbers related to the computational speed may vary depending on the environment. If the computation is successful, the maximum amplitude (the three numbers in the last `()`) should be the same with above.
 
 The above simulation requires around ~14 GB of computer memory. If this size of the simulation is difficult, try the 2D P-SV simulation with the same input parameter file along the $xz$ cross section: 
 
@@ -133,9 +133,11 @@ The output in this case is as follows. The result is almost the same as the 3D c
 
 The computation speed depends on the environment, but in general, the computation time is much shorter for 2D calculations than for 3D calculations.
 
-Note that the message 
-```text
-Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
-```
-may appear after the calculation is completed, but this does not affect the calculation results.
+
+!!! Note
+    The message 
+    ```text
+    Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+    ```
+    may appear after the calculation is completed, but this does not affect the calculation results.
 

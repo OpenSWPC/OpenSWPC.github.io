@@ -3,21 +3,17 @@
 
 ## Output Datafile Format
 
-`OpenSWPC` can export two types of data: spatiotemporal snapshots and
+`OpenSWPC` can export two types of data: spatiotemporal snapshots along 2D profiles and
 the seismic waveform at stations.
 
 For snapshot files, the user may choose from an originally defined
 binary format (obsolete and not recommended) or a `NetCDF` file (recommended). The waveforms are usually exported in `SAC` format. Optionally, users can choose the `CSF` format which is concatenated `SAC` data into s single binary file. 
 
-The endian conversion is not performed at the time of the data output. Notice that the official libraries of `NetCDF` and `SAC` automatically detect the endian format and convert
-them if necessary. Therefore, users do not have to worry about the
+The endian conversion is not performed at the time of the data output. Notice that the official libraries of `NetCDF` and `SAC` automatically detect the endian format and convert them if necessary. Therefore, users do not have to worry about the
 differences in endian formats between machines.
 
-There is a utility program to read the original-formatted data. Note
-that the binary format may have slight differences for different
-versions of `OpenSWPC`. Because the format change is tracked, backward
-compatibility is always assured. It is recommended to use the same
-version of the simulation code. 
+Note that the horizontal component directions for both waveforms and snapshots correspond to the $x$, $y$, and $z$ of the calculation coordinate system. If `phi=0`, then $x$ and $y$ are north and east, respectively, but care is needed if the calculation coordinate system has been rotated (if `phi` is not zero). 
+The rotation angle of this coordinate system is stored in the `cmpaz` field of the `SAC` file header for waveform output, so it can be easily converted to a direction where north and east are positive in post-processing. In addition, in OpenSWPC, the vertical coordinate is positive downward, but in the waveform output, it is reversed so that it becomes positive when it is upper, following to the habit of observational seismology. On the other hand, the $z$ component of the velocity output of the snapshot remains in the calculation coordinate system (positive when it is lower).
 
 ### Header information of the waveform files
 
@@ -47,7 +43,10 @@ line of the source input file.
 
 
 ### Header of the Snapshot
-The snapshot file contains the header information listed in the following table. These headers are commonly defined in either original format or `NetCDF`. 
+
+
+The snapshot file contains the header information listed in the following table. These headers are commonly defined in either original format or `NetCDF`. For both file formats, the utility program `read_snp.x` can be used to read them.
+
 
 | var name     | type          | description                                                       |
 | ------------ | ------------- | ----------------------------------------------------------------- |
@@ -94,9 +93,10 @@ The numbers of exporting grids in each MPI
 node do not necessarily need to be the same for each node. The
 amplitudes of these snapshot points will be gathered to specific nodes and exported as single files.
 
-!!! Info "Figure"
-    ![](../fig/snapshot_decimation.png)
-    Schematic of the spatial decimation for the snapshot output. The vertical dotted lines show the borders of the MPI nodes. In this example, the data at the blue grids will be exported as the snapshot data.
+![](../fig/snapshot_decimation.png)
+/// caption
+Schematic of the spatial decimation for the snapshot output. The vertical dotted lines show the borders of the MPI nodes. In this example, the data at the blue grids will be exported as the snapshot data.
+///
 
 !!! Info "Parameters"
 
@@ -106,13 +106,14 @@ amplitudes of these snapshot points will be gathered to specific nodes and expor
     recommended for convenience in data handling, the use of this format
     may lead to a slight ($\sim$ 10 %) increase in computation time.
      
-    **`xy_ps%sw`, `xz_ps%sw`, `yz_ps%sw`, `fs_ps%sw`, `ob_ps%sw` **
+    **`xy_ps%sw`, `xz_ps%sw`, `yz_ps%sw`, `fs_ps%sw`, `ob_ps%sw`**
     : Flags for exporting snapshot files of the PS files (`.true.` or
     `.false.`). If they are set to `.true.`, the divergence and rotation
     vector of the particle velocity will be exported.                                                     
     
     **`xy_v3%sw`, `xz_v3%sw`, `yz_v3%sw`, `fs_v3%sw`, `ob_v3%sw`**
-    :  Flags for exporting snapshot files of the velocities.                                                                                          
+    :  Flags for exporting snapshot files of the velocities. 
+    
     **`xy_u3%sw`, `xz_u3%sw`, `yz_u3%sw`, `fs_u3%sw`, `ob_u3%sw`**
     : Flags for exporting snapshot files of the displacements.
     
@@ -136,12 +137,14 @@ amplitudes of these snapshot points will be gathered to specific nodes and expor
 ## Seismic Waveform Output
 
 Seismic velocity and/or displacement records at specified stations can
-be obtained as SAC-formatted files by setting the parameters `sw_wav_v`
+be obtained as SAC-formatted files or its derivative by setting the parameters `sw_wav_v`
 and/or `sw_wav_u` to `.true.`. Displacement records are calculated
 before the decimation, and therefore, they are expected to be more
 accurate than performing a numerical integration of the output velocity
 records. The traces are stored in the memory during the computation and
 are exported at the end.
+
+### Station Location Specification
 
 Station locations are given in Cartesian coordinates (`xy`) or
 geographical coordinates (`ll`), as in the following table. 
@@ -176,43 +179,11 @@ fixed limit on the number of stations. The number of stations is
 automatically counted, and only the stations inside the computational
 region will be exported.
 
-!!! Info "Parameters"
+### Output Data Format of Waveofmrs
 
-    **`sw_wav_v`**, **`sw_wav_u`**
-    : `.true. for exporting velocity (`sw_wav_v`) and displacement (`sw_wav_v`) traces.
-    
-    **`ntdec_w`**
-    : Decimation factor of the waveform output. For `ntdec_w=1`, traces at
-    every computational time step will be exported.
-    
-    **`st_format`**
-    :Format of the station list file. See the above table. 
+The data output format for seismic waveform data is SAC format. However, since SAC files are one file per station per component, if multiple waveforms for multiple stations are output, the number of files will become huge and it will be difficult to handle. Thus, it is also possible to output a file that combines the waveforms for each station or each calculation node into a single `tar` archive (**New in Version 25.01**).
 
-    **`fn_stloc`**
-    : Station location filename.
-    
-    **`wav_format`**
-    : Station file format: `’sac’` (usual, recommended) or `’csf’`.
-
-
-### Strain and stress output
-
-By specifying `sw_wav_strain = .true.` and `sw_wav_stress = .true.`, users can obtain strain and stress time series as a SAC-formatted data file as in the case of velocity and displacement (**Experimental; new in version 5.0**). The specification of station locations are same with the case of velocity/displacement. The output units are nondimensional for strain and \[Pa\] for stress data. 
-
-### Distance calculation mode
-In default, `OpenSWPC` will store the station location via `stlo` and `stla` headers of `SAC`, and `SAC` program will automatically calculate the epicentral distance. However if the input station location is given in `xy` coordinate and distance if very long, the error originated from the map projection is not negilible. In such cases, one may calculate epicentral distance in the `OpenSWPC` and store to the `epdist` header of `SAC` files, and prohibit `SAC` to overwright the distance header. 
-
-!!! Info "Parameters"
-    **`wav_calc_dist`**
-    : If this parameter is `.true.`, calculate and store the epicentral distance and store it to the `SAC` header. 
-
-
-### The csf format
-
-Because the `SAC` format is defined to express the data at one component
-of one station in a single file, the number of files may become
-extraordinarily large. In this case, data transfer between computers
-will become very inefficient. For `OpenSWPC` version 3.0 or later, users
+For `OpenSWPC` version 3.0 or later, users
 can choose a concatenated `SAC` format (csf) for the data output by
 specifying `wav_format=’csf’`. This is a set of `SAC` binary files
 connected to a single file, with headers as in the following: 
@@ -234,20 +205,65 @@ It is assumed that the number of samples (`ntpts`) are in common in the `csf` fo
 !!! Caution "Exporting large number of waveform dataset"
     Large-scale computer systems often adopt the parallel lustre file system, which is *not* good at treating small but many files such as seismic wave traces in SAC format. In this case, it is recommended to use concatnated CSF format.
 
+
+!!! Note
+    As `tar` archives are more flexible than `csf` archives, the `csf` format is deprecated and will be removed in future versions.
+
+
+!!! Important "`wav_calc_dist` parameter and `lcalda` headers"
+    Up to version 24.09, when the `wav_calc_dist` option was `.true.`, the horizontal distance in the calculation coordinate system was stored in the SAC header as the epicentral distance. From version 25.01 onwards, the epicentral distance is always stored, and the `lcalda` header is set to `.false.` so that the SAC does not overwrite the distance. As a result, the parameter `wav_calc_dist` has been deprecated.
+
+
+### Strain and stress output
+
+By specifying `sw_wav_strain = .true.` and `sw_wav_stress = .true.`, users can obtain strain and stress time series as a SAC-formatted data file as in the case of velocity and displacement (**Experimental; new in version 5.0**). The specification of station locations are same with the case of velocity/displacement. The output units are nondimensional for strain and \[Pa\] for stress data. 
+
+
 ### Timing of waveform output
 
 The seismic waveforms at the stations are stored in memory during the computation and are output to a file at the end of the computation. However, if the parameter `ntdec_w_prg` is set to an integer greater than or equal to `1`, waveforms can be output at each time step of that number. The length of the waveform is always the length determined by `nt`, and the part of the waveform that has not been computed yet is filled with zeros. This function is intended to monitor the normality of the computation during the computation, but it should be noted that if `ntdec_w_prg` is set too small, the computation time may increase due to the output load.
 
-`ntdec_w_prg` is available in Version 24.09 and later.
+
+!!! Info "Parameters"
+
+    **`sw_wav_v`**, **`sw_wav_u`**,**`sw_wav_strain`** **`sw_wav_stress`**
+    : `.true. for exporting velocity (`sw_wav_v`), displacement (`sw_wav_v`), strain (`sw_wav_strain`) and stress (`sw_wav_stress`) traces. 
+    
+    **`ntdec_w`**
+    : Decimation factor of the waveform output. For `ntdec_w=1`, traces at
+    every computational time step will be exported.
+    
+    **`st_format`**
+    :Format of the station list file. See the above table. 
+
+    **`fn_stloc`**
+    : Station location filename.
+    
+    **`wav_format`**
+    : Waveform file format. Specify one of `'sac'`, `'tar_st'`, '`tar_node'`, or `'csf'`. `tar_st` outputs a `tar` archive file that contains waveforms for each observation point, and `tar_node` outputs a `tar` archive file that contains waveforms for each calculation node.
+
+    **`ntdec_w_prg`** (New in Version 24.09)
+    : Output timing of waveform during calculation. Outputs waveform at every time step specified in this parameter. If it is less than or equal to 0, waveform is not output until the end of calculation.
+
+## Computation Time Output
+
+To analyze the performance of the code, the computation time of each block can be measured. This file can be visualized by using the `tools/timvis.gmt` script.
+
+!!! Info "Parameters"
+
+    **`stopwatch_mode`**
+    :  Output switch for the computation time. If `.true.`, the computation time for each subroutine is output.
 
 
 ## Output Filename Conventions
 
 Output data names are determined by the following rules:
 
--   Snapshot     `(odir)/(title).(section).(type).(ext)`
--   Waveform (SAC)    `(odir)/wav/(title).(stnm).(component).sac`
+-   Snapshot     `(odir)/(title).(code).(section).(type).(ext)`
+-   Waveform (SAC)    `(odir)/wav/(title).(code).(stnm).(component).sac`
 -   Waveform (CSF)    `(odir)/wav/(title).(node-ID).(component).csf`
+-   Waveform (TAR-ST) `(odir)/wav/(title).(code).(stnm).tar`
+-   Waveform (TAR-NODE) `(odir)/wav/(title).(code).(node-ID).tar`
 -   Computation time   `(odir)/wav/(title).tim`
 
 In the above rules, (section) takes a cross section such as `xy` or
