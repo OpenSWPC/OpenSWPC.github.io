@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="ja" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -12,7 +12,7 @@
         <meta name="author" content="Takuto Maeda">
       
       
-        <link rel="canonical" href="https://OpenSPWC.github.io/2._Parameters/0202_env/">
+        <link rel="canonical" href="https://OpenSPWC.github.io/ja/2._Parameters/0202_control/">
       
       
         <link rel="prev" href="../0201_description/">
@@ -21,19 +21,19 @@
         <link rel="next" href="../0203_coord/">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
-        <title>Controlling Parameters - OpenSWPC</title>
+        <title>動作環境の制御 - OpenSWPC</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f8fc17f.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -54,9 +54,9 @@
     
       <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjp.css">
     
-      <link rel="stylesheet" href="../../css/custom.css">
+      <link rel="stylesheet" href="../../../css/custom.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,8 +80,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#controlling-parameters" class="md-skip">
-          Skip to content
+        <a href="#_1" class="md-skip">
+          コンテンツにスキップ
         </a>
       
     </div>
@@ -93,15 +93,15 @@
       
 
 <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="OpenSWPC" class="md-header__button md-logo" aria-label="OpenSWPC" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../" title="OpenSWPC" class="md-header__button md-logo" aria-label="OpenSWPC" data-md-component="logo">
       
-  <img src="../../fig/icon.png" alt="logo">
+  <img src="../../../fig/icon.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Controlling Parameters
+              動作環境の制御
             
           </span>
         </div>
@@ -127,20 +127,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="Select language">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
+    <button class="md-header__button md-icon" aria-label="言語切り替え">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="./" hreflang="en" class="md-select__link">
+            <a href="../../../2._Parameters/0202_control/" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../../ja/2._Parameters/0202_env/" hreflang="ja" class="md-select__link">
+            <a href="./" hreflang="ja" class="md-select__link">
               Japanese
             </a>
           </li>
@@ -153,24 +153,24 @@
     
       <label class="md-header__button md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
+      <nav class="md-search__options" aria-label="検索">
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
@@ -179,7 +179,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Initializing search
+            検索を初期化
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -190,10 +190,10 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/OpenSWPC/OpenSWPC" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/OpenSWPC/OpenSWPC" title="リポジトリへ" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     OpenSWPC/OpenSWPC
@@ -211,7 +211,7 @@
         
           
             
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
       
@@ -220,12 +220,12 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../" class="md-tabs__link">
         
   
     
   
-  OpenSWPC Users' Guide
+  OpenSWPC ユーザーズガイド
 
       </a>
     </li>
@@ -242,7 +242,7 @@
   
     
   
-  New features
+  更新履歴・新機能紹介
 
       </a>
     </li>
@@ -259,7 +259,7 @@
         <a href="../../1._SetUp/0100_trial/" class="md-tabs__link">
           
   
-  How to build
+  ビルドから実行まで
 
         </a>
       </li>
@@ -279,7 +279,7 @@
         <a href="../0201_description/" class="md-tabs__link">
           
   
-  Parameter settings
+  パラメタ設定
 
         </a>
       </li>
@@ -297,7 +297,7 @@
         <a href="../../3._Tools/0301_snapshot/" class="md-tabs__link">
           
   
-  Tools
+  関連ツール
 
         </a>
       </li>
@@ -315,7 +315,7 @@
         <a href="../../4._Hints/0401_modelset/" class="md-tabs__link">
           
   
-  Hints
+  計算のヒント
 
         </a>
       </li>
@@ -333,7 +333,7 @@
   
     
   
-  License
+  ライセンス
 
       </a>
     </li>
@@ -362,21 +362,21 @@
 
   
 
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="ナビゲーション" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="OpenSWPC" class="md-nav__button md-logo" aria-label="OpenSWPC" data-md-component="logo">
+    <a href="../../" title="OpenSWPC" class="md-nav__button md-logo" aria-label="OpenSWPC" data-md-component="logo">
       
-  <img src="../../fig/icon.png" alt="logo">
+  <img src="../../../fig/icon.png" alt="logo">
 
     </a>
     OpenSWPC
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/OpenSWPC/OpenSWPC" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/OpenSWPC/OpenSWPC" title="リポジトリへ" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     OpenSWPC/OpenSWPC
@@ -393,11 +393,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    OpenSWPC Users' Guide
+    OpenSWPC ユーザーズガイド
   </span>
   
 
@@ -417,7 +417,7 @@
         
   
   <span class="md-ellipsis">
-    New features
+    更新履歴・新機能紹介
   </span>
   
 
@@ -452,7 +452,7 @@
             
   
   <span class="md-ellipsis">
-    How to build
+    ビルドから実行まで
   </span>
   
 
@@ -462,7 +462,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            How to build
+            ビルドから実行まで
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -498,7 +498,7 @@
         
   
   <span class="md-ellipsis">
-    System requirements
+    動作環境
   </span>
   
 
@@ -519,7 +519,7 @@
         
   
   <span class="md-ellipsis">
-    Code directory tree
+    ディレクトリ構成
   </span>
   
 
@@ -540,7 +540,7 @@
         
   
   <span class="md-ellipsis">
-    Compilation and Execution
+    コンパイル
   </span>
   
 
@@ -561,7 +561,7 @@
         
   
   <span class="md-ellipsis">
-    Preparing the Dataset
+    データセットの準備
   </span>
   
 
@@ -582,7 +582,7 @@
         
   
   <span class="md-ellipsis">
-    Execution
+    実行例
   </span>
   
 
@@ -630,7 +630,7 @@
             
   
   <span class="md-ellipsis">
-    Parameter settings
+    パラメタ設定
   </span>
   
 
@@ -640,7 +640,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Parameter settings
+            パラメタ設定
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -655,7 +655,7 @@
         
   
   <span class="md-ellipsis">
-    Notation of the Parameter File
+    パラメタファイルの記法
   </span>
   
 
@@ -685,7 +685,7 @@
         
   
   <span class="md-ellipsis">
-    Controlling Parameters
+    動作環境の制御
   </span>
   
 
@@ -707,7 +707,7 @@
         
   
   <span class="md-ellipsis">
-    Coordinates and Parallel Computation
+    座標系と並列計算
   </span>
   
 
@@ -728,7 +728,7 @@
         
   
   <span class="md-ellipsis">
-    Viscoelastic Bodies
+    内部減衰と粘弾性体
   </span>
   
 
@@ -749,7 +749,7 @@
         
   
   <span class="md-ellipsis">
-    Simulation Data Output
+    出力ファイルの設定
   </span>
   
 
@@ -770,7 +770,7 @@
         
   
   <span class="md-ellipsis">
-    Velocity Model
+    速度構造の指定
   </span>
   
 
@@ -791,7 +791,7 @@
         
   
   <span class="md-ellipsis">
-    Earthquake Source Specification
+    震源の指定
   </span>
   
 
@@ -812,7 +812,7 @@
         
   
   <span class="md-ellipsis">
-    Absorbing Boundary Conditions
+    吸収境界条件
   </span>
   
 
@@ -833,7 +833,7 @@
         
   
   <span class="md-ellipsis">
-    Checkpointing and Restarting
+    チェックポイント・リスタート
   </span>
   
 
@@ -854,7 +854,7 @@
         
   
   <span class="md-ellipsis">
-    Reciprocity Mode
+    相反定理モード
   </span>
   
 
@@ -875,7 +875,7 @@
         
   
   <span class="md-ellipsis">
-    About Two-Dimensional Codes
+    2次元コード固有の設定
   </span>
   
 
@@ -918,7 +918,7 @@
             
   
   <span class="md-ellipsis">
-    Tools
+    関連ツール
   </span>
   
 
@@ -928,7 +928,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Tools
+            関連ツール
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -943,7 +943,7 @@
         
   
   <span class="md-ellipsis">
-    Snapshot data handling
+    スナップショット
   </span>
   
 
@@ -964,7 +964,7 @@
         
   
   <span class="md-ellipsis">
-    Velocity Structure
+    構造モデルの確認
   </span>
   
 
@@ -985,7 +985,7 @@
         
   
   <span class="md-ellipsis">
-    Programs for Supporting Parameter Settings
+    パラメタ作成支援
   </span>
   
 
@@ -1006,7 +1006,7 @@
         
   
   <span class="md-ellipsis">
-    Generation of Random Media
+    ランダム媒質生成
   </span>
   
 
@@ -1048,7 +1048,7 @@
         
   
   <span class="md-ellipsis">
-    Miscellaneous Tools
+    その他のツール
   </span>
   
 
@@ -1091,7 +1091,7 @@
             
   
   <span class="md-ellipsis">
-    Hints
+    計算のヒント
   </span>
   
 
@@ -1101,7 +1101,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
-            Hints
+            計算のヒント
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1116,7 +1116,7 @@
         
   
   <span class="md-ellipsis">
-    For Parameter Settings
+    計算モデル設定
   </span>
   
 
@@ -1137,7 +1137,7 @@
         
   
   <span class="md-ellipsis">
-    For Modifying the Code
+    コード改造のヒント
   </span>
   
 
@@ -1165,7 +1165,7 @@
         
   
   <span class="md-ellipsis">
-    License
+    ライセンス
   </span>
   
 
@@ -1189,45 +1189,30 @@
                   
 
 
-<h1 id="controlling-parameters">Controlling Parameters<a class="headerlink" href="#controlling-parameters" title="Permanent link">&para;</a></h1>
+<h1 id="_1">動作環境の制御<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>以下のパラメタはコードの動作全体に影響する．</p>
 <div class="admonition info">
 <p class="admonition-title">Parameters</p>
 <dl>
 <dt><strong><code>title</code></strong></dt>
-<dd>Title of the computation to be used for the output filename.</dd>
+<dd>計算のタイトル．出力ファイル名に利用される．</dd>
 <dt><strong><code>odir</code></strong></dt>
-<dd>Name of output directory. This is a relative directory path from the
-location of the program execution. If this directory does not exist
-at the time of run, <code>OpenSWPC</code> will automatically create it.</dd>
+<dd>出力ディレクトリ名．プログラム実行時の場所からの相対ディレクトリ．このディレクトリが存在しない場合には，実行時に自動的に作成される．</dd>
 <dt><strong><code>ntdec_r</code></strong></dt>
-<dd><strong>N</strong>umber of <strong>T</strong>ime-step <strong>DEC</strong>imation factors for screen
-<code>R</code>eporting. The maximum amplitudes of the velocity components are
-reported in the standard error output every <code>ntdec_r</code> steps. This
-screen output is generally used to confirm that the model is working
-correctly. A cycle that is too short (this parameter is too small)
-may slow down the computation.</dd>
+<dd>計算の経過を画面出力する際の間引き間隔．<code>ntdec_r</code>計算ステップ毎に，途中経過として，1ステップあたりにかかる計算時間と計算終了までの所要時間見込み，そして3成分地震波速度計算値の最大値を出力する．本パラメタは主に正常動作の確認と計算時間の評価のために用いるもので，計算結果には影響しない，ただし，あまりにも表示頻度が高い（<code>ntdec_r</code>が小さい）と，計算実行時間の増大を招く可能性がある．</dd>
 <dt><strong><code>stopwatch_mode</code></strong></dt>
-<dd>Measure the computation times at major subroutines and export the accumulated times to <code>(odir)/(title).tim</code>. This function is used for benchmarking and perforance tuning. The output <code>*.tim</code> file can be visualized with GMT (versions 4 or 5) via <code>tools/timvis.gmt?</code>. </dd>
+<dd>各サブルーチンでの計算時間を独自に計測し，その結果を<code>(odir)/(title).tim</code>というファイルに出力する．主としてベンチマーク・チューニング用途に用いる．GMTがインストールされていれば，この結果は<code>tools/timvis.gmt?</code>によって可視化することができる．</dd>
 <dt><strong><code>benchmark_mode</code></strong></dt>
-<dd>If this flag is <code>.true.</code>, the fixed homogeneous medium and
-single-point moment tensor source will be selected irrespective of
-the parameter specification. This is used for validation and
-performance measurements.</dd>
+<dd><code>.true.</code>の場合，入力パラメータに関わらず固定の構造・グリッド間隔で動作させる．正常動作と計算速度確認のためのオプションである．</dd>
 <dt><strong><code>strict_mode</code></strong> <strong>(New in v5.1)</strong></dt>
-<dd>If this flag is <code>.true.</code>, the all necessary parameter must be explicitly written in the input file. 
-By default this parameter is set to <code>.false.</code>, so that <code>OpenSWPC</code> will use parameter-specific default values if the parameter is not found in the input file. </dd>
+<dd><code>.true.</code>の場合，あらゆる必要なパラメタが明示的に指定されていなければならない．<code>.false.</code>（あるいは指定なし）の場合には，いくつかのパラメタについては無指定の場合にデフォルト値が設定される．その場合には画面に採用したデフォルト値が表示される．</dd>
 <dt><strong><code>ipad, jpad, kpad</code></strong></dt>
-<dd>Expand the Fortran array sizes along the x-, y-, and z-directions.
-In some computer architectures, the computation speed is very
-sensitive to the array size. In such cases, slightly changing the
-array size using these parameters may improve the performance. The
-expanded array will not be used for the simulation. Therefore, the
-simulation result is not affected by changing this option.</dd>
+<dd>x, y, z各方向の配列確保の水増しサイズ．計算機によっては，実際の計算領域よりも配列のメモリ確保領域を微妙に増やすことで，計算速度が改善することがある．ただしこれらはあくまでもメモリ確保上の水増しであり，計算結果には影響しない．</dd>
 </dl>
 </div>
 <div class="admonition caution">
-<p class="admonition-title">Benchmark Mode</p>
-<p>Until version 5.0.2, an example input file <code>example/input.inf</code> contained <code>benchmark_mode = .true.</code> which neglects many changes of parameters related to velocity structure and earthquake source. After version 5.1, this parameter is set to <code>.false.</code> in the example file. </p>
+<p class="admonition-title">ベンチマークモードについて</p>
+<p>バージョン 5.0.2 までは，<code>example/input.inf</code> のサンプルファイルでは <code>benchmark_mode = .true.</code> とされていた．このファイルを修正して計算しようとしても，<code>benchmark_mode</code>のため速度構造や震源の変更の一切を受け入れない状態になっている．バージョン 5.1からは，デフォルトでこのパラメタは<code>.false.</code>となった．</p>
 </div>
 
 
@@ -1251,8 +1236,8 @@ simulation result is not affected by changing this option.</dd>
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-  Back to top
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
 </button>
         
       </main>
@@ -1285,12 +1270,12 @@ simulation result is not affected by changing this option.</dd>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "toc.integrate", "navigation.sections"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.top", "toc.integrate", "navigation.sections"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
-        <script src="../../mathjax-config.js"></script>
+        <script src="../../../mathjax-config.js"></script>
       
         <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       
