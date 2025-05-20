@@ -55,7 +55,7 @@ read_snp.x -i snapshotfile [-h] [-ppm|-bmp] [-pall]
     surface (`ob`, `fs`), the topography color map will be overlaid. For
     other cross sections, the velocity structure in the section will be
     overlaid.
-      
+
   `-pall`
   : Visualize including the absorbing boundary region. This option works
     only if it is used with . By default, the absorbing boundary region
@@ -80,8 +80,11 @@ read_snp.x -i snapshotfile [-h] [-ppm|-bmp] [-pall]
   `-skip n`
   : Skip the first $n$ snapshots for visualization or data exports.
 
-  `-notim` (after v5.1)
+  `-notim` (New in Version 5.1)
   : Do *not* plot the elapsed time in the snapshot figures.
+
+  `-lpf ng` (New in Version 25.01)
+  : A second-order Butterworth low-pass filter is applied in the frequency domain. `ng` specifies the number of pixel points in the snapshot corresponding to the cutoff wavelength.
 
 
 ## `diff_snp.x`

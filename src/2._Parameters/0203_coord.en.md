@@ -4,25 +4,23 @@ For parallel computation, `OpenSWPC` performs 2D model partitioning for
 a 3D code (see figure below) and 1D partitioning for a 2D code, in the
 horizontal direction in both cases. The computation is performed in
 Cartesian coordinates. We adopt the computational coordinate system
-depicted in the Figure. 
+depicted in the following Figure. Note that X-Z (`I-K`) cross section is adopted in the case of 2D computation.
 
 
+![](../fig/parallel_partition.png)
+/// caption
+(a) Partitioning of the computational domain for MPI. (b) Schematic of the data exchange by the MPI protocol（Modified from Maeda et al., 2013[^Maeda2013]）．
+///
 
-
-!!! Quote "Figure"
-    ![](../fig/parallel_partition.png)
-    (a) Partitioning of the computational domain for MPI. (b) Schematic of the data exchange by the MPI protocol（Modified from Maeda et al., 2013[^Maeda2013]）．
+[^Maeda2013]: Maeda, T., Furumura, T., Noguchi, S., Takemura, S., Sakai, S., Shinohara, M., Iwai, K., & Lee, S.-J. (2013). Seismic and tsunami wave propagation of the 2011 Off the Pacific Coast of Tohoku Earthquake as inferred from the tsunami-coupled finite difference simulation, _Bulletin of the Seismological Society of America_, 103, 1456–1472, doi:10.1785/0120120118. [(article link)](https://doi.org/10.1785/0120120118)
 
 By default, the coordinate axes $x$, $y$, and $z$ represent the north, east, and depth directions, respectively.
 They cover the region of `xbeg` $\le x \le$ `xend`, `ybeg` $\le y \le$ `yend`, and `zbeg` $\le z \le$ `zend`. Note that the $z$-axis is defined as positive downward. Because the free surface is usually defined at $z=0$, it is recommended to let `zbeg` be a negative value to include the free surface in the model.
 
-[^Maeda2013]: Maeda, T., Furumura, T., Noguchi, S., Takemura, S., Sakai, S., Shinohara, M., Iwai, K., & Lee, S.-J. (2013). Seismic and tsunami wave propagation of the 2011 Off the Pacific Coast of Tohoku Earthquake as inferred from the tsunami-coupled finite difference simulation, _Bulletin of the Seismological Society of America_, 103, 1456–1472, doi:10.1785/0120120118. [(article link)](https://doi.org/10.1785/0120120118)
-
 
 The volume is discretized into `nx`, `ny`, and `nz` grids with spatial grid widths of `dx`, `dy`, and `dz`, respectively, in each direction. 
 The parameter file must provide definitions of `xbeg`, `ybeg`, and `zbeg` and `nx`, `ny`, and `nz`; other parameters (`xend`, `yend`, and `zend`) are automatically computed from them. 
-The center of the Cartesian coordinate ($x = 0$, $y = 0$) corresponds to the center longitude (`clon`) and latitude (`clat`). The geographical coordinate is projected onto the Cartesian coordinate by the Gauss--Krüger transform
-as follows (see Figure below):
+The center of the Cartesian coordinate ($x = 0$, $y = 0$) corresponds to the center longitude (`clon`) and latitude (`clat`). The geographical coordinate is projected onto the Cartesian coordinate by the Gauss--Krüger transform （Kawase et al., 2011 [^Kawase2011]）as follows:
 
 1.  First generate an evenly spaced grid in Cartesian coordinates from
     the input parameters phi and those related to the x, y coordinates.
@@ -37,10 +35,10 @@ as follows (see Figure below):
 If the specified area exceeds that of the input velocity model, the
 outermost value of the velocity structure is used for the extrapolation.
 
-!!! Quote "Figure"
-    ![](../fig/fdm_coordinate.png)
-    Relation between computational coordinate and geographical coordinate systems.
-
+![](../fig/fdm_coordinate.png)
+/// caption
+Relation between computational coordinate and geographical coordinate systems.
+///
 
 [^Kawase2011]: Kawase, K. (2011), A general formula for calculating meridian arc length and its application to coordinate conversion in the Gauss-Krüger projection, _Bulletin of the Geospatial Information Authority of Japan_, _59_, 1–13. [(article link)](http://www.gsi.go.jp/common/000062452.pdf)
 
@@ -50,18 +48,19 @@ outermost value of the velocity structure is used for the extrapolation.
 
 `OpenSWPC` adopts the staggered-grid coordinate system shown in the following figure. 
 
-!!! Quote "Figure"
-    ![](../fig/voxel_staggered.png)
-    Staggered grid layout in 3D space for the case of `xbeg=ybeg=zbeg=0`
+![](../fig/voxel_staggered.png)
+/// caption
+Staggered grid layout in 3D space for the case of `xbeg=ybeg=zbeg=0`
+/// 
 
-The unit volume shown in the figure is defined as a "voxel" at the grid indices (`I,J,K`). A grid location $x$
-belongs to the voxel number
+The unit volume shown in the figure is defined as a "cell" at the grid indices (`I,J,K`). A grid location $x$
+belongs to the cell number
 
 \begin{align}
 I = \left \lceil \frac{ x-x_{\text{beg}} }{ \Delta  x } \right \rceil, 
 \end{align}
 
-and if the voxel number `I` is given, its center coordinate location is
+and if the cell number `I` is given, its center coordinate location is
 
 \begin{align}
 x = x_{\text{beg}} + \left( I - \frac{1}{2} \right) \Delta x
@@ -69,10 +68,10 @@ x = x_{\text{beg}} + \left( I - \frac{1}{2} \right) \Delta x
 
 where $\lceil \cdot \rceil$ is a ceiling function and $x_{\text{beg}}$
 is the minimum value of the $x$-coordinate. Note that $x_{\text{beg}}$
-is set to belong to the voxel `I=1`.
+is set to belong to the cell `I=1`.
 
  
-A voxel has a volume of
+A cell has a volume of
 
 \begin{align}
 \begin{split}
@@ -84,10 +83,10 @@ z_\text{beg} + (K-1)\Delta z < z \le z_\text{beg} + K \Delta z
 \end{split}
 \end{align}
 
-The normal stress tensor components are defined at the center of the voxel, the shear stress is defined on the edge, and velocity vector components are defined on its surface. 
+The normal stress tensor components are defined at the center of the cell, the shear stress is defined on the edge, and velocity vector components are defined on its surface. 
 
 Medium parameters are defined at the
-center of the voxel at
+center of the cell at
 
 \begin{align}
 x_\text{beg} + (I-1/2) \Delta x,
@@ -97,24 +96,45 @@ z_\text{beg} + (K-1/2) \Delta z
 \end{align}
 
 If necessary, averaging will be performed
-between neighboring voxels.
+between neighboring cells.
 
-## Stability and Wavelength Conditions
+## FDM Formula, and Stability and Wavelength Conditions
 
-The spatial grid width, $\Delta x$, $\Delta y$, and $\Delta z$, and the
+In the staggared-grid finite difference method adopted in OpenSWPC, the spatial derivatives appeared in the equations of motion and the constitutive equations are approximated as the fourth-order finite difference formula. For example, the derivative with respect to the $x$-direction is approximated as
+
+$$
+\begin{align}
+\frac{\partial f}{\partial x} &\simeq \sum_{p=1}^{2} (-1)^{p-1} C_p \frac{f(x + (p-1/2) \Delta x) - f(x - (p-1/2) \Delta x) }{\Delta x} + \mathcal{O}(\Delta x^4)
+\notag \\
+&= 
+\frac{1}{\Delta x}\left[
+\frac{9}{8}\left\{f(x+\Delta x/2) - f(x-\Delta x/2)\right\} - \frac{1}{24} \left\{ f(x+3\Delta x/2) - f(x-3\Delta x/2) \right\} \right] + \mathcal{O}(\Delta x^4)
+\end{align}
+$$
+
+where $C_p$ are the
+coefficients of the finite difference formula, $C_1 = 9/8$ and $C_2 = 1/24$. 
+On the other hand, the temporal derivative is approximated as second-order formula as 
+
+$$
+\begin{align}
+\frac{\partial f}{\partial t} &\simeq 
+\frac{f(t+\Delta t/2) - f(t-\Delta t/2)}{\Delta t} + \mathcal{O}(\Delta t^2). 
+\end{align}
+$$
+
+For successful numerical simulation, the spatial grid width, $\Delta x$, $\Delta y$, and $\Delta z$, and the
 time step width, $\Delta t$, must satisfy the stability condition. The
-stability condition in $N_D$-dimensional space for the order of the
-finite difference method $P$ is given by
+stability condition of the  finite difference method of the $P$-th order in $N_D$-dimensional space is given by
 
 \begin{align}
   \Delta t < \frac{ 1 }{ V_{\max} } \left( \sum_{i=1}^{N_D} \frac{1}{\Delta x_i^2} \right)^{-1/2} \left( \sum_{p=1}^{P/2} C_p\right) ^{-1}
 \end{align}
 
-where $V_{\max}$ is the maximum velocity of the medium, $C_p$ are the
-coefficients of the finite difference formula, and $\Delta x_i$ is the
+where $V_{\max}$ is the maximum velocity of the medium, and $\Delta x_i$ is the
 spatial grid width in the $i$-th direction. For the fourth-order formula
 of the finite difference method, which is used in the code, the
-coefficients are $C_1 = 9/8$ and $C_2 = 1/24$. For example, for the
+coefficients are . For example, for the
 fourth-order finite difference with isotropic grid sizes
 ($\Delta x = \Delta y =\Delta z = h$) in three-dimensional space, the
 stability condition is reduced to
@@ -140,6 +160,8 @@ this problem; however, in this case, the time-step size must also be
 shortened to satisfy the stability condition.
 
 Parameters related to the above conditions will be displayed to the standard error output when the `OpenSWPC` programs start computation as the Stability Condition `c` and the Wavelength Condition `r`. They representes ratios between allowed maximum timestep by the stability condition and the time step parameter `dt`, and between the minimum wavelength in the medium and grid spacing, respectively. The former must be smaller than 1 to perform computation. 
+
+[A tool](../3._Tools/0303_parameter.en.md) is available to determine the appropriate time step and spatial grid width which satisify the above conditions. Also, cares must be taken for memory size in particular for the 3D simulation. 
 
 !!! Info "Parameters"
     **`nproc_x`**, **`nproc_y`**

@@ -1,4 +1,54 @@
-# New features
+# Version History & New features
+
+## Version 25.01 (2025-01-04)
+
+### Velocity Structure Model Linear Gradient Model (`lgm`)
+
+It is now possible to create a model in which seismic wave velocity varies linearly within a layer, using the same format input file as the Lateral Homogeneous Medium (`lhm`).
+This allows the user to apply a velocity structure that smoothly changes with depth to simulations.
+
+The figures below show PS snapshots of the P-SV code for `vmodel=“lhm”` and `vmodel=“lgm”` using the same structural model file provided in the OpenSWPC `example`. Compared to `lhm`, `lgm` has a relatively simple wave field, with fewer reflected and converted waves at the internal boundary due to the absence of the velocity discontinuity surface (the gray horizontal line).
+
+![](./fig/lhm-lgm.png)
+/// caption
+Example of a numerical simulation snapshot of `swpc_psv` using the structural model file `example/lhm.dat`. The left image was calculated using `vmodel=“lhm”` and the right image was calculated using `vmodel=“lgm”`.
+///
+
+On the other hand, the `lgm` model can also express velocity discontinuity surfaces. In other words, `lgm` is a superset that includes `lhm`. In addition, `lgm_rmed`, which corresponds to `lhm_rmed` with a random medium superimposed, is also provided.
+
+
+### `tar` archive format for waveform output
+
+A function has been added to output seismic waveform files in SAC format as a single `tar` archive for each observation point or for all waveforms from the output node (`wav_format = “tar_st”`, `wav_format = “tar_node”`).
+
+Since `tar` is an archive for a single file and does not include compression, the size of the output file will not change much. However, by reducing the number of output files through archiving, it is expected that data output will be more efficient and that file management after output will be easier.
+
+If one use the seismology library [ObsPy](https://docs.obspy.org) in Python, one can read the SAC waveform files that have been archived as `tar` without extracting them.
+
+Until now, the proprietary binary `csf` format has been provided as a format for combining multiple waveform data into a single file. As the purpose of this format is duplicated, `csf` output is depreciated and will be removed in future versions.
+
+### Epicentral distance in waverform files
+
+The default behavior is now to record the epicentral distance in the header of the waveform file, which was previously an optional function controlled by the `calc_wav_dist` parameter. The `calc_wav_dist` parameter has been removed.
+
+### Change in output file name
+
+The problem of overwriting output file names due to duplication when executing the `SH`, `P-SV` and `3D` codes from the same input parameter file has been resolved. For this reason, the code name is now added to the output file name.
+
+In addition, images and data output from `read_snp.x` are now divided into directories by type.
+
+### Documentation update
+
+The entire documentation was reviewed; outdated information was updated, as well as the explanations were reinforced.
+
+### Minor bugfixes
+
+- Fixed a problem where the waveform time could not be read correctly in some environments due to the SAC header `nzmsec` being undefined
+- Fixed a problem where the initial value `-12345` of the SAC header `kf` was not output correctly
+- Corrected the UT-LocalTime discrepancy in the time stamps recorded in the waveform and snapshot output
+- Fixed the file name in the JIVSM structure model creation script
+- Addressed the issue of the output directory sometimes failing to be created on a shared file system
+
 
 ## Version 24.09 (2024-09-13)
 

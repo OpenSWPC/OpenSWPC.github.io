@@ -3,21 +3,19 @@
 `OpenSWPC` は3次元計算の場合は水平2次元分割を，2次元計算の場合には水平1次元分割を用いて並列計算を行う．
 3次元計算の場合の空間MPI分割の様子を下図に示す．2次元計算の場合には，XZ (`I-K`)断面が利用される．
 
-!!! Quote "Figure"
-    ![](../fig/parallel_partition.png)
-    (a) ３次元空間のモデル分割の模式図．(b) 隣接ノード間の通信の模式図．（Modified from Maeda et al., 2013[^Maeda2013]）．
+![](../fig/parallel_partition.png)
+/// caption
+(a) ３次元空間のモデル分割の模式図．(b) 隣接ノード間の通信の模式図．（Modified from Maeda et al., 2013[^Maeda2013]）．
+///
 
 [^Maeda2013]: Maeda, T., Furumura, T., Noguchi, S., Takemura, S., Sakai, S., Shinohara, M., Iwai, K., & Lee, S.-J. (2013). Seismic and tsunami wave propagation of the 2011 Off the Pacific Coast of Tohoku Earthquake as inferred from the tsunami-coupled finite difference simulation, _Bulletin of the Seismological Society of America_, 103, 1456–1472, doi:10.1785/0120120118. [(article link)](https://doi.org/10.1785/0120120118)
 
-本コードは，`xbeg--xend`, `ybeg--yend`, `zbeg--zend`の領域を，空間刻み`dx`, `dy`,
-`dz`で各方向`nx`, `ny`,
+本コードは，デフォルトでは$x$が北，$y$が東，$z$方向は下が正のカーテシアン座標系を取る．`xbeg--xend`, `ybeg--yend`, `zbeg--zend`の領域を，空間刻み`dx`, `dy`, `dz`で各方向`nx`, `ny`,
 `nz`個のグリッドに離散化する．
-$z$方向は下が正の座標系を取る．水面が$z=0$であることが想定されているため，地表境界条件を満たすため`zbeg`は負の値から始めることが推奨される．
-
-[^Kawase2011]: Kawase, K. (2011), A general formula for calculating meridian arc length and its application to coordinate conversion in the Gauss-Krüger projection, _Bulletin of the Geospatial Information Authority of Japan_, _59_, 1–13. [(article link)](http://www.gsi.go.jp/common/000062452.pdf)
+水面が$z=0$であることが想定されているため，地表境界条件を満たすため`zbeg`は負の値から始めることが推奨される．
 
 
-実空間モデルでの計算の場合には，中心緯度`clon`, `clat`を基準点として
+地理座標モデルに基づく計算ののために，中心緯度`clon`, `clat`を基準点として
 Gauss-Krüger投影（Kawase et al., 2011 [^Kawase2011]）により計算座標系（デカルト座標系）の$xy$面を地理座標系に関連づける．具体的には以下のような手法により地理座標を取得する．
 
 1.  回転角phiとx,yのパラメタから，デカルト座標系における等間隔グリッド位置を生成する．
@@ -28,29 +26,36 @@ Gauss-Krüger投影（Kawase et al., 2011 [^Kawase2011]）により計算座標�
 
 領域の指定範囲が入力構造ファイルの外にはみ出してしまった場合には，構造ファイルの最外側グリッドでの値が補外される．
 
-!!! Quote "Figure"
-    ![](../fig/fdm_coordinate.png)
-    地理座標系と計算座標系（水平断面）との関係．
+[^Kawase2011]: Kawase, K. (2011), A general formula for calculating meridian arc length and its application to coordinate conversion in the Gauss-Krüger projection, _Bulletin of the Geospatial Information Authority of Japan_, _59_, 1–13. [(article link)](http://www.gsi.go.jp/common/000062452.pdf)
+
+
+![](../fig/fdm_coordinate.png)
+/// caption
+地理座標系と計算座標系（水平断面）との関係．
+///
 
 ## スタガードグリッド
 
-直交座標系$O(xyz)$と離散化グリッドとの間は下図のように関係付けられる．
+OpenSWPCは下図のようなスタガードグリッド配置を用いる．
 
-!!! Quote "3次元のスタガードグリッド配置"
-    ![](../fig/voxel_staggered.png)
-    `xbeg=ybeg=zbeg=0`の場合．
 
-図に含まれるグリッドが，プログラム上では同一の配列インデックス`(I, J, K)`をもつ．この単位4面体をボクセル，と呼ぶ．
-ある$x$が属するボクセル位置は 
+![](../fig/voxel_staggered.png)
+/// caption
+3次元のスタガードグリッド配置．`xbeg=ybeg=zbeg=0`の場合．
+///
+
+図に含まれるグリッドが，プログラム上では同一の配列インデックス`(I, J, K)`をもつ．この単位4面体をセル，と呼ぶ．
+ある$x$が属するセル位置は 
 \begin{align}
 I = \left \lceil \frac{ x-x_{\text{beg}} }{ \Delta  x } \right \rceil, 
 \end{align}
-で，逆にボクセル位置$I$が与えられたときのボクセル中心の座標位置は
+で，逆にセル位置$I$が与えられたときのセル中心の座標位置は
 
 \begin{align}
 x = x_{\text{beg}} + \left( I - \frac{1}{2} \right) \Delta x
 \end{align}
-でそれぞれ与えられる．ただし$\lceil \cdot \rceil$は天井関数，$x_{\text{beg}}$は座標系のとる最小値であり，$x= x_{\text{beg}}$はボクセル$I=1$に属するようにとられている．
+
+でそれぞれ与えられる．ただし$\lceil \cdot \rceil$は天井関数，$x_{\text{beg}}$は座標系のとる最小値であり，$x= x_{\text{beg}}$はセル$I=1$に属するようにとられている．
 
 範囲 
 
@@ -64,9 +69,9 @@ z_\text{beg} + (K-1)\Delta z < z \le z_\text{beg} + K \Delta z
 \end{split}
 \end{align}
 
-で定義されるボクセルの中心に法線応力成分が，辺上に剪断応力成分が，そしてボクセル面上に速度成分がそれぞれ配置される．
+で定義されるセルの中心に法線応力成分が，辺上に剪断応力成分が，そしてセル面上に速度成分がそれぞれ配置される．
 
-密度・速度などの媒質定数はすべてボクセル中心 
+密度・速度などの媒質定数はすべてセル中心 
 \begin{align}
 x_\text{beg} + (I-1/2) \Delta x,
 \quad
@@ -75,25 +80,53 @@ z_\text{beg} + (K-1/2) \Delta z
 \end{align}
 の位置で与える．計算中に適宜平均化操作が行われ，それぞれのグリッドでの媒質パラメタが評価される．
 
-## 安定条件と波長条件
+## 差分公式と安定条件と波長条件
 
-空間グリッドサイズ $\Delta x$, $\Delta y$, $\Delta z$ と時間ステップ間隔
-$\Delta t$
+OpenSWPCで採用したスタガードグリッド差分法では，運動方程式や構成関係式に現れる空間微分は空間4次精度の差分公式で近似される．例えば$x$-方向の空間微分は，
+
+$$
+\begin{align}
+\frac{\partial f}{\partial x} &\simeq \sum_{p=1}^{2} (-1)^{p-1} C_p \frac{f(x + (p-1/2) \Delta x) - f(x - (p-1/2) \Delta x) }{\Delta x} + \mathcal{O}(\Delta x^4)
+\notag \\
+&= 
+\frac{1}{\Delta x}\left[
+\frac{9}{8}\left\{f(x+\Delta x/2) - f(x-\Delta x/2)\right\} - \frac{1}{24} \left\{ f(x+3\Delta x/2) - f(x-3\Delta x/2) \right\} \right] + \mathcal{O}(\Delta x^4)
+\end{align}
+$$
+
+と表される．ただしここで$C_p$は差分演算の係数で，$C_1 = 9/8$, $C_2 = 1/24$である．
+
+一方，時間微分は2次精度差分公式
+
+$$
+\begin{align}
+\frac{\partial f}{\partial t} &\simeq 
+\frac{f(t+\Delta t/2) - f(t-\Delta t/2)}{\Delta t} + \mathcal{O}(\Delta t^2). 
+\end{align}
+$$
+
+が用いられる．
+
+このスタガードグリッド差分法に基づく数値シミュレーションでは，空間グリッドサイズ $\Delta x$, $\Delta y$, $\Delta z$ と時間ステップ間隔 $\Delta t$
 は，差分法の安定条件を満たさなければいけない．$N_D$次元空間の，空間差分次数$P$次の安定条件は
 
+$$
 \begin{align}
   \Delta t < \frac{ 1 }{ V_{\max} } \left( \sum_{i=1}^{N_D} \frac{1}{\Delta x_i^2} \right)^{-1/2} \left( \sum_{p=1}^{P/2} C_p\right) ^{-1}
 \end{align}
+$$
+
 のように与えられる．
 
 ここで$V_{\max}%_$ 
 は媒質中もっとも速い地震波速度，$C_p%_$は差分演算の係数，$\Delta x_i%_$は$i$方向の空間グリッドサイズである．
-空間4次の差分公式の場合，係数$C_p$は$C_1 = 9/8$, $C_2 = 1/24$である．
 たとえば，3次元空間4次の差分法で，空間グリッドサイズが等方的（$\Delta x = \Delta y =\Delta z = h$）な場合，この安定条件は
 
+$$
 \begin{align}
   \Delta t < \frac{6}{7} \dfrac{1}{V_{\max} \sqrt{ \dfrac{1}{\Delta x^2} + \dfrac{1}{\Delta y^2} +\dfrac{1}{\Delta z^2}}} = \frac{6 h}{7 \sqrt{3} V_{\max}} \simeq 0.495 \frac{h}{V_{\max}}. 
 \end{align}
+$$
 
 のように簡略化される．これは，直感的には**『1時間ステップに地震波が伝播する距離は，空間グリッド間隔よりも（充分に）小さい』**ことが要請されていると考えて良い．この条件が満たされないと，差分法による時間発展計算そのものが不安定になり，すぐさま発散してしまう．
 
@@ -102,6 +135,8 @@ $\Delta t$
 これら安定条件と波長条件は，差分法プログラム実行開始時に標準エラー出力に
 Stability Condition `c` および Wavelength Condition `r`
 として表示される．それぞれ，安定条件と時間刻みの比および構造中の最小波長と空間グリッドサイズの比を意味している．前者は1より小さくなければ計算が実行できない．
+
+これらの条件を満たすような適切なパラメタを設定するための[サポートツール](../3._Tools/0303_parameter.ja.md)が提供されている．特に3次元数値シミュレーションの場合には，メモリサイズにも十分注意を払う必要があるだろう．
 
 
 !!! Info "Parameters"

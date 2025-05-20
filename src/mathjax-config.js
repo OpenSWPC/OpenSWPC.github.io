@@ -26,7 +26,7 @@
     "HTML-CSS": {
       availableFonts: [],
       preferredFont: null,
-      webFont: "Neo-Euler",
+      webFont: "Gyre-Pagella",
       matchFontHeight: false,
       mtextFontInherit: true
     }

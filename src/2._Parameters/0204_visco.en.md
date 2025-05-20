@@ -1,20 +1,22 @@
-# Viscoelastic Bodies
+# Intrinsic Absorption and Viscoelastic Bodies
 
 `OpenSWPC` adopts the generalized Zener body (GZB) as a model of the
 viscoelastic body. It consists of several viscoelastic Zener bodies with
-different relaxation times to attain nearly constant Q in a wide
+different relaxation times to attain nearly constant $Q$ in a wide
 frequency range. As a consequence, it accompanies the
-frequency-dependent body wavespeed via physical dispersion (e.g., Aki and Richards, 2002[^Aki2002]); therefore, users should specify the reference frequency in which the velocity model is given.
+frequency-dependent body wavespeed via physical dispersion (e.g., Aki and Richards, 2002[^Aki2002]); therefore, users should specify the **reference frequency** in which the velocity model is given.
 
-!!! Info "Figure"
-    ![](../fig/gzb.png)
-    A schematic illustration of the Generalized Zener body. Zener Body (boxes) having different chracteristic times are connnected. 
+![](../fig/gzb.png)
+/// caption
+A schematic illustration of the Generalized Zener body. Zener Body (boxes) having different chracteristic times are connnected. 
+///
 
 [^Aki2002]: Aki, K., & Richards, P. G. (2002), Quantitative Seismology, 2nd Edition, University Science Books. 
 
-!!! Info "Figure"
-    ![](../fig/qinv.png)
-    Example of frequency dependence of the intrinsic attenuation $Q^{-1}$ for a GZB of `NM=3`. The thick solid line shows the attenuation of the entire model, while the dotted lines show the attenuation model for each constituent of the Zener body. The vertical lines show the specified minimum and maximum frequencies for the constant $Q$ range.
+![](../fig/qinv.png)
+/// caption
+Example of frequency dependence of the intrinsic attenuation $Q^{-1}$ for a GZB of `NM=3`. The thick solid line shows the attenuation of the entire model, while the dotted lines show the attenuation model for each constituent of the Zener body. The vertical lines show the specified minimum and maximum frequencies for the constant $Q$ range.
+///
 
 GZB consists of $N_M$ Zener bodies, as schematically shown in the Figure above. This
 viscoelastic body is described by the relaxation functions for an
@@ -89,15 +91,14 @@ Robertsson, J. O., J. O. Blanch, and W. W. Symes (1994), Viscoelastic finite-dif
 
 !!! Info "Parameters"    
 
-    **`fq_min` **
+    **`fq_min`**
     : Minimum frequency of the constant-$Q$ model.
 
-    **`fq_max` **
+    **`fq_max`**
     : Maximum frequency of the constant-$Q$ model.
     
-    **`fq_ref`  **
+    **`fq_ref`**
     : Reference frequency at which the velocity model is given.
-
 
 
 The $Q^{-1}$ value becomes nearly constant between the frequencies of
