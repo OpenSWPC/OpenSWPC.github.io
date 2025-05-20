@@ -20,7 +20,7 @@ In order to continue to improve the code, we have decided to remove the Checkpoi
 
 Until now, it was not impossible to compile without the NetCDF library. However, since it is impractical to use this tool without NetCDF, we have simplified the code by always requiring a link to the NetCDF library at compile time.
 
-### Code Modernization
+### Code modernization
 
 We have eliminated the old Fortran90/95 era syntax and #ifdef-#endif macro branches that were maintained for compatibility with some past supercomputers, and rewritten much of the code in the simpler and more modern notation of Fortran2003 and later. Some newer Fortran 2008 syntax is included, but we are pretty confident that it is within the scope of most compilers currently available.
 

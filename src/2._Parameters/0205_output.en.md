@@ -236,7 +236,8 @@ It is assumed that the number of samples (`ntpts`) are in common in the `csf` fo
 
 ### Timing of waveform output
 
-The seismic waveforms at the stations are stored in memory during the computation and are output to a file at the end of the computation. However, if the parameter `ntdec_w_prg` is set to an integer greater than or equal to `1`, waveforms can be output at each time step of that number. The length of the waveform is always the length determined by `nt`, and the part of the waveform that has not been computed yet is filled with zeros. This function is intended to monitor the normality of the computation during the computation, but it should be noted that if `ntdec_w_prg` is set too small, the computation time may increase due to the output load.
+The seismic waveforms at the stations are stored in memory during the computation and are output to a file at the end of the computation. However, if the parameter `ntdec_w_prg` is set to an integer greater than or equal to `1`, waveforms can be output at each time step of that number. The length of the waveform is always the length determined by `nt`, and the part of the waveform that has not been computed yet is filled with zeros. This function is intended to monitor the normality of the computation during the computation, but it should be noted that if `ntdec_w_prg` is set too small, the computation time may increase due to the output load. If the value of `ntdec_w_prg` is less than or equal to 0, the waveform is output only at the end of the computation.
+
 
 `ntdec_w_prg` is available in Version 24.09 and later.
 
