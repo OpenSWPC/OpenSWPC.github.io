@@ -1,7 +1,7 @@
 [
   {
     "version": "legacy",
-    "title": "Legacy",
+    "title": "<=25.05.2",
     "aliases": [
       "latest"
     ]
