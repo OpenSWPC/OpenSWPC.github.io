@@ -1,5 +1,15 @@
 # 更新履歴・新機能紹介
 
+
+## Version 25.05 (2025-05-20)
+
+### GPGPU-Ready
+
+This is the first version to support GPGPU computing via OpenACC.
+
+- All simulation codes (swpc_3d, swpc_psv swpc_sh) now support many-GPU computing using OpenACC and MPI, enabling ultra-high-speed operation.
+- Supporting tools can also be compiled with NVIDIA's nvfortran and run properly not only on x86 architectures but also on NVIDIA Grace CPUs.
+
 ## Version 25.01 (2025-01-04)
 
 ### 速度構造モデル Linear Gradient Model (`lgm`)
