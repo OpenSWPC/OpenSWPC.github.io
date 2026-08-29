@@ -1,3 +1,7 @@
+!!! warning
+    This manual is a **development snapshot**, and thus it might not differ from behavior of the released version software. Please refer [this manual](../../latest/en) for the current version of OpenSWPC. 
+
+
 # OpenSWPC Users' Guide
 
 ![](./fig/logo_h.png)

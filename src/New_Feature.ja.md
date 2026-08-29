@@ -1,5 +1,16 @@
 # 更新履歴・新機能紹介
 
+## Version 26.XX (2026-XX-XX)
+
+### Viscoelastic PML
+
+### Considarable reduction of memory usage
+
+### Fullspace-mode reactivated
+
+### Color Universal Design (CUD) for `read_snp.x` 
+
+### Updated pre-set build environment
 
 ## Version 25.05 (2025-05-20)
 
