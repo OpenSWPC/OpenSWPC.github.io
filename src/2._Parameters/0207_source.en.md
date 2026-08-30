@@ -140,7 +140,7 @@ in the `fn_grd` or `fn_grd_rmed` list files.
   
         - `'xydsdc'` : $x$, $y$, $z$, $T_0$, $T_R$, $D$, $S$, strike, dip, rake
 
-        - `'psmeca'` : lon, lat, $z$, $M_{rr}$, $M_{tt}$, $M_{ff}$, $M_{rt}$, $M_{rf}$, $M_{tf}$, iexp &nbsp; **(new in v5.2)**
+        - `'psmeca'` : lon, lat, $z$, $M_{rr}$, $M_{tt}$, $M_{ff}$, $M_{rt}$, $M_{rf}$, $M_{tf}$, iexp &nbsp;
        
         The unit of each variables are [km] for $x$, $y$, $z$, [Nm] for $M_0$ and $m_{ij}$, [s] for $T_0$ and $T_R$, [degree] for all parameters describing angles, [m] for slip $D$ and [m${}^2$] for area $S$. 
 
@@ -156,6 +156,14 @@ in the `fn_grd` or `fn_grd_rmed` list files.
     `'asis'`: do not fit (default). `'bd{i}'`(i=1,2,$\cdots$9): fits to
     the `i`-th boundary specified in the rightmost column of
     `fn_grdlst`.
+
+!!! caution
+   
+    `stftype = 'asymcos'` requires two time constants, $T_{R1}$ and $T_{R2}$, instead of a single rise time $T_R$. Therefore, for example, when `stf_fomat = 'xym0ij'` is used, the source information file should contain
+   
+    $x$, $y$, $z$, $T_0$, $T_{R1}$, $T_{R2}$, $M_0$, $m_{xx}$, $m_{yy}$, $m_{zz}$, $m_{yz}$, $m_{xz}$, $m_{xy}$
+    
+    which has one additional column compared to other source time functions.
 
 ### Specifying the magnitude of an earthquake
 

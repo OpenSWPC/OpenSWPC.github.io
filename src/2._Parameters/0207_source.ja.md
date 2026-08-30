@@ -123,13 +123,13 @@ $$
   
         - `'xydsdc'` : $x$, $y$, $z$, $T_0$, $T_R$, $D$, $S$, strike, dip, rake
 
-        - `'psmeca'` : lon, lat, $z$, $M_{rr}$, $M_{tt}$, $M_{ff}$, $M_{rt}$, $M_{rf}$, $M_{tf}$, iexp &nbsp; **(new in v5.2)**
+        - `'psmeca'` : lon, lat, $z$, $M_{rr}$, $M_{tt}$, $M_{ff}$, $M_{rt}$, $M_{rf}$, $M_{tf}$, iexp &nbsp;
        
 
         それぞれの量の単位は，$x$, $y$, $z$は[km]，$M_0$ と$m_{ij}$ は [Nm], $T_0$, $T_R$は [s], 角度変数はすべて [degree]，すべり量$D$は [m]，面積$S$は[m${}^2$]がそれぞれ仮定されている．
     
     **`stftype`**
-    : 要素震源時間関数（モーメント時間関数）の種類．`'boxcar'`（箱形関数）, `'triangle'`（三角形）, `'herrmann'`（Herrmann関数）,`'kupper'`（Kupper wavelet）, `'cosine'` （$\cos$関数）, `'texp'`（$t \exp$関数）から選択する．
+    : 要素震源時間関数（モーメント時間関数）の種類．`'boxcar'`, `'triangle'`, `'herrmann'`,`'kupper'`, `'cosine'`, `'texp'`, `'asymcos'`から選択する．
 
     **`fn_stf`**
     : 震源情報ファイル．このファイル中に`stf_format`で指定された書式で震源情報を記載する．
@@ -137,6 +137,13 @@ $$
 
     **`sdep_fit`**
     : 震源の深さを強制的に境界に合わせるかどうかの指定． `'asis'`: なにもしない（デフォルト）`'bd{i}'` (i=1,2,$\cdots$9): `i`番目の境界に合わせる．
+
+!!! caution
+    `stftype = 'asymcos'` だけは，ライズタイム $T_R$ の代わりに2つの時間定数 $T_{R1}$ と $T_{R2}$ を必要とする．そのため，震源情報ファイルの指定は，たとえば `xym0ij` であれば
+    
+    $x$, $y$, $z$, $T_0$, $T_{R1}$, $T_{R2}$, $M_0$, $m_{xx}$, $m_{yy}$,  $m_{zz}$,  $m_{yz}$, $m_{xz}$, $m_{xy}$    
+    
+    のように他の震源時間関数と比べて1列増える．
 
 ### 地震の大きさの指定
 

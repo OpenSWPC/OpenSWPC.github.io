@@ -48,7 +48,7 @@ PML領域のみで必要とされる配列変数のメモリ確保方法の刷�
 
 ### A new source time function
 
-非対称cosine型震源時間関数 `asymcos` ([Ji et al., 2003](https://doi.org/10.1029/2002JB001764)) を実装した．
+非対称cosine型震源時間関数 `asymcos` ([Ji et al., 2003](https://doi.org/10.1029/2002JB001764)) を実装しました．
 
 ### Updated pre-set build environment
 
