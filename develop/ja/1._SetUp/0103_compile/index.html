@@ -259,7 +259,7 @@
   
     
   
-  更新履歴・新機能紹介
+  新機能紹介
 
       </a>
     </li>
@@ -454,7 +454,7 @@
   <span class="md-ellipsis">
     
   
-    更新履歴・新機能紹介
+    新機能紹介
   
 
     
@@ -1073,34 +1073,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../2._Parameters/0209_checkpoint/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    チェックポイント・リスタート
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../2._Parameters/0210_reciprocity/" class="md-nav__link">
         
   
@@ -1584,85 +1556,59 @@
 </tr>
 </tbody>
 </table>
-<p><code>NCFLAG = -D_NETCDF</code> が指定されることにより，<code>NetCDF</code>モジュールを利用したコンパイルが行われる．</p>
 <p>さまざまな計算機環境でコンパイルするため，以下の<code>arch</code>オプションによりオプションを分岐させている: </p>
 <table>
 <thead>
 <tr>
-<th>archオプション名</th>
-<th>対象</th>
-<th>NetCDFライブラリの場所</th>
+<th><code>arch</code> name</th>
+<th>target</th>
+<th><code>NetCDF</code> location</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>mac-m1</td>
-<td>macOS + gfortran (Apple Silicon + Homebrew)</td>
+<td><code>apple</code> (previously <code>mac-m1</code>)</td>
+<td>macOS + gfortran (Homebrew)</td>
 <td><code>/opt/homebrew/</code></td>
 </tr>
 <tr>
-<td>ubuntu-gfortran</td>
-<td>Ubuntu 16.04LTS + gfortran + Open MPI</td>
-<td><code>apt</code>によるインストール</td>
+<td><code>ubuntu-gfortran</code></td>
+<td>Ubuntu 22.04LTS + gfortran + Open MPI</td>
+<td>Installation by <code>apt</code></td>
 </tr>
 <tr>
-<td>bdec-o</td>
-<td>東京大学情報基盤センター Wisteria-Odyssey/BDEC01</td>
-<td><code>module</code> コマンドを通じて自動指定</td>
+<td><code>dgx-spark</code></td>
+<td>NVIDIA DGX Spark</td>
+<td><code>/opt/netcdf-nv</code></td>
 </tr>
 <tr>
-<td>eic</td>
-<td>東大地震研EIC2015環境下のIntel Compiler</td>
-<td><code>module</code> コマンドを通じて自動指定</td>
+<td><code>bdec-o</code></td>
+<td>Wisteria/BDEC-01 (Odyssey)  of the University of Tokyo</td>
+<td>automatically specified by the <code>module</code> command</td>
 </tr>
 <tr>
-<td>ofp (or oak)  (obsolete)</td>
-<td>東京大学情報基盤センター Oakforest-PACS</td>
-<td><code>module</code> コマンドを通じて自動指定</td>
+<td><code>eic2025</code></td>
+<td>EIC2025 (ERI, UTokyo) with the Intel Compiler</td>
+<td>automatically specified by the <code>module</code> command</td>
 </tr>
 <tr>
-<td>obcx (obsolete)</td>
-<td>東京大学情報基盤センター Oakbridge-CX</td>
-<td><code>module</code> コマンドを通じて自動指定</td>
-</tr>
-<tr>
-<td>mac-gfortran (obsolete)</td>
-<td>Mac OSX + gfortran + Open MPI</td>
-<td><code>/usr/local</code></td>
-</tr>
-<tr>
-<td>mac-intel (obsolete)</td>
-<td>Mac OSX + Intel Compiler + OpenMPI</td>
-<td><code>${HOME}/local</code></td>
-</tr>
-<tr>
-<td>fx  (obsolete)</td>
-<td>富士通FX10, FX100 および京コンピュータ</td>
-<td><code>${HOME}/xlocal</code></td>
-</tr>
-<tr>
-<td>es3 (obsolete)</td>
-<td>地球シミュレータ第3世代</td>
-<td>システム提供</td>
-</tr>
-<tr>
-<td>es4 (obsolete)</td>
-<td>地球シミュレータ第4世代</td>
-<td>システム提供</td>
+<td><code>miyabi-g</code></td>
+<td>Miyabi supercomputer of the University of Tokyo</td>
+<td>automatically specified by the <code>nf-config</code> command</td>
 </tr>
 </tbody>
 </table>
-<p>たとえば<code>mac-gfortran</code>に相当する環境では，</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">make</span><span class="w"> </span><span class="nv">arch</span><span class="o">=</span>mac-gfortran
+<p>たとえば<code>apple</code>に相当する環境では，</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">make</span><span class="w"> </span><span class="nv">arch</span><span class="o">=</span>apple
 </code></pre></div></td></tr></table></div>
 <p>とすることで，その環境に適したコンパイルオプションが自動的に選択される．また，幾つかの環境では，</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">make</span><span class="w"> </span><span class="nv">arch</span><span class="o">=</span>eic<span class="w"> </span><span class="nv">debug</span><span class="o">=</span><span class="nb">true</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">make</span><span class="w"> </span><span class="nv">arch</span><span class="o">=</span>apple<span class="w"> </span><span class="nv">debug</span><span class="o">=</span><span class="nb">true</span>
 </code></pre></div></td></tr></table></div>
 <p>のように<code>debug=true</code>オプションを付けると，コンパイルオプション<code>FFLAGS</code>がデバッグに適したものに変更されるようになっている．これらの変数は
 <code>src/shared/makefile.arch</code>と<code>src/shared/makefile-tools.arch</code>に定義されている．
 新たな環境を追加するには，これらのファイルにオプションを追記するのが簡単であろう．</p>
 <h2 id="netcdf"><code>NetCDF</code>の利用<a class="headerlink" href="#netcdf" title="Permanent link">&para;</a></h2>
-<p>本コードの速度構造入力の一部には<code>NetCDF</code>形式を採用しており，ライブラリとモジュール情報ファイルが必要である．
+<p>本コードの入力と出力の一部には<code>NetCDF</code>形式を採用しており，ライブラリとモジュール情報ファイルが必要である．
 具体的には，</p>
 <ul>
 <li><code>libnetcdf.*</code>:   <code>NetCDF</code>ライブラリファイル</li>
@@ -1670,8 +1616,8 @@
 <li><code>netcdf.mod</code>:    Fortranモジュール情報ファイル</li>
 </ul>
 <p>がコンパイル時に必要となる．
-ライブラリの拡張子は<code>*.a</code>（static）の場合と<code>*.so</code>（dynamic）の場合がある．
-また，Fortran90の仕様により，<code>NetCDF.mod</code>はのコンパイルと同じコンパイラにより作成されていなければならない．
+ライブラリの拡張子は<code>*.a</code>（static）の場合と<code>*.so*</code>（dynamic）の場合がある．
+また，Fortranの仕様により，<code>netcdf.mod</code>はのコンパイルと同じコンパイラにより作成されていなければならない．
 特にLinux環境等において，<code>yum, apt, brew</code>等のパッケージ管理システムにより導入した<code>NetCDF</code>では，<code>gfortran</code>以外のコンパイラを用いることができない．そのような場合は，別の場所に用の<code>NetCDF</code>を自力でコンパイルする必要がある．</p>
 <h2 id="_2">埋め込みパラメータの調整<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><code>OpenSWPC</code>の挙動は原則としてパラメータファイルで制御されるが，計算速度の向上のため，幾つかの変更頻度の低いと期待されるパラメタがソースコードに埋め込まれている．これらはいずれも<code>m_global.F90</code>で定義されている．以下の値を修正した場合には，コード全体の再コンパイル（<code>make clean; make</code>）が必要である．</p>

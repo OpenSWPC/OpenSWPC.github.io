@@ -259,7 +259,7 @@
   
     
   
-  更新履歴・新機能紹介
+  新機能紹介
 
       </a>
     </li>
@@ -454,7 +454,7 @@
   <span class="md-ellipsis">
     
   
-    更新履歴・新機能紹介
+    新機能紹介
   
 
     
@@ -1101,34 +1101,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../0209_checkpoint/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    チェックポイント・リスタート
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../0210_reciprocity/" class="md-nav__link">
         
   
@@ -1573,71 +1545,87 @@
 
 <h1 id="_1">震源の指定<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h2 id="_2">モーメント時間関数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>ここでは本コードで利用可能なモーメント時間関数（震源時間関数）<span class="arithmatex"><script type="math/tex">\dot{M}(t)</script></span>とそのスペクトルを整理する．以下のモーメント時間関数は，すべて継続時間（もしくは特徴的時間）<span class="arithmatex"><script type="math/tex">T_R</script></span>をもち，総モーメントが<span class="arithmatex"><script type="math/tex">1</script></span>に規格化されている．</p>
+<p>ここでは本コードで利用可能なモーメント時間関数（震源時間関数）<span class="arithmatex"><script type="math/tex">\dot{M}(t)</script></span>とそのスペクトルを整理する．以下のモーメント時間関数は，すべて継続時間（もしくは特徴的時間）<span class="arithmatex"><script type="math/tex">T_R</script></span>をもち（ただし<code>asymcos</code>においては<span class="arithmatex"><script type="math/tex">T_R = T_{R1} + T_{R2}</script></span>），総モーメントが<span class="arithmatex"><script type="math/tex">1</script></span>に規格化されている．</p>
 <p><code>OpenSWPC</code>では，パラメタ <code>stftype</code>の選択により，以下の震源時間関数が選択できる．</p>
 <ul>
 <li>Box-car function (<code>boxcar</code>)</li>
 </ul>
 <div class="arithmatex">
-<script type="math/tex; mode=display">\begin{align}
-   \dot{m}^ R \left(t\right) &=
+<script type="math/tex; mode=display">
+   \dot{m} \left(t\right) =
     \frac{1}{T_R} 
-  & \begin{array}{r} ( 0 \le t \le T_R) \\ \end{array}
-\end{align}</script>
+   \quad ( 0 \le t \le T_R) 
+</script>
 </div>
 <ul>
 <li>Triangle function (<code>triangle</code>)</li>
 </ul>
 <div class="arithmatex">
-<script type="math/tex; mode=display">\begin{align}
-\dot{m}^ T \left(t\right)  = 
+<script type="math/tex; mode=display">
+\dot{m} \left(t\right)  = 
 \begin{cases}
 4t/T_R^2 & ( 0 \le t \le T_R/2 ) \\
 -4(t-T_R)/T_R^2 & ( T_R/2 < t \le T_R )
 \end{cases}
-\end{align}</script>
+</script>
 </div>
 <ul>
 <li>Herrmann function (<code>herrmann</code>)</li>
 </ul>
 <div class="arithmatex">
-<script type="math/tex; mode=display">\begin{align}
-\dot{m}^ H \left(t\right) =
+<script type="math/tex; mode=display">
+\dot{m} \left(t\right) =
 \begin{cases}
 16 t^2 / T_R^3 & ( 0 \le t \le T_R/4  ) \\
 -2 ( 8 t^2 - 8 t T_R + T_R^2 ) / T_R^3  & ( T_R/4 < t \le 3T_R/4  ) \\
 16 \left( t - T_R \right)^2 / T_R^3 &  (3T_R/4 < t \le T_R  )
 \end{cases}
-\end{align}</script>
+</script>
 </div>
 <ul>
 <li>Cosine function (<code>cosine</code>)</li>
 </ul>
 <div class="arithmatex">
-<script type="math/tex; mode=display">\begin{align}
-\dot{m}^ C \left(t\right) =
+<script type="math/tex; mode=display">
+\dot{m} \left(t\right) =
 \frac{1}{T_R} \left[ 1 - \cos \left(\frac{2 \pi t}{T_R} \right) \right]
 \quad ( 0 \le t \le T_R) 
-\end{align}</script>
+</script>
 </div>
 <ul>
 <li>Küpper wavelet (<code>kupper</code>)</li>
 </ul>
 <div class="arithmatex">
-<script type="math/tex; mode=display">\begin{align}
-  \dot{m}^K \left( t \right ) &= 
+<script type="math/tex; mode=display">
+  \dot{m} \left( t \right ) = 
   \frac{3 \pi}{4 T_R} \sin^3\left( \frac{\pi t}{T_R} \right) 
   \quad ( 0 \le t \le T_R) 
-\end{align}</script>
+</script>
 </div>
 <ul>
 <li>t-exp type function (<code>texp</code>)</li>
 </ul>
 <div class="arithmatex">
-<script type="math/tex; mode=display">\begin{align}
-  \dot{m}^{E} \left( t \right) &= \frac{(2 \pi)^2 t}{T_R^2} \exp\left[ - \frac{ 2 \pi t}{T_R}\right]
+<script type="math/tex; mode=display">
+  \dot{m} \left( t \right) = \frac{(2 \pi)^2 t}{T_R^2} \exp\left[ - \frac{ 2 \pi t}{T_R}\right]
   \quad ( 0 \le t ) 
-\end{align}</script>
+</script>
+</div>
+<ul>
+<li>asymmetric cosine function (<code>asymcos</code>)</li>
+</ul>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+    \dot{m}(t) = 
+    \begin{cases}
+        \dfrac{1}{T_{R1} + T_{R2}}
+            \left[ 1 - \cos\left(\dfrac{\pi t}{T_{R1}}\right)\right]  &
+        (0 \le t < T_{R1} )\\
+        \dfrac{1}{T_{R1} + T_{R2}} 
+            \left[ 1 + \cos\left(\dfrac{\pi t}{T_{R2}}\right)\right] &
+        (T_{R1} \le t \le T_{R1}+ T_{R2} )\\
+    \end{cases}
+</script>
 </div>
 <p>それぞれの震源時間関数形状とその振幅スペクトルを下図に示す．</p>
 <div class="admonition quote">
@@ -1701,11 +1689,11 @@
 </ul>
 <p>それぞれの量の単位は，<span class="arithmatex"><script type="math/tex">x</script></span>, <span class="arithmatex"><script type="math/tex">y</script></span>, <span class="arithmatex"><script type="math/tex">z</script></span>は[km]，<span class="arithmatex"><script type="math/tex">M_0</script></span> と<span class="arithmatex"><script type="math/tex">m_{ij}</script></span> は [Nm], <span class="arithmatex"><script type="math/tex">T_0</script></span>, <span class="arithmatex"><script type="math/tex">T_R</script></span>は [s], 角度変数はすべて [degree]，すべり量<span class="arithmatex"><script type="math/tex">D</script></span>は [m]，面積<span class="arithmatex"><script type="math/tex">S</script></span>は[m<span class="arithmatex"><script type="math/tex">{}^2</script></span>]がそれぞれ仮定されている．</p>
 </dd>
-<dt>** <code>stftype</code>**</dt>
+<dt><strong><code>stftype</code></strong></dt>
 <dd>要素震源時間関数（モーメント時間関数）の種類．<code>'boxcar'</code>（箱形関数）, <code>'triangle'</code>（三角形）, <code>'herrmann'</code>（Herrmann関数）,<code>'kupper'</code>（Kupper wavelet）, <code>'cosine'</code> （<span class="arithmatex"><script type="math/tex">\cos</script></span>関数）, <code>'texp'</code>（<span class="arithmatex"><script type="math/tex">t \exp</script></span>関数）から選択する．</dd>
-<dt>** <code>fn_stf</code>**</dt>
+<dt><strong><code>fn_stf</code></strong></dt>
 <dd>震源情報ファイル．このファイル中に<code>stf_format</code>で指定された書式で震源情報を記載する．</dd>
-<dt>** <code>sdep_fit</code> **</dt>
+<dt><strong><code>sdep_fit</code></strong></dt>
 <dd>震源の深さを強制的に境界に合わせるかどうかの指定． <code>'asis'</code>: なにもしない（デフォルト）<code>'bd{i}'</code> (i=1,2,<span class="arithmatex"><script type="math/tex">\cdots</script></span>9): <code>i</code>番目の境界に合わせる．</dd>
 </dl>
 </div>
@@ -1771,7 +1759,7 @@
 <p>なお，本指定は version 5.2 から有効となる．</p>
 <div class="admonition warning">
 <p class="admonition-title">水平回転に関する注意</p>
-<p>Version 5.2 現在，パラメタ <code>phi</code><span class="arithmatex"><script type="math/tex">\neq0</script></span>のとき，震源メカニズムを strike, dip, rake で与えたときとモーメントテンソルで与えたときで，メカニズムの回転の挙動が異なる．</p>
+<p>現在，パラメタ <code>phi</code><span class="arithmatex"><script type="math/tex">\neq0</script></span>のとき，震源メカニズムを strike, dip, rake で与えたときとモーメントテンソルで与えたときで，メカニズムの回転の挙動が異なる．</p>
 <p>前者 strike, dip, rake で与えたときには，<code>phi</code> の値に関わらず strike は北から測ったものとして計算される．一方，モーメントテンソルはあくまでも回転後の<span class="arithmatex"><script type="math/tex">x</script></span>, <span class="arithmatex"><script type="math/tex">y</script></span>座標に対して定義されていることが仮定される．つまり，カタログからモーメントテンソル成分を利用し，かつ座標系を水平回転して計算するときには，ユーザーがモーメントテンソルの回転計算を自ら行ってパラメタとして与えなければならない．</p>
 <p>これらの挙動が系統的でないことは開発者も認識しており，将来のバージョンで挙動が変更される可能性がある．</p>
 </div>

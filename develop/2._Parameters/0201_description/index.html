@@ -259,7 +259,7 @@
   
     
   
-  Version History &amp; New features
+  New features
 
       </a>
     </li>
@@ -454,7 +454,7 @@
   <span class="md-ellipsis">
     
   
-    Version History &amp; New features
+    New features
   
 
     
@@ -1020,34 +1020,6 @@
     
   
     Absorbing Boundary Conditions
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../0209_checkpoint/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Checkpointing and Restarting
   
 
     
@@ -1749,17 +1721,7 @@ sections, detailed descriptions of each parameter will be given.</p>
 <span class="normal">202</span>
 <span class="normal">203</span>
 <span class="normal">204</span>
-<span class="normal">205</span>
-<span class="normal">206</span>
-<span class="normal">207</span>
-<span class="normal">208</span>
-<span class="normal">209</span>
-<span class="normal">210</span>
-<span class="normal">211</span>
-<span class="normal">212</span>
-<span class="normal">213</span>
-<span class="normal">214</span>
-<span class="normal">215</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="c">!! ----------------------------------------------------------------------- !!</span>
+<span class="normal">205</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="c">!! ----------------------------------------------------------------------- !!</span>
 <span class="w">  </span><span class="c">!!</span>
 <span class="w">  </span><span class="c">!!  SWPC input file</span>
 <span class="w">  </span><span class="c">!!</span>
@@ -1811,8 +1773,6 @@ sections, detailed descriptions of each parameter will be given.</p>
 <span class="w">  </span><span class="c">!! ----------------------------------------------------------------------- !!</span>
 <span class="w">  </span><span class="c">!! Snapshot Output</span>
 <span class="w">  </span><span class="c">!!</span>
-
-<span class="w">  </span><span class="n">snp_format</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;netcdf&#39;</span><span class="w">         </span><span class="c">!! snapshot format (netcdf)</span>
 
 <span class="w">  </span><span class="n">xy_ps</span><span class="p">%</span><span class="n">sw</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w">          </span><span class="c">!! P&amp;S amp. for xy section</span>
 <span class="w">  </span><span class="n">xz_ps</span><span class="p">%</span><span class="n">sw</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">           </span><span class="c">!! P&amp;S amp. for xz section</span>
@@ -1901,7 +1861,8 @@ sections, detailed descriptions of each parameter will be given.</p>
 
 <span class="w">  </span><span class="n">abc_type</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pml&#39;</span><span class="w">            </span><span class="c">!! &#39;pml&#39; or &#39;cerjan&#39;</span>
 <span class="w">  </span><span class="n">na</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="w">               </span><span class="c">!! absorbing layer thickness</span>
-<span class="w">  </span><span class="n">stabilize_pml</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w">           </span><span class="c">!! avoid low-v layer in PML region</span>
+<span class="w">  </span><span class="n">stabilize_pml</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w">          </span><span class="c">!! avoid low-v layer in PML region</span>
+<span class="w">  </span><span class="n">fullspace_mode</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w">          </span><span class="c">!! absorbs at top boundary </span>
 
 <span class="w">  </span><span class="c">!! ----------------------------------------------------------------------- !!</span>
 <span class="w">  </span><span class="c">!! Velocity model</span>
@@ -1926,7 +1887,7 @@ sections, detailed descriptions of each parameter will be given.</p>
 <span class="w">    </span><span class="c">!! --------------------------------------------------------------------- !!</span>
 <span class="w">    </span><span class="c">!! For GMT grid file input &#39;grd&#39; ( requires netcdf library )</span>
 <span class="w">    </span><span class="c">!!</span>
-<span class="w">    </span><span class="n">dir_grd</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;${DATASET}/vmodel/ejivsm/&#39;</span><span class="w">    </span><span class="c">!! directory for grd file</span>
+<span class="w">    </span><span class="n">dir_grd</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;dataset/vmodel/ejivsm/&#39;</span><span class="w">    </span><span class="c">!! directory for grd file</span>
 <span class="w">    </span><span class="n">fn_grdlst</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;./example/grd.lst&#39;</span><span class="w">            </span><span class="c">!! grd file list</span>
 <span class="w">    </span><span class="n">node_grd</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w">                              </span><span class="c">!! input MPI node</span>
 
@@ -1944,15 +1905,6 @@ sections, detailed descriptions of each parameter will be given.</p>
 <span class="w">    </span><span class="n">fn_rmed0</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;dummy.ns&#39;</span><span class="w">          </span><span class="c">!! vel. purturb. on a uniform media</span>
 
 <span class="w">  </span><span class="c">!! ----------------------------------------------------------------------- !!</span>
-<span class="w">  </span><span class="c">!! Checkpoint/Restart</span>
-<span class="w">  </span><span class="c">!!</span>
-<span class="w">  </span><span class="n">is_ckp</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w">          </span><span class="c">!! perform checkpoint/restart</span>
-<span class="w">  </span><span class="n">ckpdir</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;./out/ckp&#39;</span><span class="w">      </span><span class="c">!! output directory</span>
-<span class="w">  </span><span class="n">ckp_interval</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mi">1000000</span><span class="w">          </span><span class="c">!! interval for checkpoint check（1/cycle）</span>
-<span class="w">  </span><span class="n">ckp_time</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="mi">100000</span><span class="mf">0.</span><span class="w">         </span><span class="c">!! checkpoint time</span>
-<span class="w">  </span><span class="n">ckp_seq</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w">           </span><span class="c">!! sequential output mode</span>
-
-<span class="w">  </span><span class="c">!! ----------------------------------------------------------------------- !!</span>
 <span class="w">  </span><span class="c">!! Reciprocity Green&#39;s Function Mode</span>
 <span class="w">  </span><span class="c">!!</span>
 <span class="w">  </span><span class="n">green_mode</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w">          </span><span class="c">!! reciprocity Green&#39;s function mode</span>
@@ -1962,7 +1914,7 @@ sections, detailed descriptions of each parameter will be given.</p>
 <span class="w">  </span><span class="n">green_bforce</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w">          </span><span class="c">!! also calc. body force Green&#39;s function</span>
 <span class="w">  </span><span class="n">green_maxdist</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mi">55</span><span class="mf">0.</span><span class="w">             </span><span class="c">!! horizontal limit of source grid</span>
 <span class="w">  </span><span class="n">green_fmt</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;llz&#39;</span><span class="w">            </span><span class="c">!! list file format: &#39;xyz&#39; or &#39;llz&#39;</span>
-<span class="w">  </span><span class="n">fn_glst</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;example/green.lst&#39;</span><span class="w">   </span><span class="c">!! Green&#39;s function grid point list</span>
+<span class="w">  </span><span class="n">fn_glst</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;example/green/green.lst&#39;</span><span class="w">  </span><span class="c">!! GF grid point list</span>
 
 <span class="w">  </span><span class="c">!! ----------------------------------------------------------------------- !!</span>
 <span class="w">  </span><span class="c">!! MISC</span>

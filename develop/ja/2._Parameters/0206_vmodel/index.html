@@ -259,7 +259,7 @@
   
     
   
-  更新履歴・新機能紹介
+  新機能紹介
 
       </a>
     </li>
@@ -454,7 +454,7 @@
   <span class="md-ellipsis">
     
   
-    更新履歴・新機能紹介
+    新機能紹介
   
 
     
@@ -1184,34 +1184,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../0209_checkpoint/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    チェックポイント・リスタート
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../0210_reciprocity/" class="md-nav__link">
         
   
@@ -1746,7 +1718,7 @@
 </code></pre></div></td></tr></table></div>
 <p>この構造モデルファイルにより作られる深さ依存速度構造は，下図のようになる．</p>
 <figure>
-<p><img alt="" src="../../../fig/lhm_lgm_layer.png" /></p>
+<p><img alt="" src="../../../fig/lhm_lgm_layer.png" width="60%" /></p>
 <figcaption>
 <p>同じ構造指定ファイルから作成される <code>lhm</code> と <code>lgm</code> の深さ依存速度構造の違いの例．<code>lhm</code> は層内で物性値が一様であるのに対し，<code>lgm</code> は層内で物性値が線形に変化する．</p>
 </figcaption>
@@ -1820,15 +1792,11 @@
 <dt><strong><code>node_grd</code></strong></dt>
 <dd>データ読み込み担当ノード．すべての層構造ファイルはここで指定されたノードから読み込まれ，MPIによって全ノードにデータ転送される．</dd>
 <dt><strong><code>topo_flatten</code></strong></dt>
-<dd>地形変化を強制的に平坦にする．その分地下構造もオフセットされる．</dd>
+<dd>地形変化を強制的に平坦にする．その分地下構造もオフセットされる．        </dd>
 </dl>
-<div class="admonition warning">
-<p class="admonition-title"><code>topo_flatten</code> 名称変更の注意</p>
-<p>このオプションはVersion 5.1までは <code>is_flatten</code> であったが，Version 5.2で実装された <code>earth_flattening</code> オプションとの混同を避けるため名前が変更された．</p>
-</div>
 </div>
 <h3 id="vmodeluser"><code>vmodel='user'</code><a class="headerlink" href="#vmodeluser" title="Permanent link">&para;</a></h3>
-<p>このモードでは，<code>src/swpc_*/m_vmodel_user.F90</code> 内のサブルーチンでユーザーが定義する速度構造が読み込まれる．このF90ファイルを変更した場合には<strong>再コンパイルが必要</strong>となる．パラメタファイルから任意のパラメタを読みこんだり，あるいはパラメタを追加することも容易にできる．その方法やサブルーチンの引数についてはファイル内コメントを参照のこと．</p>
+<p>このモードでは，<code>src/swpc_*/m_vmodel_user.f90</code> 内のサブルーチンでユーザーが定義する速度構造が読み込まれる．このf90ファイルを変更した場合には<strong>再コンパイルが必要</strong>となる．パラメタファイルから任意のパラメタを読みこんだり，あるいはパラメタを追加することも容易にできる．その方法やサブルーチンの引数についてはファイル内コメントを参照のこと．</p>
 <h2 id="_3">空気および海水層の取り扱い<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p><code>OpenSWPC</code> では，空気層は密度 <span class="arithmatex"><script type="math/tex">\rho=0.001</script></span> [g/cm<span class="arithmatex"><script type="math/tex">{}^3</script></span>]，地震波速度<span class="arithmatex"><script type="math/tex">V_P=V_S=0</script></span>
 [km/s]，内部減衰<span class="arithmatex"><script type="math/tex">Q_P = Q_S = 10^{10}</script></span>をそれぞれ仮定している．

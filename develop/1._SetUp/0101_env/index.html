@@ -259,7 +259,7 @@
   
     
   
-  Version History &amp; New features
+  New features
 
       </a>
     </li>
@@ -454,7 +454,7 @@
   <span class="md-ellipsis">
     
   
-    Version History &amp; New features
+    New features
   
 
     
@@ -992,34 +992,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../2._Parameters/0209_checkpoint/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Checkpointing and Restarting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../2._Parameters/0210_reciprocity/" class="md-nav__link">
         
   
@@ -1463,35 +1435,9 @@
 
 
 <h1 id="system-requirements">System requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h1>
-<p>Executing <code>OpenSWPC</code> requires a Fortran compiler that can handle (at least a part of) the Fortran 2003 standard and an MPI  library. 
+<p>Executing <code>OpenSWPC</code> requires a Fortran compiler that can handle the Fortran 2018 standard and an MPI library. 
 The program can be run on a single CPU or CPU core without parallelization; however, the MPI library is still required.
-In addition, the <code>NetCDF</code> library, compiled by the same Fortran compiler, is recommended to use the direct input/output of the <code>NetCDF</code>-formatted files. </p>
-<p>The source code of <code>OpenSWPC</code> almost strictly follows the language standard of Fortran2003. 
-As an exception, system calls (the <code>system()</code> subroutine) are used. 
-Note that this extension is supported by most available Fortran compilers. 
-<code>OpenSWPC</code> uses stream I/O, which is part of the Fortran2003 standards. 
-This functionality may not be implemented with older compilers. </p>
-<p>This code was developed in the following environment: </p>
-<ul>
-<li>Apple macOS Sequoia 15.2/Apple M2</li>
-<li>GNU <code>gfortran</code> 14.2.0</li>
-<li><code>OpenMPI</code> 5.0.6</li>
-</ul>
-<p>In addition, the following computers were confirmed to work with \swpc: </p>
-<ul>
-<li>Ubuntu Linux 24.04.1 LTS w/ gfortran 11.4 (Intel Xeon)</li>
-<li>Wisteria/BDEC-01 of the University of Tokyo (Fujitsu FX1000; A64FX)</li>
-</ul>
-<p>(The followings are obsolete architectures that no longer exist or supported but worked in the past. )</p>
-<ul>
-<li>EIC computer, ERI/UTokyo (ver. 2015; SGI Altix; intel fortran)</li>
-<li>JAMSTEC Earth Simulator (3rd generation; NEC SX-ACE; NEC compiler)</li>
-<li>AICS K computer (Fujitsu compiler)</li>
-<li>Nagoya University (FX10/Fx100; Fujitsu compiler)</li>
-<li>Linux Cent OS 6.6 (gfortran 4.9.2 &amp; mpich)</li>
-<li>Linux Ubuntu 16.04LTS (gfortran 5.4 &amp; OpenMPI)</li>
-<li>JAMSTEC Earth Simulator (4th gen; NEC SX Aurora Tsubasa)</li>
-</ul>
+In addition, the <code>NetCDF</code> library, compiled by the same Fortran compiler, is required to use the direct input/output of the <code>NetCDF</code>-formatted files. </p>
 
 
 

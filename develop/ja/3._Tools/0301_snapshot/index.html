@@ -259,7 +259,7 @@
   
     
   
-  更新履歴・新機能紹介
+  新機能紹介
 
       </a>
     </li>
@@ -454,7 +454,7 @@
   <span class="md-ellipsis">
     
   
-    更新履歴・新機能紹介
+    新機能紹介
   
 
     
@@ -957,34 +957,6 @@
     
   
     吸収境界条件
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../2._Parameters/0209_checkpoint/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    チェックポイント・リスタート
   
 
     
@@ -1534,7 +1506,7 @@
 
 <h1 id="_1">スナップショット<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h2 id="read_snpx"><code>read_snp.x</code><a class="headerlink" href="#read_snpx" title="Permanent link">&para;</a></h2>
-<p>スナップショットは独自形式もしくは<code>NetCDF</code>形式のバイナリファイルであるが，いずれもプログラム<code>read_snp.x</code>によって可視化もしくは振幅データの抽出ができる．</p>
+<p>スナップショットは<code>read_snp.x</code>によって可視化もしくは振幅データの抽出ができる．</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>read_snp.x<span class="w"> </span>-i<span class="w"> </span>snapshotfile<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>-ppm<span class="p">|</span>-bmp<span class="o">]</span><span class="w"> </span><span class="o">[</span>-pall<span class="o">]</span><span class="w"> </span>
 <span class="w">              </span><span class="o">[</span>-mul<span class="w"> </span>var<span class="w"> </span><span class="p">|</span><span class="w"> </span>-mul1<span class="w"> </span>var<span class="w"> </span>-mul2<span class="w"> </span>var<span class="w"> </span>...<span class="o">]</span><span class="w"> </span><span class="o">[</span>-bin<span class="o">]</span><span class="w"> </span><span class="o">[</span>-asc<span class="o">]</span><span class="w"> </span><span class="o">[</span>-skip<span class="w"> </span>n<span class="o">]</span>
@@ -1564,10 +1536,8 @@
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code> $ ../bin/read_snp.x -i swpc_3d.xz.ps.snp -h
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code> $ ../bin/read_snp.x -i swpc_3d.xz.ps.snp -h
 
- [binary type]   : STREAMIO
  [code type]     : SWPC_3D
  [header version]:          3
  [title]         : swpc_3d
@@ -1591,7 +1561,7 @@
 </code></pre></div></td></tr></table></div>
 </dd>
 <dt><code>-ppm</code>, <code>-bmp</code></dt>
-<dd>それぞれppmもしくはbmp形式の画像を出力する．結果はそれぞれ<code>ppm</code>/<code>bmp</code>ディレクトリ（自動作成）に連番ファイルとして格納される．可視化対象が速度あるいは変位であれば，上下動と水平動をそれぞれ赤と緑で，P波・S波（div, rot）であればそれぞれの成分の絶対値を赤と緑で色分けして表示する．ただし，絶対値オプションが付加された場合にはGMTのカラーパレットhot相当の色で絶対値を可視化する．</dd>
+<dd>それぞれppmもしくはbmp形式の画像を出力する．結果はそれぞれ<code>ppm</code>/<code>bmp</code>ディレクトリ（自動作成）に連番ファイルとして格納される．可視化対象が速度あるいは変位であれば，上下動と水平動をそれぞれ赤と緑で，P波・S波（div, rot）であればそれぞれの成分の絶対値を色分けして表示する．ただし，絶対値オプションが付加された場合にはGMTのカラーパレットhot相当の色で絶対値を可視化する．</dd>
 <dt><code>-pall</code></dt>
 <dd>吸収境界領域まで含めて可視化を行う（デフォルトでは切り落とす）</dd>
 <dt><code>-mul</code></dt>
@@ -1599,21 +1569,23 @@
 <dt><code>-abs</code></dt>
 <dd>速度スナップショットに対してその絶対値を可視化する．P波・S波のスナップショットはもともとそれぞれの絶対値が出力されているので動作しない．</dd>
 <dt><code>-bin</code>, <code>-asc</code></dt>
-<dd>各時間ステップのスナップショットを単精度バイナリもしくはアスキーデータとしてbinもしくはascディレクトリに出力する．バイナリデータは<code>GMT</code>(<code>xyz2grd</code>など）から-bisオプションで直接読み込むことができる．</dd>
+<dd>各時間ステップのスナップショットを単精度バイナリもしくはアスキーデータとしてbinもしくはascディレクトリに出力する．バイナリデータは<code>GMT</code>（<code>xyz2grd</code>など）から<code>-bis</code>オプションで直接読み込むことができる．</dd>
 <dt><code>-skip n</code></dt>
 <dd>最初の<span class="arithmatex"><script type="math/tex">n</script></span>スナップショットを読み飛ばす．</dd>
-<dt><code>-notim</code> (New in Version 5.1)</dt>
+<dt><code>-notim</code></dt>
 <dd>可視化画像に経過時間をプロットしない．</dd>
-<dt><code>-lpf ng</code> (New in Version 25.01)</dt>
+<dt><code>-lpf ng</code></dt>
 <dd>波数領域の2次バタワース型ローパスフィルタを適用する．<code>ng</code>はカットオフ波長に相当するスナップショットの画素数を指定する．</dd>
+<dt><code>-bgsat n</code></dt>
+<dd>背景構造あるいは地形の明度をパラメタ <code>n</code> で変更する．<code>n=100</code>（デフォルト）でフルカラー，<code>n=0</code> でグレイスケールになる．</dd>
+<dt><code>-color mode</code></dt>
+<dd>カラーパレットの選択．<code>mode</code>=<code>legacy</code>（デフォルト）で赤と緑，<code>cud</code> でColor Universal Designのオレンジと水色が選ばれる．</dd>
 </dl>
 <h2 id="diff_snpx"><code>diff_snp.x</code><a class="headerlink" href="#diff_snpx" title="Permanent link">&para;</a></h2>
 <p>ふたつのスナップショットファイルの差を取り，同じフォーマットのスナップショットファイルに出力する．</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span>diff_snp.x<span class="w"> </span>snap1<span class="w"> </span>snap2<span class="w"> </span>diffile
 </code></pre></div></td></tr></table></div>
-<p>出力ファイルのフォーマット（<code>NetCDF</code>もしくは独自バイナリ）は入力ファイルのフォーマットに依存する．</p>
 <h2 id="fs2grdx"><code>fs2grd.x</code><a class="headerlink" href="#fs2grdx" title="Permanent link">&para;</a></h2>
-<p><strong>New in v5.1</strong></p>
 <p><code>OpenSWPC</code>の地表面もしくは海面におけるスナップショットファイル<code>(title).(ob|fs).(typ).nc</code>は，NetCDF形式ファイルではあるものの，緯度経度方向に等間隔のデータではないため，GMTの<code>grdimage</code>ではそのままプロットできない．</p>
 <p><code>fs2grd.x</code>は，<code>OpenSWPC</code>内指定された緯度経度範囲と間隔で出力ファイルをリサンプルし，GMTで直接利用可能なgrd形式のデータを出力する．</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>

@@ -259,7 +259,7 @@
   
     
   
-  Version History &amp; New features
+  New features
 
       </a>
     </li>
@@ -454,7 +454,7 @@
   <span class="md-ellipsis">
     
   
-    Version History &amp; New features
+    New features
   
 
     
@@ -1101,34 +1101,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../0209_checkpoint/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Checkpointing and Restarting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../0210_reciprocity/" class="md-nav__link">
         
   
@@ -1576,70 +1548,86 @@
 <p>This section describes the moment rate functions, <span class="arithmatex"><script type="math/tex">\dot{M}(t)</script></span>, that can
 be used in <code>OpenSWPC</code> by choosing the parameter <code>stftype</code>. In the
 following, all moment rate functions have a duration (or characteristic
-time) <span class="arithmatex"><script type="math/tex">T_R</script></span> and are normalized so that the total moment is <span class="arithmatex"><script type="math/tex">1</script></span>.</p>
+time) <span class="arithmatex"><script type="math/tex">T_R</script></span> (note that <span class="arithmatex"><script type="math/tex">T_R = T_{R1} + T_{R2}</script></span> for <code>asymcos</code>) and are normalized so that the total moment is <span class="arithmatex"><script type="math/tex">1</script></span>.</p>
 <ul>
 <li>Box-car function (<code>boxcar</code>)</li>
 </ul>
 <div class="arithmatex">
-<script type="math/tex; mode=display">\begin{align}
-   \dot{m}^ R \left(t\right) &=
+<script type="math/tex; mode=display">
+   \dot{m} \left(t\right) =
     \frac{1}{T_R} 
-  & \begin{array}{r} ( 0 \le t \le T_R) \\ \end{array}
-\end{align}</script>
+   \quad ( 0 \le t \le T_R) 
+</script>
 </div>
 <ul>
 <li>Triangle function (<code>triangle</code>)</li>
 </ul>
 <div class="arithmatex">
-<script type="math/tex; mode=display">\begin{align}
-\dot{m}^ T \left(t\right)  = 
+<script type="math/tex; mode=display">
+\dot{m} \left(t\right)  = 
 \begin{cases}
 4t/T_R^2 & ( 0 \le t \le T_R/2 ) \\
 -4(t-T_R)/T_R^2 & ( T_R/2 < t \le T_R )
 \end{cases}
-\end{align}</script>
+</script>
 </div>
 <ul>
 <li>Herrmann function (<code>herrmann</code>)</li>
 </ul>
 <div class="arithmatex">
-<script type="math/tex; mode=display">\begin{align}
-\dot{m}^ H \left(t\right) =
+<script type="math/tex; mode=display">
+\dot{m} \left(t\right) =
 \begin{cases}
 16 t^2 / T_R^3 & ( 0 \le t \le T_R/4  ) \\
 -2 ( 8 t^2 - 8 t T_R + T_R^2 ) / T_R^3  & ( T_R/4 < t \le 3T_R/4  ) \\
 16 \left( t - T_R \right)^2 / T_R^3 &  (3T_R/4 < t \le T_R  )
 \end{cases}
-\end{align}</script>
+</script>
 </div>
 <ul>
 <li>Cosine function (<code>cosine</code>)</li>
 </ul>
 <div class="arithmatex">
-<script type="math/tex; mode=display">\begin{align}
-\dot{m}^ C \left(t\right) =
+<script type="math/tex; mode=display">
+\dot{m} \left(t\right) =
 \frac{1}{T_R} \left[ 1 - \cos \left(\frac{2 \pi t}{T_R} \right) \right]
 \quad ( 0 \le t \le T_R) 
-\end{align}</script>
+</script>
 </div>
 <ul>
 <li>Küpper wavelet (<code>kupper</code>)</li>
 </ul>
 <div class="arithmatex">
-<script type="math/tex; mode=display">\begin{align}
-  \dot{m}^K \left( t \right ) &= 
+<script type="math/tex; mode=display">
+  \dot{m} \left( t \right ) = 
   \frac{3 \pi}{4 T_R} \sin^3\left( \frac{\pi t}{T_R} \right) 
   \quad ( 0 \le t \le T_R) 
-\end{align}</script>
+</script>
 </div>
 <ul>
 <li>t-exp type function (<code>texp</code>)</li>
 </ul>
 <div class="arithmatex">
-<script type="math/tex; mode=display">\begin{align}
-  \dot{m}^{E} \left( t \right) &= \frac{(2 \pi)^2 t}{T_R^2} \exp\left[ - \frac{ 2 \pi t}{T_R}\right]
+<script type="math/tex; mode=display">
+  \dot{m} \left( t \right) = \frac{(2 \pi)^2 t}{T_R^2} \exp\left[ - \frac{ 2 \pi t}{T_R}\right]
   \quad ( 0 \le t ) 
-\end{align}</script>
+</script>
+</div>
+<ul>
+<li>asymmetric cosine function (<code>asymcos</code>)</li>
+</ul>
+<div class="arithmatex">
+<script type="math/tex; mode=display">
+    \dot{m}(t) = 
+    \begin{cases}
+        \dfrac{1}{T_{R1} + T_{R2}}
+            \left[ 1 - \cos\left(\dfrac{\pi t}{T_{R1}}\right)\right]  &
+        (0 \le t < T_{R1} )\\
+        \dfrac{1}{T_{R1} + T_{R2}} 
+            \left[ 1 + \cos\left(\dfrac{\pi t}{T_{R2}}\right)\right] &
+        (T_{R1} \le t \le T_{R1}+ T_{R2} )\\
+    \end{cases}
+</script>
 </div>
 <p>The next figure shows each moment rate function and its Fourier spectrum. </p>
 <div class="admonition quote">
@@ -1720,12 +1708,12 @@ in the <code>fn_grd</code> or <code>fn_grd_rmed</code> list files.</p>
 </ul>
 <p>The unit of each variables are [km] for <span class="arithmatex"><script type="math/tex">x</script></span>, <span class="arithmatex"><script type="math/tex">y</script></span>, <span class="arithmatex"><script type="math/tex">z</script></span>, [Nm] for <span class="arithmatex"><script type="math/tex">M_0</script></span> and <span class="arithmatex"><script type="math/tex">m_{ij}</script></span>, [s] for <span class="arithmatex"><script type="math/tex">T_0</script></span> and <span class="arithmatex"><script type="math/tex">T_R</script></span>, [degree] for all parameters describing angles, [m] for slip <span class="arithmatex"><script type="math/tex">D</script></span> and [m<span class="arithmatex"><script type="math/tex">{}^2</script></span>] for area <span class="arithmatex"><script type="math/tex">S</script></span>. </p>
 </dd>
-<dt>** <code>stftype</code>**</dt>
+<dt><strong><code>stftype</code></strong></dt>
 <dd>Choice of the source time function. Select from <code>'boxcar'</code>,
 <code>'triangle'</code>, <code>'herrmann'</code>, <code>'kupper'</code>, <code>'cosine'</code>, and <code>'texp'</code>.</dd>
-<dt>** <code>fn_stf</code>**</dt>
+<dt><strong><code>fn_stf</code></strong></dt>
 <dd>Filename of the source list.</dd>
-<dt>** <code>sdep_fit</code> **</dt>
+<dt><strong><code>sdep_fit</code></strong></dt>
 <dd>Flag to fit the source depth to the velocity discontinuity. 
 <code>'asis'</code>: do not fit (default). <code>'bd{i}'</code>(i=1,2,<span class="arithmatex"><script type="math/tex">\cdots</script></span>9): fits to
 the <code>i</code>-th boundary specified in the rightmost column of
@@ -1794,7 +1782,7 @@ the <code>i</code>-th boundary specified in the rightmost column of
 <p>This specification is effective from version 5.2.</p>
 <div class="admonition warning">
 <p class="admonition-title">Note on horizontal rotation</p>
-<p>As of version 5.2, when the parameter <code>phi</code> is not equall to zero, the rotation behavior of the source mechanism is different when the source mechanism is given as strike, dip, or rake, and when it is given as moment tensor.</p>
+<p>When the parameter <code>phi</code> is not equall to zero, the rotation behavior of the source mechanism is different when the source mechanism is given as strike, dip, or rake, and when it is given as moment tensor.</p>
 <p>In the former case, the moment tensor is calculated based on the assumption that the strike were measured from the north, regardless of the value of <code>phi</code>. On the other hand, the moment tensor is assumed to be defined for the <span class="arithmatex"><script type="math/tex">x</script></span>, <span class="arithmatex"><script type="math/tex">y</script></span> coordinates after rotation. In other words, if one want to use moment tensor components from the catalog and rotate the coordinate system horizontally, one have calculate the rotated moment by yourself and give it as a parameter.</p>
 <p>The developers are aware that these behaviors are not systematic and may be changed in future versions.</p>
 </div>

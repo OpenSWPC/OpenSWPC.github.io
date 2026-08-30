@@ -33,7 +33,7 @@
     
     
       
-        <title>更新履歴・新機能紹介 - OpenSWPC</title>
+        <title>新機能紹介 - OpenSWPC</title>
       
     
     
@@ -123,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              更新履歴・新機能紹介
+              新機能紹介
             
           </span>
         </div>
@@ -261,7 +261,7 @@
   
     
   
-  更新履歴・新機能紹介
+  新機能紹介
 
       </a>
     </li>
@@ -463,7 +463,7 @@
   <span class="md-ellipsis">
     
   
-    更新履歴・新機能紹介
+    新機能紹介
   
 
     
@@ -481,7 +481,7 @@
   <span class="md-ellipsis">
     
   
-    更新履歴・新機能紹介
+    新機能紹介
   
 
     
@@ -507,15 +507,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#version-26xx-2026-xx-xx" class="md-nav__link">
+  <a href="#version-2609-2026-09-xx" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Version 26.XX (2026-XX-XX)
+        Version 26.09 (2026-09-XX)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Version 26.XX (2026-XX-XX)">
+    <nav class="md-nav" aria-label="Version 26.09 (2026-09-XX)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -530,10 +530,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#considarable-reduction-of-memory-usage" class="md-nav__link">
+  <a href="#reduction-of-memory-usage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Considarable reduction of memory usage
+        Reduction of memory usage
       
     </span>
   </a>
@@ -563,6 +563,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#a-new-source-time-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A new source time function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#updated-pre-set-build-environment" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -570,6 +581,45 @@
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Removed features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waveform-csf-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Waveform: csf-format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snapshot-native-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Snapshot: native-format
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1429,34 +1479,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../2._Parameters/0209_checkpoint/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    チェックポイント・リスタート
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../2._Parameters/0210_reciprocity/" class="md-nav__link">
         
   
@@ -1899,16 +1921,16 @@
 
 
 
-<h1 id="_1">更新履歴・新機能紹介<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="version-26xx-2026-xx-xx">Version 26.XX (2026-XX-XX)<a class="headerlink" href="#version-26xx-2026-xx-xx" title="Permanent link">&para;</a></h2>
+<h1 id="_1">新機能紹介<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="version-2609-2026-09-xx">Version 26.09 (2026-09-XX)<a class="headerlink" href="#version-2609-2026-09-xx" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>このバージョンは公開準備中です．</p>
 </div>
 <h3 id="viscoelastic-pml">Viscoelastic PML<a class="headerlink" href="#viscoelastic-pml" title="Permanent link">&para;</a></h3>
-<p>これまでのOpenSWPCでは，Perfectly Matched Layer (PML) 領域内においては完全弾性体が仮定されていました（Maeda et al., 2017<sup id="fnref:Maeda2017"><a class="footnote-ref" href="#fn:Maeda2017">1</a></sup>）．
+<p>これまでのOpenSWPCでは，Perfectly Matched Layer (PML) 領域内においては完全弾性体が仮定されていました（<a href="https://doi.org/10.1186/s40623-017-0687-2">Maeda et al., 2017</a>）．
 これは計算の単純化に寄与していましたが，特に減衰の強い媒質においては，物理分散による周波数に依存しない速度低下を再現できず，内部領域とPMLとの間の速度不整合により人工反射波を生じる原因となっていました．</p>
-<p>本バージョンからは，PML領域内でも内部領域と全く同じGeneralized Zener Bodyの粘弾性体モデルとPMLを融合させ（Martin and Komatitsch, 2009<sup id="fnref:Martin2009"><a class="footnote-ref" href="#fn:Martin2009">2</a></sup>）ることでPMLの性能を大幅に向上させました．</p>
+<p>本バージョンからは，<a href="https://doi.org/10.1111/j.1365-246X.2009.04278.x">Martin and Komatitsch (2009)</a> を参考にPML領域内でも内部領域と全く同じGeneralized Zener Bodyの粘弾性体モデルとPMLを融合させることでPMLの性能を大幅に向上させました．</p>
 <figure>
 <p><img alt="Viscoelastic PML" src="../../fig/ver26_visco-PML.png" width="80%" /></p>
 <figcaption>
@@ -1917,23 +1939,35 @@
 </figure>
 <p>上図は新旧の吸収境界条件性能の比較です．従来の方法だとわずかな人工反射波が生じていましたが，新しい粘弾性PMLではそれが大幅に低減されました．この性能向上はPMLの安定性向上にも寄与すると期待されています．</p>
 <p>この新しいアルゴリズム単独では計算量と必要メモリ量が増大するものですが，以下で説明されている必要メモリ量の削減とそれに伴う高速化により，全体としての必要メモリ量はほとんどの場合従来よりも削減されました．計算時間は計算機環境により従来と変わらない水準から，たかだか15%程度の増大にとどまっています．</p>
-<h3 id="considarable-reduction-of-memory-usage">Considarable reduction of memory usage<a class="headerlink" href="#considarable-reduction-of-memory-usage" title="Permanent link">&para;</a></h3>
-<p>PML領域のみで必要とされる配列変数のメモリ確保方法の刷新と，FP32（倍精度）とFP16（単精度）の混合精度演算のうちFP32の利用が必要な変数の精査により，メモリ使用量を大幅に削減しました．</p>
+<h3 id="reduction-of-memory-usage">Reduction of memory usage<a class="headerlink" href="#reduction-of-memory-usage" title="Permanent link">&para;</a></h3>
+<p>PML領域のみで必要とされる配列変数のメモリ確保方法の刷新と，FP64（倍精度）とFP32（単精度）の混合精度演算のうちFP64の利用が必要な変数の精査により，メモリ使用量を大幅に削減しました．</p>
 <figure>
-<p><img alt="Memory reduction" src="../../fig/ver26_memory-reduction.png" width="100%" /></p>
+<p><img alt="Memory reduction" src="../../fig/ver26_memory-reduction.png" width="70%" /></p>
 <figcaption>
 <p>三辺のグリッド数が等しい（<span class="arithmatex"><script type="math/tex">N_x = N_y = N_z</script></span>）場合の，従来バージョンに対する新バージョンの必要メモリサイズの削減比率．</p>
 </figcaption>
 </figure>
-<p>上図は前項のPMLの新しい実装の効果も含めた，Version 26.XX における必要メモリ量のVersion 25.05に対する削減比率を示します．モデルサイズが小さいと粘弾性PMLの採用によるメモリ量増大の影響が大きいですが，モデルサイズが増大するほどメモリ削減の効果が強くなり，一般的な3次元地震波動伝播数値シミュレーションで採用されるグリッド数（<span class="arithmatex"><script type="math/tex">10^3 \sim 10^4</script></span>）においては使用メモリ量が30%以上削減されます．</p>
+<p>上図は前項のPMLの新しい実装の効果も含めた，Version 26.09 における必要メモリ量のVersion 25.05に対する削減比率を示します．モデルサイズが小さいと粘弾性PMLの採用によるメモリ量増大の影響が大きいですが，モデルサイズが増大するほどメモリ削減の効果が強くなり，一般的な3次元地震波動伝播数値シミュレーションで採用されるグリッド数（<span class="arithmatex"><script type="math/tex">10^3 \sim 10^4</script></span>）においては使用メモリ量が30%以上削減されます．</p>
 <h3 id="color-universal-design-cud-for-read_snpx">Color Universal Design (CUD) for <code>read_snp.x</code><a class="headerlink" href="#color-universal-design-cud-for-read_snpx" title="Permanent link">&para;</a></h3>
-<p>付属ツール <code>read_snp.x</code> によるスナップショットファイルの可視化には，2種類のデータに対して赤系と緑系の色が採用されていました．Version 26.XX では色覚多様性に対応するためのあらたなカラーパレットを設計し， <code>-color cud</code> オプションとして提供します．さらに，地形や速度構造の背景色の彩度を調整する <code>-bgsat</code> オプションも設けました．</p>
-<p><img alt="" src="../../fig/ver26_cud-mode.png" /></p>
+<p>付属ツール <code>read_snp.x</code> によるスナップショットファイルの可視化には，2種類のデータに対して赤系と緑系の色が採用されていました．Version 26.09 では色覚多様性に対応するためのあらたなカラーパレットを設計し， <code>-color cud</code> オプションとして提供します．さらに，地形や速度構造の背景色の彩度を調整する <code>-bgsat</code> オプションも設けました．</p>
+<figure>
+<p><img alt="cud-mode" src="../../fig/ver26_cud-mode.png" width="90%" /></p>
+<figcaption>
+<p><code>read_snp.x</code> による可視化のカラーモードの比較．</p>
+</figcaption>
+</figure>
 <h3 id="fullspace-mode-reactivated">Fullspace-mode reactivated<a class="headerlink" href="#fullspace-mode-reactivated" title="Permanent link">&para;</a></h3>
 <p>通常は真空（空気）層のため吸収境界条件を必要としないモデルの上端にもPMLを配置する <code>fullspace_mode</code> を実装しました．
-このモードはVersion 5.0から5.1 にかけて実装されていましたが，当時発生した技術的トラブルのため，公開をとりやめていました．Version 26.XX ではそもそもPMLの実装を全面的に書き直したため，当時の問題は消失しています．</p>
+このモードはVersion 5.0から5.1 にかけて実装されていましたが，当時発生した技術的トラブルのため，公開をとりやめていました．Version 26.09 ではそもそもPMLの実装を全面的に書き直したため，当時の問題は消失しています．</p>
+<h3 id="a-new-source-time-function">A new source time function<a class="headerlink" href="#a-new-source-time-function" title="Permanent link">&para;</a></h3>
+<p>非対称cosine型震源時間関数 <code>asymcos</code> (<a href="https://doi.org/10.1029/2002JB001764">Ji et al., 2003</a>) を実装した．</p>
 <h3 id="updated-pre-set-build-environment">Updated pre-set build environment<a class="headerlink" href="#updated-pre-set-build-environment" title="Permanent link">&para;</a></h3>
 <p><code>makefile.arch</code> と <code>makefile-tools.arch</code> を整理し，GPUマシンの例を2つ追加しました．</p>
+<h3 id="removed-features">Removed features<a class="headerlink" href="#removed-features" title="Permanent link">&para;</a></h3>
+<h4 id="waveform-csf-format">Waveform: csf-format<a class="headerlink" href="#waveform-csf-format" title="Permanent link">&para;</a></h4>
+<p>独自フォーマット <code>csf</code> による波形出力機能を削除しました．今後，複数のファイルをまとめて出力したい場合には，SACフォーマットをtarアーカイブにした <code>tar_st</code> あるいは <code>tar_node</code> が使えます．</p>
+<h4 id="snapshot-native-format">Snapshot: native-format<a class="headerlink" href="#snapshot-native-format" title="Permanent link">&para;</a></h4>
+<p>出力スナップショット形式はNetCDFだけをサポートすることとしました．</p>
 <h3 id="version-dependent-manual">Version-dependent manual<a class="headerlink" href="#version-dependent-manual" title="Permanent link">&para;</a></h3>
 <p>マニュアルWebページ上部のセレクタから，OpenSWPCのバージョンに応じてマニュアルを選択できるようになりました．Version 25.05以前の従来のマニュアルはまとめて <code>legacy</code> として提供されています．</p>
 <h2 id="version-2505-2025-05-20">Version 25.05 (2025-05-20)<a class="headerlink" href="#version-2505-2025-05-20" title="Permanent link">&para;</a></h2>
@@ -1951,7 +1985,7 @@
 <figure>
 <p><img alt="" src="../../fig/lhm-lgm.png" width="80%" /></p>
 <figcaption>
-<p>構造モデルファイル <code>example/lhm.dat</code> を用いた <code>swpc_psv</code> の数値シミュレーションスナップショットの例．<br>左は <code>vmodel="lhm"</code>，右は <code>vmodel="lgm"</code> で計算したもの．</p>
+<p>構造モデルファイル <code>example/lhm.dat</code> を用いた <code>swpc_psv</code> の数値シミュレーションスナップショットの例．左は <code>vmodel="lhm"</code>，右は <code>vmodel="lgm"</code> で計算したもの．</p>
 </figcaption>
 </figure>
 <p>一方，<code>lgm</code> モデルでも速度不連続面を表現することができる．すなわち，<code>lgm</code> は<code>lhm</code> を含んだスーパーセットである．また，ランダム媒質を重畳した <code>lhm_rmed</code> に対応する <code>lgm_rmed</code> も提供される．</p>
@@ -2104,11 +2138,8 @@ Also, starting with this release, the online documentation will be maintained se
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:Maeda2017">
-<p>Maeda, T., Takemura, S., &amp; Furumura, T. (2017). OpenSWPC: An open-source integrated parallel simulation code for modeling seismic wave propagation in 3D heterogeneous viscoelastic media, <em>Earth, Planets and Space</em>, <em>69</em>, 102. doi:<a href="https://doi.org/10.1186/s40623-017-0687-2">10.1186/s40623-017-0687-2</a>.&#160;<a class="footnote-backref" href="#fnref:Maeda2017" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
 <li id="fn:Martin2009">
-<p>Martin, R. &amp; Komatitsch, D. (2009). An unsplit convolutional perfectly matched layer technique improved at gazing incidence for teh vicoelastic wave equation, <em>Geophysical Journal International</em>, <em>179</em>, 333-344. doi:<a href="https://doi.org/10.1111/j.1365-246X.2009.04278.x">10.1111/j.1365-246X.2009.04278.x</a>.&#160;<a class="footnote-backref" href="#fnref:Martin2009" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Martin, R. &amp; Komatitsch, D. (2009). An unsplit convolutional perfectly matched layer technique improved at gazing incidence for teh vicoelastic wave equation, <em>Geophysical Journal International</em>, <em>179</em>, 333-344. doi:<a href="">10.1111/j.1365-246X.2009.04278.x</a>.&#160;<a class="footnote-backref" href="#fnref:Martin2009" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

@@ -259,7 +259,7 @@
   
     
   
-  Version History &amp; New features
+  New features
 
       </a>
     </li>
@@ -454,7 +454,7 @@
   <span class="md-ellipsis">
     
   
-    Version History &amp; New features
+    New features
   
 
     
@@ -1073,34 +1073,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../2._Parameters/0209_checkpoint/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Checkpointing and Restarting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../2._Parameters/0210_reciprocity/" class="md-nav__link">
         
   
@@ -1585,16 +1557,15 @@ the environment:</p>
 </tr>
 </tbody>
 </table>
-<p>If <code>NCFLAG = -D_NETCDF</code> is specified, the <code>make</code> command will try to compile <code>OpenSWPC</code> with <code>NetCDF</code> library.</p>
 <p>A set of the above variables under different computer environments is
 defined in <code>src/shared/makefile.arch</code> and
 <code>src/shared/makefile-tools.arch</code>. The former is for the compilation of
 FDM codes, and the latter is for the compilation of misc tools. The user
 can specify the <code>arch</code> option in the <code>make</code> command as in the following example: </p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>make<span class="w"> </span><span class="nv">arch</span><span class="o">=</span>mac-gfortran
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>make<span class="w"> </span><span class="nv">arch</span><span class="o">=</span>apple
 </code></pre></div></td></tr></table></div>
-<p>In the above case, the appropriate compiler options for the architecture <code>mac-gfortran</code> is automatically set. In some environments, the <code>debug</code> option is predefined. This option is used in the following way: </p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>make<span class="w"> </span><span class="nv">arch</span><span class="o">=</span>eic<span class="w"> </span><span class="nv">debug</span><span class="o">=</span><span class="nb">true</span>
+<p>In the above case, the appropriate compiler options for the architecture <code>apple</code> is automatically set. In some environments, the <code>debug</code> option is predefined. This option is used in the following way: </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>make<span class="w"> </span><span class="nv">arch</span><span class="o">=</span>apple<span class="w"> </span><span class="nv">debug</span><span class="o">=</span><span class="nb">true</span>
 </code></pre></div></td></tr></table></div>
 <p>The list of pre-defined architecture (<code>arch</code>) options is described in the following table.</p>
 <table>
@@ -1607,59 +1578,34 @@ can specify the <code>arch</code> option in the <code>make</code> command as in 
 </thead>
 <tbody>
 <tr>
-<td>mac-m1</td>
-<td>macOS + gfortran (Apple Silicon + Homebrew)</td>
+<td><code>apple</code> (previously <code>mac-m1</code>)</td>
+<td>macOS + gfortran (Homebrew)</td>
 <td><code>/opt/homebrew/</code></td>
 </tr>
 <tr>
-<td>ubuntu-gfortran</td>
-<td>Ubuntu 16.04LTS + gfortran + Open MPI</td>
+<td><code>ubuntu-gfortran</code></td>
+<td>Ubuntu 22.04LTS + gfortran + Open MPI</td>
 <td>Installation by <code>apt</code></td>
 </tr>
 <tr>
-<td>bdec-o</td>
+<td><code>dgx-spark</code></td>
+<td>NVIDIA DGX Spark</td>
+<td><code>/opt/netcdf-nv</code></td>
+</tr>
+<tr>
+<td><code>bdec-o</code></td>
 <td>Wisteria/BDEC-01 (Odyssey)  of the University of Tokyo</td>
 <td>automatically specified by the <code>module</code> command</td>
 </tr>
 <tr>
-<td>eic</td>
-<td>EIC2015 (ERI, UTokyo) with the Intel Compiler</td>
+<td><code>eic2025</code></td>
+<td>EIC2025 (ERI, UTokyo) with the Intel Compiler</td>
 <td>automatically specified by the <code>module</code> command</td>
 </tr>
 <tr>
-<td>fx   (obsolete)</td>
-<td>Fujitsu FX10, FX100 and the K-computer</td>
-<td><code>${HOME}/xlocal</code></td>
-</tr>
-<tr>
-<td>es3  (obsolete)</td>
-<td>The Earth Simulator 3 (obsolete)</td>
-<td>Provided by the system</td>
-</tr>
-<tr>
-<td>es4   (obsolete)</td>
-<td>The Earth Simulator 4</td>
-<td>Provided by the system</td>
-</tr>
-<tr>
-<td>ofp (or oak)</td>
-<td>Oakforest-PACS of the University of Tokyo (obsolete)</td>
-<td>automatically specified by the <code>module</code> command</td>
-</tr>
-<tr>
-<td>obcx</td>
-<td>Oakbridge-CX of the University of Tokyo (obsolete)</td>
-<td>automatically specified by the <code>module</code> command</td>
-</tr>
-<tr>
-<td>mac-intel    (obsolete)</td>
-<td>Mac OSX + Intel Compiler + OpenMPI</td>
-<td><code>${HOME}/local</code></td>
-</tr>
-<tr>
-<td>mac-gfortran (obsolete)</td>
-<td>Mac OSX + gfortran + Open MPI</td>
-<td><code>/usr/local</code></td>
+<td><code>miyabi-g</code></td>
+<td>Miyabi supercomputer of the University of Tokyo</td>
+<td>automatically specified by the <code>nf-config</code> command</td>
 </tr>
 </tbody>
 </table>
@@ -1671,7 +1617,7 @@ can specify the <code>arch</code> option in the <code>make</code> command as in 
 <li><code>netcdf.mod</code>:    Fortran module information file</li>
 </ul>
 <p>The extension of the library files may be <code>*.a</code> (static library) or
-<code>*.so</code> (dynamic library), depending on the installation. All these files
+<code>*.so*</code> (dynamic library), depending on the installation. All these files
 are necessary for successful compilation with <code>NetCDF</code>. In particular,
 the <code>netcdf.mod</code> file must be created by the same Fortran compiler as
 <code>OpenSWPC</code>. If <code>NetCDF</code> is installed using packaging tools such as

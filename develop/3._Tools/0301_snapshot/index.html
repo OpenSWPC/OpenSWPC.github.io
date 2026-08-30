@@ -259,7 +259,7 @@
   
     
   
-  Version History &amp; New features
+  New features
 
       </a>
     </li>
@@ -454,7 +454,7 @@
   <span class="md-ellipsis">
     
   
-    Version History &amp; New features
+    New features
   
 
     
@@ -957,34 +957,6 @@
     
   
     Absorbing Boundary Conditions
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../2._Parameters/0209_checkpoint/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Checkpointing and Restarting
   
 
     
@@ -1534,8 +1506,7 @@
 
 <h1 id="snapshot-data-handling">Snapshot data handling<a class="headerlink" href="#snapshot-data-handling" title="Permanent link">&para;</a></h1>
 <h2 id="read_snpx"><code>read_snp.x</code><a class="headerlink" href="#read_snpx" title="Permanent link">&para;</a></h2>
-<p>Snapshot files in both <code>NetCDF</code> and the originally defined binary format
-can be extracted or visualized by the program <code>read_snp.x</code>.</p>
+<p>Snapshot files can be extracted or visualized by the program <code>read_snp.x</code>.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>read_snp.x<span class="w"> </span>-i<span class="w"> </span>snapshotfile<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>-ppm<span class="p">|</span>-bmp<span class="o">]</span><span class="w"> </span><span class="o">[</span>-pall<span class="o">]</span><span class="w"> </span>
 <span class="w">              </span><span class="o">[</span>-mul<span class="w"> </span>var<span class="w"> </span><span class="p">|</span><span class="w"> </span>-mul1<span class="w"> </span>var<span class="w"> </span>-mul2<span class="w"> </span>var<span class="w"> </span>...<span class="o">]</span><span class="w"> </span><span class="o">[</span>-bin<span class="o">]</span><span class="w"> </span><span class="o">[</span>-asc<span class="o">]</span><span class="w"> </span><span class="o">[</span>-skip<span class="w"> </span>n<span class="o">]</span>
@@ -1566,10 +1537,8 @@ following example.</p>
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code> $ ../bin/read_snp.x -i swpc_3d.xz.ps.snp -h
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code> $ ../bin/read_snp.x -i swpc_3d.xz.ps.snp -h
 
- [binary type]   : STREAMIO
  [code type]     : SWPC_3D
  [header version]:          3
  [title]         : swpc_3d
@@ -1625,9 +1594,9 @@ The data file will be created in the automatically created <code>bin</code> or
 <code>GMT</code> with the <code>xyz2grd</code> module by appending the <code>-bis</code> option.</dd>
 <dt><code>-skip n</code></dt>
 <dd>Skip the first <span class="arithmatex"><script type="math/tex">n</script></span> snapshots for visualization or data exports.</dd>
-<dt><code>-notim</code> (New in Version 5.1)</dt>
+<dt><code>-notim</code></dt>
 <dd>Do <em>not</em> plot the elapsed time in the snapshot figures.</dd>
-<dt><code>-lpf ng</code> (New in Version 25.01)</dt>
+<dt><code>-lpf ng</code></dt>
 <dd>A second-order Butterworth low-pass filter is applied in the frequency domain. <code>ng</code> specifies the number of pixel points in the snapshot corresponding to the cutoff wavelength.</dd>
 </dl>
 <h2 id="diff_snpx"><code>diff_snp.x</code><a class="headerlink" href="#diff_snpx" title="Permanent link">&para;</a></h2>
@@ -1638,7 +1607,6 @@ to another snapshot file.</p>
 <p>The output file format (<code>NetCDF</code> or binary) depends on the input file
 format.</p>
 <h2 id="fs2grdx"><code>fs2grd.x</code><a class="headerlink" href="#fs2grdx" title="Permanent link">&para;</a></h2>
-<p><strong>New in v5.1</strong></p>
 <p>Although snapshot data from <code>OpenSWPC</code> along the ground surface or ocean bottom follows the NetCDF format, they cannot be used in the GMT's grdimage command because they are not evenly-spaced grid data along longitude and latitude. </p>
 <p>The utility program <code>fs2grd.x</code> resamples the <code>OpenSWPC</code>'s output dataset in longitude/latitude coordinate to convert it to GMT-friendly grd-format dataset. </p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>

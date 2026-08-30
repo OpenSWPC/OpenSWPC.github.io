@@ -259,7 +259,7 @@
   
     
   
-  更新履歴・新機能紹介
+  新機能紹介
 
       </a>
     </li>
@@ -454,7 +454,7 @@
   <span class="md-ellipsis">
     
   
-    更新履歴・新機能紹介
+    新機能紹介
   
 
     
@@ -1051,34 +1051,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../0209_checkpoint/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    チェックポイント・リスタート
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../0210_reciprocity/" class="md-nav__link">
         
   
@@ -1653,17 +1625,17 @@ Stability Condition <code>c</code> および Wavelength Condition <code>r</code>
 <dd>空間次元各方向のグリッド数． なお，水平方向のグリッド数<code>nx</code>,<code>ny</code>は必ずしも<code>nproc_x</code>, <code>nproc_y</code>の倍数でなくとも良い．余りが発生する場合には，端を担当するノードのグリッド数で自動的に調節される．</dd>
 <dt><strong><code>dx</code></strong>, <strong><code>dy</code></strong>, <strong><code>dz</code></strong></dt>
 <dd>空間グリッド間隔 [km]．全空間サイズは <code>nx * dx</code>などとなる．各方向のグリッドサイズは等しくなくとも良い．</dd>
-<dt><code>nt</code></dt>
+<dt><strong><code>nt</code></strong></dt>
 <dd>時間グリッド数．</dd>
-<dt><code>dt</code></dt>
+<dt><strong><code>dt</code></strong></dt>
 <dd>時間グリッド間隔 [s]．全時間長は <code>nt * dt</code>である．</dd>
-<dt><code>xbeg</code>, <code>ybeg</code>, <code>zbeg</code></dt>
+<dt><strong><code>xbeg</code></strong>, <strong><code>ybeg</code></strong>, <strong><code>zbeg</code></strong></dt>
 <dd>各空間方向の最小値．地図投影法上は，基準緯度経度が中心になるような値となっているのが最も歪みが少ない．<code>xbeg</code>と<code>ybeg</code>が省略された場合には，<code>xbeg = - nx * dx / 2</code>, <code>ybeg = - ny * dy / 2</code> と自動設定される．<code>zbeg</code>が省略された場合には，<code>K=30</code>が地表面となるように自動設定される．</dd>
-<dt><code>tbeg</code></dt>
+<dt><strong><code>tbeg</code></strong></dt>
 <dd>時間の最小値．通常は0で良いが，特定の時刻から始めることもできる．</dd>
-<dt><code>clon</code>, <code>clat</code></dt>
+<dt><strong><code>clon</code></strong>, <strong><code>clat</code></strong></dt>
 <dd>座標系中心経度・中心緯度（度）．本座標位置を中心としたGauss-Krüger変換によって座標投影が行われる．</dd>
-<dt><code>phi</code></dt>
+<dt><strong><code>phi</code></strong></dt>
 <dd>地理座標系に対する計算座標系の回転角度．<code>phi=0</code>の場合は<span class="arithmatex"><script type="math/tex">x</script></span>軸が北，<span class="arithmatex"><script type="math/tex">y</script></span>軸が東を向いている．通常はゼロで良いが，斜めの座標系を用いることもできる．ただし，<code>phi</code>がゼロでない場合には，出力波形やスナップショットの<span class="arithmatex"><script type="math/tex">x</script></span>,<span class="arithmatex"><script type="math/tex">y</script></span>成分も角度が<code>phi</code>だけ傾いているので注意が必要である．</dd>
 </dl>
 </div>

@@ -259,7 +259,7 @@
   
     
   
-  Version History &amp; New features
+  New features
 
       </a>
     </li>
@@ -454,7 +454,7 @@
   <span class="md-ellipsis">
     
   
-    Version History &amp; New features
+    New features
   
 
     
@@ -957,34 +957,6 @@
     
   
     Absorbing Boundary Conditions
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../2._Parameters/0209_checkpoint/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Checkpointing and Restarting
   
 
     
@@ -1582,25 +1554,38 @@ the other parameters.</p>
 <span class="normal">38</span>
 <span class="normal">39</span>
 <span class="normal">40</span>
-<span class="normal">41</span></pre></div></td><td class="code"><div><pre><span></span><code>$  ./fdmcond.x 
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code>$  ./fdmcond.x 
 
 ----------------------------------------------------------------------
-                           FDM CONDITION                           
+                           FDM CONDITION                              
 ----------------------------------------------------------------------
 
+ Select Model Dimension
 
-  Model Dimension ? --&gt; 3
-   1) 2D
-   2) 3D
+   2) 2D
+   3) 3D
+
+ --&gt; 3
 
 
- Source Type ? --&gt; 3
+ Select Source Time Function
+
    1) Triangle
    2) Herrmann
    3) Kupper
 
+ --&gt; 3
 
- Parameter Combination ? --&gt; 5
+
+ Select Parameter Combination
+
    1) dh   (space grid),  fmax (max freq.),  vmax (max vel.)
    2) dh   (space grid),  Tr   (rise time),  vmax (max vel.)
    3) dh   (space grid),  fmax (max freq.),  dt (time grid)
@@ -1611,6 +1596,7 @@ the other parameters.</p>
    8) Tr   (rise time) ,  vmax (max vel.),   dt (time grid)
    9) vmin (min vel.)  ,  vmax (max vel.),   dt (time grid)
 
+ --&gt; 5
 
  Assumed Parameters: 
    dx     =   0.25

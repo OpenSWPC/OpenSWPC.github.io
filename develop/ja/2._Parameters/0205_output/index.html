@@ -259,7 +259,7 @@
   
     
   
-  更新履歴・新機能紹介
+  新機能紹介
 
       </a>
     </li>
@@ -454,7 +454,7 @@
   <span class="md-ellipsis">
     
   
-    更新履歴・新機能紹介
+    新機能紹介
   
 
     
@@ -1162,34 +1162,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../0209_checkpoint/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    チェックポイント・リスタート
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../0210_reciprocity/" class="md-nav__link">
         
   
@@ -1635,8 +1607,7 @@
 <h1 id="_1">出力ファイルの設定<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h2 id="_2">出力ファイル形式<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><code>OpenSWPC</code> は，2次元断面における地震波の時空間発展のスナップショットと，観測点における時系列波形の2種類のデータを出力できる．</p>
-<p>スナップショットのファイル出力には，<code>NetCDF</code>形式のデータ（推奨）もしくはFortranのStream I/O機能を用いた独自形式（以下native形式；旧形式のため非推奨）のバイナリデータを選択できる．波形出力は<code>SAC</code>形式もしくはそれを結合した独自形式（<code>CSF</code>）および<code>tar</code>アーカイブで行われる．</p>
-<p>どちらの出力に対しても明示的なエンディアン変換は行わないため，生成されるファイルは実行環境のエンディアンに依存する．ただし，SACおよびNetCDFのライブラリはエンディアンに依存せずファイルを読むことができるため，これらのフォーマットを使っている限り，エンディアンについて意識する必要はほとんど無い．</p>
+<p>スナップショットは，<code>NetCDF</code>形式のデータのバイナリデータで出力される．波形出力は<code>SAC</code>形式もしくは結合した<code>tar</code>アーカイブで行われる．</p>
 <p>なお，波形・スナップショットとも水平成分の方向は計算座標系の<span class="arithmatex"><script type="math/tex">x</script></span>, <span class="arithmatex"><script type="math/tex">y</script></span>, <span class="arithmatex"><script type="math/tex">z</script></span>に準ずる．<code>phi=0</code>であれば<span class="arithmatex"><script type="math/tex">x</script></span>, <span class="arithmatex"><script type="math/tex">y</script></span>はそれぞれ北・東であるが，計算座標系を回転している（<code>phi</code>がゼロでない）場合には注意が必要である．この座標系の回転角は波形出力の<code>SAC</code>ファイルヘッダのcmpazに格納されているため，後処理で容易に北・東を正にする方向に変換することができる．また，鉛直方向の座標は下が正であるが，波形出力においては観測地震学の慣例に従い上が正になるように反転されている．一方，スナップショットの速度出力の<span class="arithmatex"><script type="math/tex">z</script></span>成分は計算座標系（鉛直下方が正）のままである．</p>
 <h3 id="_3">波形ファイルのヘッダ<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>波形出力のSACファイルには，SACで必須とされる標準的なヘッダの他，以下の表のヘッダが付加される．
@@ -1655,7 +1626,7 @@
 </tr>
 <tr>
 <td><code>evlo</code>, <code>evla</code>, <code>evdp</code></td>
-<td>震源リストの1行目の震源位置．震源位置がデカルト座標系で与えられた場合にはパラメタ<code>clon</code>と<code>clat</code>をもとに緯度経度変換する．</td>
+<td>震源リストの1行目の震源位置．緯度経度は度単位，震源深さは km単位である．震源位置がデカルト座標系で与えられた場合にはパラメタ<code>clon</code>と<code>clat</code>をもとに緯度経度変換する．</td>
 </tr>
 <tr>
 <td><code>o</code></td>
@@ -1707,9 +1678,8 @@
 </tr>
 </tbody>
 </table>
-<p>Native形式のスナップショットファイルには，ヘッダ情報，構造（地表であれば地形，断面であれば速度構造），空間スナップショットの順にデータが格納される．</p>
 <h3 id="_4">スナップショットのヘッダ<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>以下のヘッダ項目は NetCDF ファイルであればファイルのattributeに指定されている．Native形式においてはファイル先頭にこれらの情報が埋め込まれている．どちらのファイル形式についても，ユーティリティプログラム <code>read_snp.x</code> で読み出すことができる．</p>
+<p>以下のヘッダ項目は NetCDF ファイルのglobal attributes に設定される．</p>
 <table>
 <thead>
 <tr>
@@ -1719,11 +1689,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>bintype</code></td>
-<td>character(8)</td>
-<td><code>"STREAMIO"</code>に固定</td>
-</tr>
 <tr>
 <td><code>codetype</code></td>
 <td>character(8)</td>
@@ -1797,16 +1762,12 @@
 <tr>
 <td><code>v1,v2,v3</code></td>
 <td>real</td>
-<td>予備．本コードでは利用しない．</td>
+<td>現在は利用されていない</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition caution">
-<p class="admonition-title">SAC ヘッダの変更</p>
-<p>SAC ヘッダのうち，<code>evdp</code> は従来は m 単位であったが，OpenSWPC Version 5.0 以降は km の単位を取るように変更された．</p>
-</div>
-<p>スナップショットとして<code>NetCDF</code>形式を用いた場合も，この表に相当する global attributes が設定される．そのほかは<code>NetCDF</code>の<a href="https://ferret.pmel.noaa.gov/Ferret/documentation/coards-netcdf-conventions">COARDS規約</a>
-および一部<a href="http://cfconventions.org">CF拡張</a>に従う．この規約に従っていることにより，<code>OpenSWPC</code>により出力された<code>NetCDF</code>ファイルは，同形式を読み込める多くの科学的可視化ツール（たとえばParaView，PanoplyやGMTなど）でそのまま読み取ることができる．</p>
+<p>ヘッダ情報は <code>NetCDF</code>の<a href="https://ferret.pmel.noaa.gov/Ferret/documentation/coards-netcdf-conventions">COARDS規約</a>
+および一部<a href="http://cfconventions.org">CF拡張</a>に従う．この規約に従っていることにより，<code>OpenSWPC</code>により出力された<code>NetCDF</code>ファイルは，同形式を読み込める多くの科学的可視化ツールでそのまま読み取ることができる．</p>
 <h2 id="_5">スナップショット出力<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>3次元空間のうち，<code>xy</code>, <code>yz</code>, <code>xz</code>それぞれの方向の水平断面と地表面（<code>fs</code>）・海底面（<code>ob</code>）に沿った面の波動場スナップショットを出力することができる．
 出力可能なのは速度振幅（<code>v</code>）, 変位振幅（<code>u</code>）および速度振幅の発散と回転（<code>ps</code>）の3種類である．</p>
@@ -1819,13 +1780,11 @@
 </figcaption>
 </figure>
 <p>このとき，各MPIノード内で出力されるグリッド点数は一定とは限らない（一定となるように出力間隔やグリッドサイズを調整する必要は無い）．
-データはすべて特定のノードに集約されて，<code>snp_format</code>パラメタの値により，独自形式（<code>native</code>）もしくは<code>NetCDF</code>形式のバイナリファイルとして出力される．</p>
+データはMPI通信により特定のノードに集約されて出力される．</p>
 <p>入力パラメータでは各スナップショット断面の出力の有無や間引き要素を制御する．なお，2次元SH計算では1成分しかないためP波S波出力は生成されない．</p>
 <div class="admonition info">
 <p class="admonition-title">Parameters</p>
 <dl>
-<dt><strong><code>snp_format</code></strong></dt>
-<dd>スナップショットファイルの出力フォーマット．<code>"native"</code>（Fortran独自フォーマット，非推奨）もしくは <code>"netcdf"</code>（<code>NetCDF</code>形式．推奨）のいずれかを指定する． </dd>
 <dt><strong><code>xy_ps%sw</code>, <code>xz_ps%sw</code>, <code>yz_ps%sw</code>, <code>fs_ps%sw</code>, <code>ob_ps%sw</code></strong></dt>
 <dd>各断面でのPS振幅（<span class="arithmatex"><script type="math/tex">\text{div}(\mathbf{v})</script></span>, <span class="arithmatex"><script type="math/tex">\text{rot}(\mathbf{v})</script></span>）の出力スイッチ．                                                        </dd>
 <dt><strong><code>xy_v3%sw</code>, <code>xz_v3%sw</code>, <code>yz_v3%sw</code>, <code>fs_v3%sw</code>, <code>ob_v3%sw</code></strong></dt>
@@ -1898,43 +1857,17 @@
 <td>地表・海面グリッドの一つ上</td>
 </tr>
 <tr>
-<td><code>’bdi’ (i=0, \cdots, 9)</code></td>
+<td><code>’bdi’ (i=0, ..., 9)</code></td>
 <td>速度構造モデルで定義される<code>i</code>番目の内部境界</td>
 </tr>
 </tbody>
 </table>
 <h3 id="_8">出力フォーマット<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<p>データフォーマットはSAC形式が基本である．ただし，SACファイルは1観測点1成分で一つのファイルのため，多数の観測点の多項目波形を出力するとファイル数が膨大になり，取り回しが悪い．そこで，観測点ごとや，計算ノード単位で波形を <code>tar</code> アーカイブとしてひとつにまとめたファイルを出力することもできる (<strong>New in Version 25.01</strong>)．</p>
-<p>Version 3.0以降ではパラメタ<code>wav_format = ’csf’</code>が指定されると，<code>SAC</code>ファイルを複数観測点・成分について単一ファイルに結合したcsfファイル（独自形式）の出力を選択することもできる．csfフォーマットは，SAC形式のバイナリファイルを単純結合したものの先頭に3つの4バイト実数をヘッダとして付加しただけの単純なフォーマットである．ヘッダは以下の構成要素からなる．</p>
-<div class="admonition info">
-<p class="admonition-title">CSF header format</p>
-<dl>
-<dt><strong><code>identifier</code></strong></dt>
-<dd>4文字 'CSFD'</dd>
-<dt><strong><code>ntrace</code></strong></dt>
-<dd>ファイル内に格納されている波形の数</dd>
-<dt><strong><code>npts</code></strong></dt>
-<dd>一つ一つの波形の時間サンプル数</dd>
-</dl>
-</div>
-<p>ファイルに含まれる波形のサンプル数はすべて等しいことが仮定されている．csf出力が選択された場合，並列計算のノード毎に，そのノードに含まれる観測点の同じ成分の波形が一つのファイルにまとめられて出力される．</p>
-<div class="admonition caution">
-<p class="admonition-title">大量の波形出力</p>
-<p>大規模スーパーコンピュータシステムにおいては，並列ファイルシステムlustreが採用されていることがある（たとえば東京大学Oakforestなど）．Lustreは小さなファイルを多数扱うことをやや苦手にしており，SAC形式で大量の波形を出力すると，パフォーマンスが落ちることがある．そのような場合には，tarやcsfフォーマットのような結合フォーマットが便利である．</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code>csf</code>よりも<code>tar</code> アーカイブのほうが汎用性に優れているため，<code>csf</code>形式の出力は非推奨となり，今後のバージョンで削除される予定である．</p>
-</div>
-<div class="admonition important">
-<p class="admonition-title"><code>wav_calc_dist</code> と <code>lcalda</code> ヘッダ</p>
-<p>Version 24.09 までは <code>wav_calc_dist</code> オプションが <code>.true.</code> のとき，計算座標系における水平距離を震央距離としてSACヘッダに格納していた．Version 25.01 以降は常に震央距離を格納し，SACが距離を上書きしないよう <code>lcalda</code> ヘッダを<code>.false.</code> に設定するようになった．それにともない，パラメタ <code>wav_calc_dist</code> は廃止された．</p>
-</div>
+<p>データフォーマットはSAC形式である．ただし，SACファイルは1観測点1成分で一つのファイルのため，多数の観測点の多項目波形を出力するとファイル数が膨大になり，取り回しが悪い．そこで，観測点ごとや，計算ノード単位で波形を <code>tar</code> アーカイブとしてひとつにまとめたファイルを出力することもできる．</p>
 <h3 id="_9">ひずみ・応力波形出力<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<p>速度や変位波形と同様に，<code>sw_wav_strain = .true.</code> とすることでひずみ波形を，<code>sw_wav_stress = .true.</code>とすることで応力波形を，それぞれSAC形式の時系列データとして出力することができる（new in version 5.0)．観測点位置の指定は速度・変位と同じである．出力単位は歪は無次元，応力は[Pa]である．</p>
+<p>速度や変位波形と同様に，<code>sw_wav_strain = .true.</code> とすることでひずみ波形を，<code>sw_wav_stress = .true.</code>とすることで応力波形を，それぞれSAC形式の時系列データとして出力することができる．観測点位置の指定は速度・変位と同じである．出力単位は歪は無次元，応力は[Pa]である．</p>
 <h3 id="_10">波形出力のタイミング<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <p>観測点における地震波形は計算中にはメモリ内に蓄積され，計算終了時にまとめてファイルに出力される．ただし，パラメタ <code>ntdec_w_prg</code> を <code>1</code> 以上の整数に設定すると，その数値の時間ステップ毎に波形を出力することができる．その際，波形の長さは常に <code>nt</code> で決まる時間長のままで，計算が完了していない部分はゼロ埋めされる．この機能は計算途中に計算の正常性をモニターするためであるが，あまり <code>ntdec_w_prg</code> を小さくすると，出力の負荷によって計算時間が増加する場合があることに注意が必要である．もし<code>ntdec_w_prg</code> の値が0以下だった場合は，計算終了時のみに波形を出力する．</p>
-<p><code>ntdec_w_prg</code> は Version 24.09 以降で利用できる．</p>
 <div class="admonition info">
 <p class="admonition-title">Parameters</p>
 <dl>
@@ -1964,7 +1897,7 @@
 <h2 id="_12">出力ファイル名<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <p>計算結果は以下のようなファイル名で出力される（Version 25.01 で変更）．</p>
 <ul>
-<li>スナップショット     <code>(odir)/(title).(code).(section).(type).(ext)</code></li>
+<li>スナップショット     <code>(odir)/(title).(code).(section).(type).nc</code></li>
 <li>波形(SAC)    <code>(odir)/wav/(title).(code).(stnm).(component).sac</code></li>
 <li>波形(CSF)   <code>(odir)/wav/(title).(code).(node-ID).(component).csf</code></li>
 <li>波形(TAR-ST)     <code>(odir)/wav/(title).(code).(stnm).tar</code></li>
@@ -1975,8 +1908,7 @@
 Surface）ならびに<code>ob</code>（Ocean Bottom）で表される．
 <code>(type)</code>は速度振幅かP波・S波（div,
 rot）かによって<code>v</code>もしくは<code>ps</code>を取る． <code>(code)</code>は計算に用いたコードの種別で，<code>3d</code>, <code>psv</code>, <code>sh</code> のいずれかを取る．
-<code>(component)</code>は速度か変位かに応じて<code>Vx</code>, <code>Vy</code>, <code>Vz</code>あるいは<code>Ux</code>, <code>Uy</code>, <code>Uz</code>を取る．
-スナップショットの拡張子<code>(ext)</code>はNetCDF形式で<code>nc</code>，native形式で<code>snp</code>である．</p>
+<code>(component)</code>は速度か変位かに応じて<code>Vx</code>, <code>Vy</code>, <code>Vz</code>あるいは<code>Ux</code>, <code>Uy</code>, <code>Uz</code>を取る．</p>
 
 
 

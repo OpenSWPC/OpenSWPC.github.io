@@ -259,7 +259,7 @@
   
     
   
-  更新履歴・新機能紹介
+  新機能紹介
 
       </a>
     </li>
@@ -454,7 +454,7 @@
   <span class="md-ellipsis">
     
   
-    更新履歴・新機能紹介
+    新機能紹介
   
 
     
@@ -992,34 +992,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../2._Parameters/0209_checkpoint/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    チェックポイント・リスタート
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../2._Parameters/0210_reciprocity/" class="md-nav__link">
         
   
@@ -1464,22 +1436,12 @@
 
 <h1 id="_1">動作環境<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p><code>OpenSWPC</code> を動作させるには，Fortran
-2003を（少なくとも部分的に）解することのできるFortranコンパイラならびにMPIライブラリが必要である．本コードは単独CPU（あるいはCPUコア）で動作させることもできるが，その場合においてもMPIライブラリがコンパイル・実行時に必要である．
-また，入出力に<code>NetCDF</code>フォーマットを利用する場合には，<code>OpenSWPC</code>をコンパイルするFortranコンパイラで作成したNetCDFライブラリが必要である．</p>
-<p>Fortranの記法のほとんどはFortran2003の標準規格に沿っている．
-例外として，Unixシステムコールサブルーチン<code>system()</code>を一部で用いているが，
-これは既存の多くのコンパイラ環境で動作することが確認されている．
-は，Fortran2003の言語仕様のうちストリーム入出力を用いている．
-この機能は古いコンパイラ（たとえば<code>gfortran</code>のバージョン4以前など）では実装されていないので，注意が必要である．</p>
-<p>開発ならびに動作確認は以下の環境で行っている．</p>
-<ul>
-<li>Apple macOS Sequoia 15.2/Apple M2</li>
-<li>GNU <code>gfortran</code> 14.2.0</li>
-<li><code>OpenMPI</code> 5.0.6</li>
-</ul>
-<p>その他，以下のアーキテクチャでの動作を確認している．</p>
+2018を解することのできるFortranコンパイラならびにMPIライブラリが必要である．本コードは単独CPU（あるいはCPUコア）で動作させることもできるが，その場合においてもMPIライブラリがコンパイル・実行時に必要である．
+さらに，<code>OpenSWPC</code>をコンパイルするFortranコンパイラで作成したNetCDFライブラリが必要である．</p>
+<p>以下のアーキテクチャでの動作を確認している．</p>
 <ul>
 <li>Ubuntu Linux 24.04.1 LTS w/ gfortran 11.4 (Intel Xeon)</li>
+<li>NVIDIA DGX Spark w/ nvfortran</li>
 <li>Wisteria/BDEC-01 of the University of Tokyo (Fujitsu FX1000; A64FX)</li>
 </ul>
 <p>（以下はもう存在しないかサポートしていないが，過去に動作した機種のリストである．）</p>

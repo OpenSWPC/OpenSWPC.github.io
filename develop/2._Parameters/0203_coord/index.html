@@ -259,7 +259,7 @@
   
     
   
-  Version History &amp; New features
+  New features
 
       </a>
     </li>
@@ -454,7 +454,7 @@
   <span class="md-ellipsis">
     
   
-    Version History &amp; New features
+    New features
   
 
     
@@ -1031,34 +1031,6 @@
     
   
     Absorbing Boundary Conditions
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../0209_checkpoint/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Checkpointing and Restarting
   
 
     
@@ -1685,19 +1657,19 @@ If <code>nproc_x=nproc_y=1</code>, this will become a serial (non-parallel) comp
 <dt><strong><code>dx</code></strong>, <strong><code>dy</code></strong>, <strong><code>dz</code></strong></dt>
 <dd>Spatial grid width in each direction in units of km. The total computational size in the physical domain will be <code>nx</code><span class="arithmatex"><script type="math/tex">\times</script></span><code>dx</code>, <code>ny</code><span class="arithmatex"><script type="math/tex">\times</script></span><code>dy</code>, and <code>nz</code><span class="arithmatex"><script type="math/tex">\times</script></span><code>dz</code>. 
 The grid widths in different directions do not necessarily need to be equal.</dd>
-<dt><code>nt</code></dt>
+<dt><strong><code>nt</code></strong></dt>
 <dd>Number of time steps.</dd>
-<dt><code>dt</code></dt>
+<dt><strong><code>dt</code></strong></dt>
 <dd>Length of the time step in seconds. The total physical simulation time will be <code>nt</code><span class="arithmatex"><script type="math/tex">\times</script></span><code>dt</code>.</dd>
-<dt><code>xbeg</code>, <code>ybeg</code>, <code>zbeg</code></dt>
+<dt><strong><code>xbeg</code></strong>, <strong><code>ybeg</code></strong>, <strong><code>zbeg</code></strong></dt>
 <dd>Minimum value of the coordinates. If specifications of <code>xbeg</code> or <code>ybeg</code> are omitted, they will automatically be set to xbeg = - nx <span class="arithmatex"><script type="math/tex">\times</script></span> dx / 2 and ybeg = - ny <span class="arithmatex"><script type="math/tex">\times</script></span> dy / 2. 
 This setting is recommended to minimize distortion due to the map projection. The default value of <code>zbeg</code> is <code>-30</code><span class="arithmatex"><script type="math/tex">\times</script></span><code>dz</code>.</dd>
-<dt><code>tbeg</code></dt>
+<dt><strong><code>tbeg</code></strong></dt>
 <dd>Starting time. Usually it is set to zero but can be changed if necessary.</dd>
-<dt><code>clon</code>, <code>clat</code></dt>
+<dt><strong><code>clon</code></strong>, <strong><code>clat</code></strong></dt>
 <dd>Center longitude and latitude in degrees. The map projection will be
 performed with this location as a reference point.</dd>
-<dt><code>phi</code></dt>
+<dt><strong><code>phi</code></strong></dt>
 <dd>Horizontal rotation angle of the computational coordinate (see figure). 
 If <code>phi</code>=0, the <span class="arithmatex"><script type="math/tex">x</script></span>- and <span class="arithmatex"><script type="math/tex">y</script></span>-axes correspond to the north and east directions, respectively. Note that
 the output files (snapshot and waveform) will be rotated if this

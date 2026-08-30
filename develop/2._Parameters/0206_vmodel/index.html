@@ -259,7 +259,7 @@
   
     
   
-  Version History &amp; New features
+  New features
 
       </a>
     </li>
@@ -454,7 +454,7 @@
   <span class="md-ellipsis">
     
   
-    Version History &amp; New features
+    New features
   
 
     
@@ -1184,34 +1184,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../0209_checkpoint/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Checkpointing and Restarting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../0210_reciprocity/" class="md-nav__link">
         
   
@@ -1753,7 +1725,7 @@ starting with <code>#</code> will be neglected.
 </code></pre></div></td></tr></table></div>
 <p>The depth-dependent velocity structure created using this structural model file is as shown in the figure below.</p>
 <figure>
-<p><img alt="" src="../../fig/lhm_lgm_layer.png" /></p>
+<p><img alt="" src="../../fig/lhm_lgm_layer.png" width="60%" /></p>
 <figcaption>
 <p>An example of the difference in depth-dependent velocity structure between <code>lhm</code> and <code>lgm</code>, which are created from the same structure specification file. <code>lhm</code> has uniform physical properties within a layer, whereas <code>lgm</code> has linear variation in physical properties within a layer.</p>
 </figcaption>
@@ -1844,13 +1816,9 @@ via MPI data communication.</dd>
 <dt><strong><code>topo_flatten</code></strong></dt>
 <dd>Make topography variatinon flat by offsetting the medium below. </dd>
 </dl>
-<div class="admonition warning">
-<p class="admonition-title">Renaming <code>is_flatten</code> to <code>topo_flatten</code></p>
-<p>This option used to be <code>is_flatten</code> until Version 5.1, but has been renamed to avoid confusion with the <code>earth_flattening</code> option implemented in Version 5.2.</p>
-</div>
 </div>
 <h3 id="vmodeluser"><code>vmodel='user'</code><a class="headerlink" href="#vmodeluser" title="Permanent link">&para;</a></h3>
-<p>Any kind of velocity structure can be used by modifying a user subroutine defined in <code>src/swpc_*/m_vmodel_user.F90</code>. Note that <strong>recompilation of the code
+<p>Any kind of velocity structure can be used by modifying a user subroutine defined in <code>src/swpc_*/m_vmodel_user.f90</code>. Note that <strong>recompilation of the code
 is necessary</strong> if this Fortran file is modified. It is also easy to read in arbitrary parameters from a parameter file or to add parameters. Please refer the
 comments in the file for the details. </p>
 <h2 id="on-treatments-of-air-and-seawater-layer">On Treatments of Air and Seawater Layer<a class="headerlink" href="#on-treatments-of-air-and-seawater-layer" title="Permanent link">&para;</a></h2>
