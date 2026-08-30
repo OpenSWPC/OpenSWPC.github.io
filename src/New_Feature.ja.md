@@ -1,16 +1,67 @@
-# 更新履歴・新機能紹介
+# 新機能紹介
 
 ## Version 26.XX (2026-XX-XX)
 
+!!! warning
+    このバージョンは公開準備中です．
+
 ### Viscoelastic PML
 
-### Considarable reduction of memory usage
+これまでのOpenSWPCでは，Perfectly Matched Layer (PML) 領域内においては完全弾性体が仮定されていました（Maeda et al., 2017[^Maeda2017]）．
+これは計算の単純化に寄与していましたが，特に減衰の強い媒質においては，物理分散による周波数に依存しない速度低下を再現できず，内部領域とPMLとの間の速度不整合により人工反射波を生じる原因となっていました．
 
-### Fullspace-mode reactivated
+本バージョンからは，PML領域内でも内部領域と全く同じGeneralized Zener Bodyの粘弾性体モデルとPMLを融合させ（Martin and Komatitsch, 2009[^Martin2009]）ることでPMLの性能を大幅に向上させました．
+
+![Viscoelastic PML](./fig/ver26_visco-PML.png){ width="80%" }
+/// caption
+内部減衰 $Q_P = Q_S = 30$ の一様媒質での地表面における速度地震波振幅分布のスナップショット．上段が従来のもの，下段が新しい実装．直達波に比べて小さい振幅を拡大して表示している．
+///
+
+上図は新旧の吸収境界条件性能の比較です．従来の方法だとわずかな人工反射波が生じていましたが，新しい粘弾性PMLではそれが大幅に低減されました．この性能向上はPMLの安定性向上にも寄与すると期待されています．
+
+この新しいアルゴリズム単独では計算量と必要メモリ量が増大するものですが，以下で説明されている必要メモリ量の削減とそれに伴う高速化により，全体としての必要メモリ量はほとんどの場合従来よりも削減されました．計算時間は計算機環境により従来と変わらない水準から，たかだか15%程度の増大にとどまっています．
+
+### Reduction of memory usage
+
+PML領域のみで必要とされる配列変数のメモリ確保方法の刷新と，FP64（倍精度）とFP32（単精度）の混合精度演算のうちFP64の利用が必要な変数の精査により，メモリ使用量を大幅に削減しました．
+
+![Memory reduction](./fig/ver26_memory-reduction.png){ width="100%" }
+/// caption
+三辺のグリッド数が等しい（$N_x = N_y = N_z$）場合の，従来バージョンに対する新バージョンの必要メモリサイズの削減比率．
+///
+
+上図は前項のPMLの新しい実装の効果も含めた，Version 26.XX における必要メモリ量のVersion 25.05に対する削減比率を示します．モデルサイズが小さいと粘弾性PMLの採用によるメモリ量増大の影響が大きいですが，モデルサイズが増大するほどメモリ削減の効果が強くなり，一般的な3次元地震波動伝播数値シミュレーションで採用されるグリッド数（$10^3 \sim 10^4$）においては使用メモリ量が30%以上削減されます．
 
 ### Color Universal Design (CUD) for `read_snp.x` 
 
+付属ツール `read_snp.x` によるスナップショットファイルの可視化には，2種類のデータに対して赤系と緑系の色が採用されていました．Version 26.XX では色覚多様性に対応するためのあらたなカラーパレットを設計し， `-color cud` オプションとして提供します．さらに，地形や速度構造の背景色の彩度を調整する `-bgsat` オプションも設けました．
+
+![](./fig/ver26_cud-mode.png)
+/// caption
+`read_snp.x` による可視化のカラーモードの比較．
+///
+
+### Fullspace-mode reactivated
+
+通常は真空（空気）層のため吸収境界条件を必要としないモデルの上端にもPMLを配置する `fullspace_mode` を実装しました．
+このモードはVersion 5.0から5.1 にかけて実装されていましたが，当時発生した技術的トラブルのため，公開をとりやめていました．Version 26.XX ではそもそもPMLの実装を全面的に書き直したため，当時の問題は消失しています．
+
 ### Updated pre-set build environment
+
+`makefile.arch` と `makefile-tools.arch` を整理し，GPUマシンの例を2つ追加しました．
+
+### 波形フォーマット `csf` の削除
+
+独自フォーマット `csf` による波形出力機能を削除しました．今後，複数のファイルをまとめて出力したい場合には，SACフォーマットをtarアーカイブにした `tar_st` あるいは `tar_node` が使えます．
+
+### Version-dependent manual
+
+マニュアルWebページ上部のセレクタから，OpenSWPCのバージョンに応じてマニュアルを選択できるようになりました．Version 25.05以前の従来のマニュアルはまとめて `legacy` として提供されています．
+
+
+[^Maeda2017]: Maeda, T., Takemura, S., & Furumura, T. (2017). OpenSWPC: An open-source integrated parallel simulation code for modeling seismic wave propagation in 3D heterogeneous viscoelastic media, _Earth, Planets and Space_, _69_, 102. doi:[10.1186/s40623-017-0687-2](https://doi.org/10.1186/s40623-017-0687-2). 
+
+[^Martin2009]: Martin, R. & Komatitsch, D. (2009). An unsplit convolutional perfectly matched layer technique improved at gazing incidence for teh vicoelastic wave equation, _Geophysical Journal International_, _179_, 333-344. doi:[10.1111/j.1365-246X.2009.04278.x](https://doi.org/10.1111/j.1365-246X.2009.04278.x).
 
 ## Version 25.05 (2025-05-20)
 
@@ -30,7 +81,7 @@ Laterally Homogeneous Medium (`lhm`) と同じ形式入力ファイルから，�
 
 下図は，OpenSWPCの`example`に提供されている同じ構造モデルファイルを用いて `vmodel="lhm"` と `vmodel="lgm"` でそれぞれP-SVコードのPSスナップショットである．`lhm` と比べて，`lgm` は速度不連続面（灰色横線）がなくなった分，内部境界の反射波や変換波が小さくなり，波動場が相対的に単純になっている．
 
-![](./fig/lhm-lgm.png)
+![](./fig/lhm-lgm.png){ width="80%" }
 /// caption
 構造モデルファイル `example/lhm.dat` を用いた `swpc_psv` の数値シミュレーションスナップショットの例．<br>左は `vmodel="lhm"`，右は `vmodel="lgm"` で計算したもの．
 ///

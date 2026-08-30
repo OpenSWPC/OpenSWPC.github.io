@@ -1,4 +1,64 @@
-# Version History & New features
+# New features
+
+## Version 26.XX (2026-XX-XX)
+
+!!! warning
+    This version is under prepation. 
+
+### Viscoelastic PML
+
+In previous versions of OpenSWPC, the medium within the Perfectly Matched Layer (PML) region was assumed to be perfectly elastic (Maeda et al., 2017[^Maeda2017]).
+Although this assumption simplified the computation, particularly in strongly attenuating media it failed to reproduce the frequency-independent velocity reduction associated with physical dispersion. The resulting velocity mismatch between the interior and PML regions could generate artificial reflected waves.
+
+Starting with this version, the PML has been combined with exactly the same Generalized Zener Body viscoelastic model as that used in the interior region (Martin and Komatitsch, 2009[^Martin2009]), substantially improving the performance of the PML.
+
+![Viscoelastic PML](./fig/ver26_visco-PML.png){ width="80%" }
+/// caption
+Snapshots of seismic-wave velocity amplitudes at the surface in a homogeneous medium with intrinsic attenuation of $Q_P = Q_S = 30$. The upper panel shows the previous implementation, and the lower panel shows the new implementation. Small amplitudes relative to the direct waves are enhanced for visualization.
+///
+
+The above figure compares the performance of the previous and new absorbing boundary conditions. The previous method produced weak artificial reflected waves, whereas these reflections are drastically reduced with the new viscoelastic PML. This improvement is also expected to enhance the stability of the PML.
+
+Although the new algorithm itself increases both computational cost and memory requirements, the memory-saving improvements described below, together with the associated performance gains, result in lower overall memory usage than in previous versions in most cases. Depending on the computing environment, the computation time ranges from approximately the same as before to an increase of at most about 15%.
+
+### Reduction of memory usage
+
+Memory usage has been significantly reduced by redesigning the allocation of array variables required only within the PML regions and by carefully reassessing which variables actually require FP64 (double-precision) arithmetic in the mixed-precision implementation using FP64 and FP32 (single precision).
+
+![Memory reduction](./fig/ver26_memory-reduction.png){ width="100%" }
+/// caption
+Reduction in required memory in the new version relative to the previous version for models with equal numbers of grid points along all three dimensions ($N_x = N_y = N_z$).
+///
+
+The above figure shows the reduction in required memory in Version 26.XX relative to Version 25.05, including the effects of the new PML implementation described above. For small models, the increase in memory usage associated with the viscoelastic PML has a relatively large impact. As the model size increases, however, the benefits of the memory reductions become more pronounced. For grid dimensions commonly used in three-dimensional seismic-wave propagation simulations ($10^3 \sim 10^4$), memory usage is reduced by more than 30%.
+
+### Color Universal Design (CUD) for `read_snp.x`
+
+The visualization of snapshot files by the bundled `read_snp.x` tool previously used reddish and greenish colors for the two types of data. In Version 26.XX, a new color palette designed to accommodate diverse color vision has been introduced and is available through the `-color cud` option. A new `-bgsat` option has also been added to adjust the saturation of the background colors representing topography and velocity structure.
+
+![](./fig/ver26_cud-mode.png)
+/// caption
+Comparison of color modes for visualization with `read_snp.x`.
+///
+
+### Fullspace mode reactivated
+
+The `fullspace_mode`, which places a PML also at the upper boundary of the model where an absorbing boundary condition is normally unnecessary because of the vacuum (air) layer, has been reintroduced.
+
+This mode was implemented between Versions 5.0 and 5.1, but was subsequently withdrawn because of technical problems encountered at the time. Since the PML implementation has been rewritten in Version 26.XX, those earlier problems no longer apply.
+
+### Updated preset build environments
+
+`makefile.arch` and `makefile-tools.arch` have been reorganized, and two examples for GPU-based systems have been added.
+
+### Removal of the `csf` waveform format
+
+Support for waveform output in the proprietary `csf` format has been removed. To combine multiple waveform files into a single output file, the `tar_st` or `tar_node` formats can now be used. These formats store SAC files in a tar archive.
+
+### Version-dependent manual
+
+The appropriate manual for each OpenSWPC version can now be selected using the version selector at the top of the manual website. Manuals for Version 25.05 and earlier are provided collectively as `legacy`.
+
 
 ## Version 25.05 (2025-05-20)
 
