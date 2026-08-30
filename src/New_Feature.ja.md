@@ -68,7 +68,6 @@ PML領域のみで必要とされる配列変数のメモリ確保方法の刷�
 
 マニュアルWebページ上部のセレクタから，OpenSWPCのバージョンに応じてマニュアルを選択できるようになりました．Version 25.05以前の従来のマニュアルはまとめて `legacy` として提供されています．
 
-[^Martin2009]: Martin, R. & Komatitsch, D. (2009). An unsplit convolutional perfectly matched layer technique improved at gazing incidence for teh vicoelastic wave equation, _Geophysical Journal International_, _179_, 333-344. doi:[10.1111/j.1365-246X.2009.04278.x]().
 
 ## Version 25.05 (2025-05-20)
 
