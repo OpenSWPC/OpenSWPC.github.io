@@ -1684,18 +1684,24 @@
 <p><code>'xydsdc'</code> : <span class="arithmatex"><script type="math/tex">x</script></span>, <span class="arithmatex"><script type="math/tex">y</script></span>, <span class="arithmatex"><script type="math/tex">z</script></span>, <span class="arithmatex"><script type="math/tex">T_0</script></span>, <span class="arithmatex"><script type="math/tex">T_R</script></span>, <span class="arithmatex"><script type="math/tex">D</script></span>, <span class="arithmatex"><script type="math/tex">S</script></span>, strike, dip, rake</p>
 </li>
 <li>
-<p><code>'psmeca'</code> : lon, lat, <span class="arithmatex"><script type="math/tex">z</script></span>, <span class="arithmatex"><script type="math/tex">M_{rr}</script></span>, <span class="arithmatex"><script type="math/tex">M_{tt}</script></span>, <span class="arithmatex"><script type="math/tex">M_{ff}</script></span>, <span class="arithmatex"><script type="math/tex">M_{rt}</script></span>, <span class="arithmatex"><script type="math/tex">M_{rf}</script></span>, <span class="arithmatex"><script type="math/tex">M_{tf}</script></span>, iexp &nbsp; <strong>(new in v5.2)</strong></p>
+<p><code>'psmeca'</code> : lon, lat, <span class="arithmatex"><script type="math/tex">z</script></span>, <span class="arithmatex"><script type="math/tex">M_{rr}</script></span>, <span class="arithmatex"><script type="math/tex">M_{tt}</script></span>, <span class="arithmatex"><script type="math/tex">M_{ff}</script></span>, <span class="arithmatex"><script type="math/tex">M_{rt}</script></span>, <span class="arithmatex"><script type="math/tex">M_{rf}</script></span>, <span class="arithmatex"><script type="math/tex">M_{tf}</script></span>, iexp &nbsp;</p>
 </li>
 </ul>
 <p>それぞれの量の単位は，<span class="arithmatex"><script type="math/tex">x</script></span>, <span class="arithmatex"><script type="math/tex">y</script></span>, <span class="arithmatex"><script type="math/tex">z</script></span>は[km]，<span class="arithmatex"><script type="math/tex">M_0</script></span> と<span class="arithmatex"><script type="math/tex">m_{ij}</script></span> は [Nm], <span class="arithmatex"><script type="math/tex">T_0</script></span>, <span class="arithmatex"><script type="math/tex">T_R</script></span>は [s], 角度変数はすべて [degree]，すべり量<span class="arithmatex"><script type="math/tex">D</script></span>は [m]，面積<span class="arithmatex"><script type="math/tex">S</script></span>は[m<span class="arithmatex"><script type="math/tex">{}^2</script></span>]がそれぞれ仮定されている．</p>
 </dd>
 <dt><strong><code>stftype</code></strong></dt>
-<dd>要素震源時間関数（モーメント時間関数）の種類．<code>'boxcar'</code>（箱形関数）, <code>'triangle'</code>（三角形）, <code>'herrmann'</code>（Herrmann関数）,<code>'kupper'</code>（Kupper wavelet）, <code>'cosine'</code> （<span class="arithmatex"><script type="math/tex">\cos</script></span>関数）, <code>'texp'</code>（<span class="arithmatex"><script type="math/tex">t \exp</script></span>関数）から選択する．</dd>
+<dd>要素震源時間関数（モーメント時間関数）の種類．<code>'boxcar'</code>, <code>'triangle'</code>, <code>'herrmann'</code>,<code>'kupper'</code>, <code>'cosine'</code>, <code>'texp'</code>, <code>'asymcos'</code>から選択する．</dd>
 <dt><strong><code>fn_stf</code></strong></dt>
 <dd>震源情報ファイル．このファイル中に<code>stf_format</code>で指定された書式で震源情報を記載する．</dd>
 <dt><strong><code>sdep_fit</code></strong></dt>
 <dd>震源の深さを強制的に境界に合わせるかどうかの指定． <code>'asis'</code>: なにもしない（デフォルト）<code>'bd{i}'</code> (i=1,2,<span class="arithmatex"><script type="math/tex">\cdots</script></span>9): <code>i</code>番目の境界に合わせる．</dd>
 </dl>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p><code>stftype = 'asymcos'</code> だけは，ライズタイム <span class="arithmatex"><script type="math/tex">T_R</script></span> の代わりに2つの時間定数 <span class="arithmatex"><script type="math/tex">T_{R1}</script></span> と <span class="arithmatex"><script type="math/tex">T_{R2}</script></span> を必要とする．そのため，震源情報ファイルの指定は，たとえば <code>xym0ij</code> であれば</p>
+<p><span class="arithmatex"><script type="math/tex">x</script></span>, <span class="arithmatex"><script type="math/tex">y</script></span>, <span class="arithmatex"><script type="math/tex">z</script></span>, <span class="arithmatex"><script type="math/tex">T_0</script></span>, <span class="arithmatex"><script type="math/tex">T_{R1}</script></span>, <span class="arithmatex"><script type="math/tex">T_{R2}</script></span>, <span class="arithmatex"><script type="math/tex">M_0</script></span>, <span class="arithmatex"><script type="math/tex">m_{xx}</script></span>, <span class="arithmatex"><script type="math/tex">m_{yy}</script></span>,  <span class="arithmatex"><script type="math/tex">m_{zz}</script></span>,  <span class="arithmatex"><script type="math/tex">m_{yz}</script></span>, <span class="arithmatex"><script type="math/tex">m_{xz}</script></span>, <span class="arithmatex"><script type="math/tex">m_{xy}</script></span>    </p>
+<p>のように他の震源時間関数と比べて1列増える．</p>
 </div>
 <h3 id="_4">地震の大きさの指定<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>モーメントテンソル成分を直接与える場合には，地震モーメント<span class="arithmatex"><script type="math/tex">M_0</script></span>あるいはモーメントマグニチュード<span class="arithmatex"><script type="math/tex">M_W</script></span>の指定と，モーメントテンソル成分のあいだに，大きさに関するトレードオフがある．たとえば，以下の2つの指定は完全に等価である：</p>
