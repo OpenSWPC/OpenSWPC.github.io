@@ -101,7 +101,7 @@ In order to understand these behaviors, let us consider the following simplified
 
 The depth-dependent velocity structure created using this structural model file is as shown in the figure below.
 
-![](../fig/lhm_lgm_layer.png)
+![](../fig/lhm_lgm_layer.png){ width="60%" }
 /// caption
 An example of the difference in depth-dependent velocity structure between `lhm` and `lgm`, which are created from the same structure specification file. `lhm` has uniform physical properties within a layer, whereas `lgm` has linear variation in physical properties within a layer.
 ///
@@ -181,12 +181,9 @@ The following additional parameters are required for structural input using `Net
     **`topo_flatten`** 
     : Make topography variatinon flat by offsetting the medium below. 
 
-    !!! Warning "Renaming `is_flatten` to `topo_flatten`"
-        This option used to be `is_flatten` until Version 5.1, but has been renamed to avoid confusion with the `earth_flattening` option implemented in Version 5.2.
-
 ### `vmodel='user'`
 
-Any kind of velocity structure can be used by modifying a user subroutine defined in `src/swpc_*/m_vmodel_user.F90`. Note that **recompilation of the code
+Any kind of velocity structure can be used by modifying a user subroutine defined in `src/swpc_*/m_vmodel_user.f90`. Note that **recompilation of the code
 is necessary** if this Fortran file is modified. It is also easy to read in arbitrary parameters from a parameter file or to add parameters. Please refer the
 comments in the file for the details. 
 

@@ -5,62 +5,74 @@
 This section describes the moment rate functions, $\dot{M}(t)$, that can
 be used in `OpenSWPC` by choosing the parameter `stftype`. In the
 following, all moment rate functions have a duration (or characteristic
-time) $T_R$ and are normalized so that the total moment is $1$.
-
+time) $T_R$ (note that $T_R = T_{R1} + T_{R2}$ for `asymcos`) and are normalized so that the total moment is $1$.
 
 - Box-car function (`boxcar`)
 
-\begin{align}
-   \dot{m}^ R \left(t\right) &=
+$$
+   \dot{m} \left(t\right) =
     \frac{1}{T_R} 
-  & \begin{array}{r} ( 0 \le t \le T_R) \\ \end{array}
-\end{align}
+   \quad ( 0 \le t \le T_R) 
+$$
 
 - Triangle function (`triangle`)
 
-\begin{align}
-\dot{m}^ T \left(t\right)  = 
+$$
+\dot{m} \left(t\right)  = 
 \begin{cases}
 4t/T_R^2 & ( 0 \le t \le T_R/2 ) \\
 -4(t-T_R)/T_R^2 & ( T_R/2 < t \le T_R )
 \end{cases}
-\end{align}
+$$
  
 - Herrmann function (`herrmann`)
 
-\begin{align}
-\dot{m}^ H \left(t\right) =
+$$
+\dot{m} \left(t\right) =
 \begin{cases}
 16 t^2 / T_R^3 & ( 0 \le t \le T_R/4  ) \\
 -2 ( 8 t^2 - 8 t T_R + T_R^2 ) / T_R^3  & ( T_R/4 < t \le 3T_R/4  ) \\
 16 \left( t - T_R \right)^2 / T_R^3 &  (3T_R/4 < t \le T_R  )
 \end{cases}
-\end{align}
+$$
 
 - Cosine function (`cosine`)
 
-\begin{align}
-\dot{m}^ C \left(t\right) =
+$$
+\dot{m} \left(t\right) =
 \frac{1}{T_R} \left[ 1 - \cos \left(\frac{2 \pi t}{T_R} \right) \right]
 \quad ( 0 \le t \le T_R) 
-\end{align}
+$$
 
 - Küpper wavelet (`kupper`)
 
-\begin{align}
-  \dot{m}^K \left( t \right ) &= 
+$$
+  \dot{m} \left( t \right ) = 
   \frac{3 \pi}{4 T_R} \sin^3\left( \frac{\pi t}{T_R} \right) 
   \quad ( 0 \le t \le T_R) 
-\end{align}
+$$
 
 
 - t-exp type function (`texp`)
 
-\begin{align}
-  \dot{m}^{E} \left( t \right) &= \frac{(2 \pi)^2 t}{T_R^2} \exp\left[ - \frac{ 2 \pi t}{T_R}\right]
+$$
+  \dot{m} \left( t \right) = \frac{(2 \pi)^2 t}{T_R^2} \exp\left[ - \frac{ 2 \pi t}{T_R}\right]
   \quad ( 0 \le t ) 
-\end{align}
+$$
 
+- asymmetric cosine function (`asymcos`)
+
+$$
+    \dot{m}(t) = 
+    \begin{cases}
+        \dfrac{1}{T_{R1} + T_{R2}}
+            \left[ 1 - \cos\left(\dfrac{\pi t}{T_{R1}}\right)\right]  &
+        (0 \le t < T_{R1} )\\
+        \dfrac{1}{T_{R1} + T_{R2}} 
+            \left[ 1 + \cos\left(\dfrac{\pi t}{T_{R2}}\right)\right] &
+        (T_{R1} \le t \le T_{R1}+ T_{R2} )\\
+    \end{cases}
+$$
 
 The next figure shows each moment rate function and its Fourier spectrum. 
 
@@ -132,14 +144,14 @@ in the `fn_grd` or `fn_grd_rmed` list files.
        
         The unit of each variables are [km] for $x$, $y$, $z$, [Nm] for $M_0$ and $m_{ij}$, [s] for $T_0$ and $T_R$, [degree] for all parameters describing angles, [m] for slip $D$ and [m${}^2$] for area $S$. 
 
-    ** `stftype`**
+    **`stftype`**
     : Choice of the source time function. Select from `'boxcar'`,
     `'triangle'`, `'herrmann'`, `'kupper'`, `'cosine'`, and `'texp'`.
 
-    ** `fn_stf`**
+    **`fn_stf`**
     : Filename of the source list.
 
-    ** `sdep_fit` **
+    **`sdep_fit`**
     : Flag to fit the source depth to the velocity discontinuity. 
     `'asis'`: do not fit (default). `'bd{i}'`(i=1,2,$\cdots$9): fits to
     the `i`-th boundary specified in the rightmost column of
@@ -182,7 +194,7 @@ This specification is effective from version 5.2.
 
 !!! Warning "Note on horizontal rotation"
 
-    As of version 5.2, when the parameter `phi` is not equall to zero, the rotation behavior of the source mechanism is different when the source mechanism is given as strike, dip, or rake, and when it is given as moment tensor.
+    When the parameter `phi` is not equall to zero, the rotation behavior of the source mechanism is different when the source mechanism is given as strike, dip, or rake, and when it is given as moment tensor.
 
     In the former case, the moment tensor is calculated based on the assumption that the strike were measured from the north, regardless of the value of `phi`. On the other hand, the moment tensor is assumed to be defined for the $x$, $y$ coordinates after rotation. In other words, if one want to use moment tensor components from the catalog and rotate the coordinate system horizontally, one have calculate the rotated moment by yourself and give it as a parameter.
 

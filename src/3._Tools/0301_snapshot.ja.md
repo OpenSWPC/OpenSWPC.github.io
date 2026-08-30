@@ -2,7 +2,7 @@
 
 ## `read_snp.x` 
 
-スナップショットは独自形式もしくは`NetCDF`形式のバイナリファイルであるが，いずれもプログラム`read_snp.x`によって可視化もしくは振幅データの抽出ができる．
+スナップショットは`read_snp.x`によって可視化もしくは振幅データの抽出ができる．
 
 
 ``` bash
@@ -16,7 +16,6 @@ read_snp.x -i snapshotfile [-h] [-ppm|-bmp] [-pall]
     ``` txt
      $ ../bin/read_snp.x -i swpc_3d.xz.ps.snp -h
 
-     [binary type]   : STREAMIO
      [code type]     : SWPC_3D
      [header version]:          3
      [title]         : swpc_3d
@@ -40,7 +39,7 @@ read_snp.x -i snapshotfile [-h] [-ppm|-bmp] [-pall]
     ```
 
   `-ppm`, `-bmp`
-  : それぞれppmもしくはbmp形式の画像を出力する．結果はそれぞれ`ppm`/`bmp`ディレクトリ（自動作成）に連番ファイルとして格納される．可視化対象が速度あるいは変位であれば，上下動と水平動をそれぞれ赤と緑で，P波・S波（div, rot）であればそれぞれの成分の絶対値を赤と緑で色分けして表示する．ただし，絶対値オプションが付加された場合にはGMTのカラーパレットhot相当の色で絶対値を可視化する．
+  : それぞれppmもしくはbmp形式の画像を出力する．結果はそれぞれ`ppm`/`bmp`ディレクトリ（自動作成）に連番ファイルとして格納される．可視化対象が速度あるいは変位であれば，上下動と水平動をそれぞれ赤と緑で，P波・S波（div, rot）であればそれぞれの成分の絶対値を色分けして表示する．ただし，絶対値オプションが付加された場合にはGMTのカラーパレットhot相当の色で絶対値を可視化する．
 
   `-pall`
   : 吸収境界領域まで含めて可視化を行う（デフォルトでは切り落とす）
@@ -52,16 +51,22 @@ read_snp.x -i snapshotfile [-h] [-ppm|-bmp] [-pall]
   : 速度スナップショットに対してその絶対値を可視化する．P波・S波のスナップショットはもともとそれぞれの絶対値が出力されているので動作しない．
 
   `-bin`, `-asc`
-  : 各時間ステップのスナップショットを単精度バイナリもしくはアスキーデータとしてbinもしくはascディレクトリに出力する．バイナリデータは`GMT`(`xyz2grd`など）から-bisオプションで直接読み込むことができる．
+  : 各時間ステップのスナップショットを単精度バイナリもしくはアスキーデータとしてbinもしくはascディレクトリに出力する．バイナリデータは`GMT`（`xyz2grd`など）から`-bis`オプションで直接読み込むことができる．
 
   `-skip n`
   : 最初の$n$スナップショットを読み飛ばす．
 
-  `-notim` (New in Version 5.1)
+  `-notim` 
   : 可視化画像に経過時間をプロットしない．
 
-  `-lpf ng` (New in Version 25.01)
+  `-lpf ng`
   : 波数領域の2次バタワース型ローパスフィルタを適用する．`ng`はカットオフ波長に相当するスナップショットの画素数を指定する．
+
+  `-bgsat n`
+  : 背景構造あるいは地形の明度をパラメタ `n` で変更する．`n=100`（デフォルト）でフルカラー，`n=0` でグレイスケールになる．
+
+  `-color mode`
+  : カラーパレットの選択．`mode`=`legacy`（デフォルト）で赤と緑，`cud` でColor Universal Designのオレンジと水色が選ばれる．
 
 
 ## `diff_snp.x`
@@ -72,12 +77,7 @@ read_snp.x -i snapshotfile [-h] [-ppm|-bmp] [-pall]
 $ diff_snp.x snap1 snap2 diffile
 ```
 
-出力ファイルのフォーマット（`NetCDF`もしくは独自バイナリ）は入力ファイルのフォーマットに依存する．
-
-
 ## `fs2grd.x`  
-
-**New in v5.1**
 
 `OpenSWPC`の地表面もしくは海面におけるスナップショットファイル`(title).(ob|fs).(typ).nc`は，NetCDF形式ファイルではあるものの，緯度経度方向に等間隔のデータではないため，GMTの`grdimage`ではそのままプロットできない．
 
@@ -87,7 +87,6 @@ $ diff_snp.x snap1 snap2 diffile
 $ fs2grd.x -i input.nc -v variable_name 
            -R region -dlon delta_lon -dlat delta_lat 
 ```
-
 
   `-i`
   : `OpenSWPC`出力スナップショット（NetCDF形式）ファイル．地表面（`fs`）・海底面（`ob`）あるいは`xy`データであること．

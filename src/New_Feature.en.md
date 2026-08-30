@@ -1,16 +1,16 @@
 # New features
 
-## Version 26.XX (2026-XX-XX)
+## Version 26.09 (2026-09-XX)
 
 !!! warning
     This version is under prepation. 
 
 ### Viscoelastic PML
 
-In previous versions of OpenSWPC, the medium within the Perfectly Matched Layer (PML) region was assumed to be perfectly elastic (Maeda et al., 2017[^Maeda2017]).
+In previous versions of OpenSWPC, the medium within the Perfectly Matched Layer (PML) region was assumed to be perfectly elastic ([Maeda et al., 2017](https://doi.org/10.1186/s40623-017-0687-2)).
 Although this assumption simplified the computation, particularly in strongly attenuating media it failed to reproduce the frequency-independent velocity reduction associated with physical dispersion. The resulting velocity mismatch between the interior and PML regions could generate artificial reflected waves.
 
-Starting with this version, the PML has been combined with exactly the same Generalized Zener Body viscoelastic model as that used in the interior region (Martin and Komatitsch, 2009[^Martin2009]), substantially improving the performance of the PML.
+Starting with this version, the PML has been combined with exactly the same Generalized Zener Body viscoelastic model as that used in the interior region ([Martin and Komatitsch (2009)](https://doi.org/10.1111/j.1365-246X.2009.04278.x)), substantially improving the performance of the PML.
 
 ![Viscoelastic PML](./fig/ver26_visco-PML.png){ width="80%" }
 /// caption
@@ -25,18 +25,18 @@ Although the new algorithm itself increases both computational cost and memory r
 
 Memory usage has been significantly reduced by redesigning the allocation of array variables required only within the PML regions and by carefully reassessing which variables actually require FP64 (double-precision) arithmetic in the mixed-precision implementation using FP64 and FP32 (single precision).
 
-![Memory reduction](./fig/ver26_memory-reduction.png){ width="100%" }
+![Memory reduction](./fig/ver26_memory-reduction.png){ width="70%" }
 /// caption
 Reduction in required memory in the new version relative to the previous version for models with equal numbers of grid points along all three dimensions ($N_x = N_y = N_z$).
 ///
 
-The above figure shows the reduction in required memory in Version 26.XX relative to Version 25.05, including the effects of the new PML implementation described above. For small models, the increase in memory usage associated with the viscoelastic PML has a relatively large impact. As the model size increases, however, the benefits of the memory reductions become more pronounced. For grid dimensions commonly used in three-dimensional seismic-wave propagation simulations ($10^3 \sim 10^4$), memory usage is reduced by more than 30%.
+The above figure shows the reduction in required memory in Version 26.09 relative to Version 25.05, including the effects of the new PML implementation described above. For small models, the increase in memory usage associated with the viscoelastic PML has a relatively large impact. As the model size increases, however, the benefits of the memory reductions become more pronounced. For grid dimensions commonly used in three-dimensional seismic-wave propagation simulations ($10^3 \sim 10^4$), memory usage is reduced by more than 30%.
 
 ### Color Universal Design (CUD) for `read_snp.x`
 
-The visualization of snapshot files by the bundled `read_snp.x` tool previously used reddish and greenish colors for the two types of data. In Version 26.XX, a new color palette designed to accommodate diverse color vision has been introduced and is available through the `-color cud` option. A new `-bgsat` option has also been added to adjust the saturation of the background colors representing topography and velocity structure.
+The visualization of snapshot files by the bundled `read_snp.x` tool previously used reddish and greenish colors for the two types of data. In Version 26.09, a new color palette designed to accommodate diverse color vision has been introduced and is available through the `-color cud` option. A new `-bgsat` option has also been added to adjust the saturation of the background colors representing topography and velocity structure.
 
-![](./fig/ver26_cud-mode.png)
+![](./fig/ver26_cud-mode.png)[ width="90%" ]
 /// caption
 Comparison of color modes for visualization with `read_snp.x`.
 ///
@@ -45,11 +45,25 @@ Comparison of color modes for visualization with `read_snp.x`.
 
 The `fullspace_mode`, which places a PML also at the upper boundary of the model where an absorbing boundary condition is normally unnecessary because of the vacuum (air) layer, has been reintroduced.
 
-This mode was implemented between Versions 5.0 and 5.1, but was subsequently withdrawn because of technical problems encountered at the time. Since the PML implementation has been rewritten in Version 26.XX, those earlier problems no longer apply.
+This mode was implemented between Versions 5.0 and 5.1, but was subsequently withdrawn because of technical problems encountered at the time. Since the PML implementation has been rewritten in Version 26.09, those earlier problems no longer apply.
+
+### A new source time function
+
+Asymmetric cosine function `asymcos` (Ji et al., 2003) is implemented as a new source time function. 
 
 ### Updated preset build environments
 
 `makefile.arch` and `makefile-tools.arch` have been reorganized, and two examples for GPU-based systems have been added.
+
+### Removed features
+
+#### Waveform: csf-format
+
+Waveform format 'csf' was removed. Alternatively, please consider using `tar_st` or `tar_node` format files.
+
+#### Snapshot: native-format
+
+As of this version, only NetCDF-formatted snapshot data is spported. 
 
 ### Removal of the `csf` waveform format
 

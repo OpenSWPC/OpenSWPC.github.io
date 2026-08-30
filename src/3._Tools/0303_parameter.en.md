@@ -17,22 +17,28 @@ the other parameters.
 $  ./fdmcond.x 
  
 ----------------------------------------------------------------------
-                           FDM CONDITION                           
+                           FDM CONDITION                              
 ----------------------------------------------------------------------
- 
- 
-  Model Dimension ? --> 3
-   1) 2D
-   2) 3D
- 
- 
- Source Type ? --> 3
+
+ Select Model Dimension
+
+   2) 2D
+   3) 3D
+
+ --> 3
+
+
+ Select Source Time Function
+
    1) Triangle
    2) Herrmann
    3) Kupper
- 
- 
- Parameter Combination ? --> 5
+
+ --> 3
+
+
+ Select Parameter Combination
+
    1) dh   (space grid),  fmax (max freq.),  vmax (max vel.)
    2) dh   (space grid),  Tr   (rise time),  vmax (max vel.)
    3) dh   (space grid),  fmax (max freq.),  dt (time grid)
@@ -42,21 +48,21 @@ $  ./fdmcond.x
    7) fmax (max freq.) ,  vmax (max vel.),   dt (time grid)
    8) Tr   (rise time) ,  vmax (max vel.),   dt (time grid)
    9) vmin (min vel.)  ,  vmax (max vel.),   dt (time grid)
- 
- 
+
+ --> 5
+
  Assumed Parameters: 
    dx     =   0.25
    dy     =   0.25
    dz     =   0.25
    vmin   =   0.3
    vmax   =   8.0
- 
+
  Derivaed Parameters: 
    dt    <=   0.01546
    fmax  <=   0.17143
    Tr    >=  13.41667
- 
- 
+
 ```
 
 ## `mapregion.x`

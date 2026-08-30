@@ -2,8 +2,7 @@
 
 ## `read_snp.x` 
 
-Snapshot files in both `NetCDF` and the originally defined binary format
-can be extracted or visualized by the program `read_snp.x`.
+Snapshot files can be extracted or visualized by the program `read_snp.x`.
 
 
 ``` bash
@@ -18,7 +17,6 @@ read_snp.x -i snapshotfile [-h] [-ppm|-bmp] [-pall]
     ``` txt
      $ ../bin/read_snp.x -i swpc_3d.xz.ps.snp -h
 
-     [binary type]   : STREAMIO
      [code type]     : SWPC_3D
      [header version]:          3
      [title]         : swpc_3d
@@ -80,10 +78,10 @@ read_snp.x -i snapshotfile [-h] [-ppm|-bmp] [-pall]
   `-skip n`
   : Skip the first $n$ snapshots for visualization or data exports.
 
-  `-notim` (New in Version 5.1)
+  `-notim` 
   : Do *not* plot the elapsed time in the snapshot figures.
 
-  `-lpf ng` (New in Version 25.01)
+  `-lpf ng` 
   : A second-order Butterworth low-pass filter is applied in the frequency domain. `ng` specifies the number of pixel points in the snapshot corresponding to the cutoff wavelength.
 
 
@@ -102,8 +100,6 @@ format.
 
 ## `fs2grd.x`  
 
-**New in v5.1**
-
 Although snapshot data from `OpenSWPC` along the ground surface or ocean bottom follows the NetCDF format, they cannot be used in the GMT's grdimage command because they are not evenly-spaced grid data along longitude and latitude. 
 
 The utility program `fs2grd.x` resamples the `OpenSWPC`'s output dataset in longitude/latitude coordinate to convert it to GMT-friendly grd-format dataset. 
@@ -112,7 +108,6 @@ The utility program `fs2grd.x` resamples the `OpenSWPC`'s output dataset in long
 $ fs2grd.x -i input.nc -v variable_name 
            -R region -dlon delta_lon -dlat delta_lat 
 ```
-
 
   `-i`
   : Specify the output file of `OpenSWPC` in NetCDF format to be resampled. The snapshot must be on the free surface (`fs`), ocean bottom (`ob`) or `xy` coordinates. 

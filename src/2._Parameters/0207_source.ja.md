@@ -2,63 +2,76 @@
 
 ## モーメント時間関数
 
-ここでは本コードで利用可能なモーメント時間関数（震源時間関数）$\dot{M}(t)$とそのスペクトルを整理する．以下のモーメント時間関数は，すべて継続時間（もしくは特徴的時間）$T_R$をもち，総モーメントが$1$に規格化されている．
+ここでは本コードで利用可能なモーメント時間関数（震源時間関数）$\dot{M}(t)$とそのスペクトルを整理する．以下のモーメント時間関数は，すべて継続時間（もしくは特徴的時間）$T_R$をもち（ただし`asymcos`においては$T_R = T_{R1} + T_{R2}$），総モーメントが$1$に規格化されている．
 
 `OpenSWPC`では，パラメタ `stftype`の選択により，以下の震源時間関数が選択できる．
 
 - Box-car function (`boxcar`)
 
-\begin{align}
-   \dot{m}^ R \left(t\right) &=
+$$
+   \dot{m} \left(t\right) =
     \frac{1}{T_R} 
-  & \begin{array}{r} ( 0 \le t \le T_R) \\ \end{array}
-\end{align}
+   \quad ( 0 \le t \le T_R) 
+$$
 
 - Triangle function (`triangle`)
 
-\begin{align}
-\dot{m}^ T \left(t\right)  = 
+$$
+\dot{m} \left(t\right)  = 
 \begin{cases}
 4t/T_R^2 & ( 0 \le t \le T_R/2 ) \\
 -4(t-T_R)/T_R^2 & ( T_R/2 < t \le T_R )
 \end{cases}
-\end{align}
+$$
  
 - Herrmann function (`herrmann`)
 
-\begin{align}
-\dot{m}^ H \left(t\right) =
+$$
+\dot{m} \left(t\right) =
 \begin{cases}
 16 t^2 / T_R^3 & ( 0 \le t \le T_R/4  ) \\
 -2 ( 8 t^2 - 8 t T_R + T_R^2 ) / T_R^3  & ( T_R/4 < t \le 3T_R/4  ) \\
 16 \left( t - T_R \right)^2 / T_R^3 &  (3T_R/4 < t \le T_R  )
 \end{cases}
-\end{align}
+$$
 
 - Cosine function (`cosine`)
 
-\begin{align}
-\dot{m}^ C \left(t\right) =
+$$
+\dot{m} \left(t\right) =
 \frac{1}{T_R} \left[ 1 - \cos \left(\frac{2 \pi t}{T_R} \right) \right]
 \quad ( 0 \le t \le T_R) 
-\end{align}
+$$
 
 - Küpper wavelet (`kupper`)
 
-\begin{align}
-  \dot{m}^K \left( t \right ) &= 
+$$
+  \dot{m} \left( t \right ) = 
   \frac{3 \pi}{4 T_R} \sin^3\left( \frac{\pi t}{T_R} \right) 
   \quad ( 0 \le t \le T_R) 
-\end{align}
+$$
 
 
 - t-exp type function (`texp`)
 
-\begin{align}
-  \dot{m}^{E} \left( t \right) &= \frac{(2 \pi)^2 t}{T_R^2} \exp\left[ - \frac{ 2 \pi t}{T_R}\right]
+$$
+  \dot{m} \left( t \right) = \frac{(2 \pi)^2 t}{T_R^2} \exp\left[ - \frac{ 2 \pi t}{T_R}\right]
   \quad ( 0 \le t ) 
-\end{align}
+$$
 
+- asymmetric cosine function (`asymcos`)
+
+$$
+    \dot{m}(t) = 
+    \begin{cases}
+        \dfrac{1}{T_{R1} + T_{R2}}
+            \left[ 1 - \cos\left(\dfrac{\pi t}{T_{R1}}\right)\right]  &
+        (0 \le t < T_{R1} )\\
+        \dfrac{1}{T_{R1} + T_{R2}} 
+            \left[ 1 + \cos\left(\dfrac{\pi t}{T_{R2}}\right)\right] &
+        (T_{R1} \le t \le T_{R1}+ T_{R2} )\\
+    \end{cases}
+$$
 
 それぞれの震源時間関数形状とその振幅スペクトルを下図に示す．
 
@@ -115,14 +128,14 @@
 
         それぞれの量の単位は，$x$, $y$, $z$は[km]，$M_0$ と$m_{ij}$ は [Nm], $T_0$, $T_R$は [s], 角度変数はすべて [degree]，すべり量$D$は [m]，面積$S$は[m${}^2$]がそれぞれ仮定されている．
     
-    ** `stftype`**
+    **`stftype`**
     : 要素震源時間関数（モーメント時間関数）の種類．`'boxcar'`（箱形関数）, `'triangle'`（三角形）, `'herrmann'`（Herrmann関数）,`'kupper'`（Kupper wavelet）, `'cosine'` （$\cos$関数）, `'texp'`（$t \exp$関数）から選択する．
 
-    ** `fn_stf`**
+    **`fn_stf`**
     : 震源情報ファイル．このファイル中に`stf_format`で指定された書式で震源情報を記載する．
  
 
-    ** `sdep_fit` **
+    **`sdep_fit`**
     : 震源の深さを強制的に境界に合わせるかどうかの指定． `'asis'`: なにもしない（デフォルト）`'bd{i}'` (i=1,2,$\cdots$9): `i`番目の境界に合わせる．
 
 ### 地震の大きさの指定
@@ -161,7 +174,8 @@ $$
 なお，本指定は version 5.2 から有効となる．
 
 !!! Warning "水平回転に関する注意"
-    Version 5.2 現在，パラメタ `phi`$\neq0$のとき，震源メカニズムを strike, dip, rake で与えたときとモーメントテンソルで与えたときで，メカニズムの回転の挙動が異なる．
+    
+    現在，パラメタ `phi`$\neq0$のとき，震源メカニズムを strike, dip, rake で与えたときとモーメントテンソルで与えたときで，メカニズムの回転の挙動が異なる．
 
     前者 strike, dip, rake で与えたときには，`phi` の値に関わらず strike は北から測ったものとして計算される．一方，モーメントテンソルはあくまでも回転後の$x$, $y$座標に対して定義されていることが仮定される．つまり，カタログからモーメントテンソル成分を利用し，かつ座標系を水平回転して計算するときには，ユーザーがモーメントテンソルの回転計算を自ら行ってパラメタとして与えなければならない．
 

@@ -23,8 +23,6 @@ the environment:
 | `NCINC`  | location of the  `NetCDF` header file directory|
 | `NETCDF` | linker option for `NetCDF`|
 
-If `NCFLAG = -D_NETCDF` is specified, the `make` command will try to compile `OpenSWPC` with `NetCDF` library.
-
 A set of the above variables under different computer environments is
 defined in `src/shared/makefile.arch` and
 `src/shared/makefile-tools.arch`. The former is for the compilation of
@@ -32,30 +30,25 @@ FDM codes, and the latter is for the compilation of misc tools. The user
 can specify the `arch` option in the `make` command as in the following example: 
 
 ```bash
-make arch=mac-gfortran
+make arch=apple
 ```
 
-In the above case, the appropriate compiler options for the architecture `mac-gfortran` is automatically set. In some environments, the `debug` option is predefined. This option is used in the following way: 
+In the above case, the appropriate compiler options for the architecture `apple` is automatically set. In some environments, the `debug` option is predefined. This option is used in the following way: 
 
 ```bash
-make arch=eic debug=true
+make arch=apple debug=true
 ```
 
 The list of pre-defined architecture (`arch`) options is described in the following table.
 
 | `arch` name | target  |`NetCDF` location |
 | ------------------ | ---------------------------------------- |  ----------------------- |
-| mac-m1  | macOS + gfortran (Apple Silicon + Homebrew) | `/opt/homebrew/` |
-|  ubuntu-gfortran   | Ubuntu 16.04LTS + gfortran + Open MPI  |  Installation by `apt` |
-| bdec-o |Wisteria/BDEC-01 (Odyssey)  of the University of Tokyo  | automatically specified by the `module` command |
-|  eic           | EIC2015 (ERI, UTokyo) with the Intel Compiler  | automatically specified by the `module` command |
-|  fx   (obsolete)  | Fujitsu FX10, FX100 and the K-computer | `${HOME}/xlocal` |
-|  es3  (obsolete)  | The Earth Simulator 3 (obsolete)            |   Provided by the system  |
-|  es4   (obsolete)  | The Earth Simulator 4                       |   Provided by the system  |
-| ofp (or oak) | Oakforest-PACS of the University of Tokyo (obsolete) | automatically specified by the `module` command |
-| obcx | Oakbridge-CX of the University of Tokyo (obsolete) | automatically specified by the `module` command |
-|  mac-intel    (obsolete) | Mac OSX + Intel Compiler + OpenMPI  |    `${HOME}/local` |
-|  mac-gfortran (obsolete) | Mac OSX + gfortran + Open MPI   |     `/usr/local` |
+| `apple` (previously `mac-m1`) | macOS + gfortran (Homebrew) | `/opt/homebrew/` |
+| `ubuntu-gfortran`   | Ubuntu 22.04LTS + gfortran + Open MPI  |  Installation by `apt` |
+| `dgx-spark` | NVIDIA DGX Spark | `/opt/netcdf-nv` | 
+| `bdec-o`  |Wisteria/BDEC-01 (Odyssey)  of the University of Tokyo  | automatically specified by the `module` command |
+| `eic2025`           | EIC2025 (ERI, UTokyo) with the Intel Compiler  | automatically specified by the `module` command |
+| `miyabi-g` | Miyabi supercomputer of the University of Tokyo | automatically specified by the `nf-config` command |
 
 
 ## More about the `NetCDF` library
@@ -67,7 +60,7 @@ The `NetCDF` library consists of the following items:
 - `netcdf.mod`:    Fortran module information file
 
 The extension of the library files may be `*.a` (static library) or
-`*.so` (dynamic library), depending on the installation. All these files
+`*.so*` (dynamic library), depending on the installation. All these files
 are necessary for successful compilation with `NetCDF`. In particular,
 the `netcdf.mod` file must be created by the same Fortran compiler as
 `OpenSWPC`. If `NetCDF` is installed using packaging tools such as

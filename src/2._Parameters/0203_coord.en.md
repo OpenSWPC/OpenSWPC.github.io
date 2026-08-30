@@ -179,24 +179,24 @@ Parameters related to the above conditions will be displayed to the standard err
     : Spatial grid width in each direction in units of km. The total computational size in the physical domain will be `nx`$\times$`dx`, `ny`$\times$`dy`, and `nz`$\times$`dz`. 
     The grid widths in different directions do not necessarily need to be equal.
     
-    `nt` 
+    **`nt`** 
     : Number of time steps.
     
-    `dt`
+    **`dt`**
     : Length of the time step in seconds. The total physical simulation time will be `nt`$\times$`dt`.
     
-    `xbeg`, `ybeg`, `zbeg` 
+    **`xbeg`**, **`ybeg`**, **`zbeg`**
     : Minimum value of the coordinates. If specifications of `xbeg` or `ybeg` are omitted, they will automatically be set to xbeg = - nx $\times$ dx / 2 and ybeg = - ny $\times$ dy / 2. 
     This setting is recommended to minimize distortion due to the map projection. The default value of `zbeg` is `-30`$\times$`dz`.
     
-    `tbeg`
+    **`tbeg`**
     : Starting time. Usually it is set to zero but can be changed if necessary.
     
-    `clon`, `clat`
+    **`clon`**, **`clat`**
     : Center longitude and latitude in degrees. The map projection will be
     performed with this location as a reference point.
     
-    `phi`
+    **`phi`**
     : Horizontal rotation angle of the computational coordinate (see figure). 
     If `phi`=0, the $x$- and $y$-axes correspond to the north and east directions, respectively. Note that
     the output files (snapshot and waveform) will be rotated if this

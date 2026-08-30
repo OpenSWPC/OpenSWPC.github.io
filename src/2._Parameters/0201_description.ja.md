@@ -99,8 +99,6 @@ nx = 1024   ! number of grids
   !! Snapshot Output
   !!
 
-  snp_format       = 'netcdf'         !! snapshot format (netcdf)
-
   xy_ps%sw         = .false.          !! P&S amp. for xy section
   xz_ps%sw         = .true.           !! P&S amp. for xz section
   yz_ps%sw         = .false.          !! P&S amp. for yz section
@@ -188,7 +186,8 @@ nx = 1024   ! number of grids
 
   abc_type         = 'pml'            !! 'pml' or 'cerjan'
   na               = 20               !! absorbing layer thickness
-  stabilize_pml    = .false.           !! avoid low-v layer in PML region
+  stabilize_pml    = .false.          !! avoid low-v layer in PML region
+  fullspace_mode   = .false.          !! absorbs at top boundary 
 
   !! ----------------------------------------------------------------------- !!
   !! Velocity model
@@ -199,7 +198,7 @@ nx = 1024   ! number of grids
   topo_flatten     = .false.          !! Force topography variation to zero (formerly is_flatten)
   munk_profile     = .true.           !! velocity gradient inside the seawater column
   earth_flattening = .false.          !! Earth-flattening tranformation
-  
+
     !! --------------------------------------------------------------------- !!
     !! For uniform velocity model 'uni'
     !!
@@ -213,7 +212,7 @@ nx = 1024   ! number of grids
     !! --------------------------------------------------------------------- !!
     !! For GMT grid file input 'grd' ( requires netcdf library )
     !!
-    dir_grd          = '${DATASET}/vmodel/ejivsm/'    !! directory for grd file
+    dir_grd          = 'dataset/vmodel/ejivsm/'    !! directory for grd file
     fn_grdlst        = './example/grd.lst'            !! grd file list
     node_grd         = 0                              !! input MPI node
 
@@ -231,15 +230,6 @@ nx = 1024   ! number of grids
     fn_rmed0         = 'dummy.ns'          !! vel. purturb. on a uniform media
 
   !! ----------------------------------------------------------------------- !!
-  !! Checkpoint/Restart
-  !!
-  is_ckp           = .false.          !! perform checkpoint/restart
-  ckpdir           = './out/ckp'      !! output directory
-  ckp_interval     = 1000000          !! interval for checkpoint check（1/cycle）
-  ckp_time         = 1000000.         !! checkpoint time
-  ckp_seq          = .true.           !! sequential output mode
-
-  !! ----------------------------------------------------------------------- !!
   !! Reciprocity Green's Function Mode
   !!
   green_mode       = .false.          !! reciprocity Green's function mode
@@ -249,7 +239,7 @@ nx = 1024   ! number of grids
   green_bforce     = .false.          !! also calc. body force Green's function
   green_maxdist    = 550.             !! horizontal limit of source grid
   green_fmt        = 'llz'            !! list file format: 'xyz' or 'llz'
-  fn_glst          = 'example/green.lst'   !! Green's function grid point list
+  fn_glst          = 'example/green/green.lst'  !! GF grid point list
 
   !! ----------------------------------------------------------------------- !!
   !! MISC

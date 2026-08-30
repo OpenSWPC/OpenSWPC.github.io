@@ -1,7 +1,5 @@
 # Python integration
 
-New in version 5.3.0!
-
 Python is a rapidly glowing ecosystem for data analysis and visualization in seismology. Followings are some tips & tricks for those who would like to handle the input/output of the OpenSWPC in python. The following example uses 
 
 - ObsPy

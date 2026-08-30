@@ -20,36 +20,31 @@ makefileでは以下の変数を指定する必要がある．
 | `NETCDF` | `NetCDF` ライブラリのリンク         |
 
 
-`NCFLAG = -D_NETCDF` が指定されることにより，`NetCDF`モジュールを利用したコンパイルが行われる．
-
 
 さまざまな計算機環境でコンパイルするため，以下の`arch`オプションによりオプションを分岐させている: 
 
-| archオプション名 | 対象                                   | NetCDFライブラリの場所  |
-| ---------------- | -------------------------------------- | ----------------------- |
-| mac-m1  | macOS + gfortran (Apple Silicon + Homebrew) | `/opt/homebrew/` |
-| ubuntu-gfortran  | Ubuntu 16.04LTS + gfortran + Open MPI  | `apt`によるインストール |
-| bdec-o |  東京大学情報基盤センター Wisteria-Odyssey/BDEC01 |  `module` コマンドを通じて自動指定 |
-| eic              | 東大地震研EIC2015環境下のIntel Compiler   |  `module` コマンドを通じて自動指定 |
-| ofp (or oak)  (obsolete)| 東京大学情報基盤センター Oakforest-PACS | `module` コマンドを通じて自動指定 |
-| obcx (obsolete) | 東京大学情報基盤センター Oakbridge-CX | `module` コマンドを通じて自動指定 |
-| mac-gfortran (obsolete)     | Mac OSX + gfortran + Open MPI          | `/usr/local`            |
-| mac-intel (obsolete)  | Mac OSX + Intel Compiler + OpenMPI     | `${HOME}/local`         |
-| fx  (obsolete) | 富士通FX10, FX100 および京コンピュータ | `${HOME}/xlocal`        |
-| es3 (obsolete)             | 地球シミュレータ第3世代                 | システム提供            |
-| es4 (obsolete)             | 地球シミュレータ第4世代                 | システム提供            |
+
+| `arch` name | target  |`NetCDF` location |
+| ------------------ | ---------------------------------------- |  ----------------------- |
+| `apple` (previously `mac-m1`) | macOS + gfortran (Homebrew) | `/opt/homebrew/` |
+| `ubuntu-gfortran`   | Ubuntu 22.04LTS + gfortran + Open MPI  |  Installation by `apt` |
+| `dgx-spark` | NVIDIA DGX Spark | `/opt/netcdf-nv` | 
+| `bdec-o`  |Wisteria/BDEC-01 (Odyssey)  of the University of Tokyo  | automatically specified by the `module` command |
+| `eic2025`           | EIC2025 (ERI, UTokyo) with the Intel Compiler  | automatically specified by the `module` command |
+| `miyabi-g` | Miyabi supercomputer of the University of Tokyo | automatically specified by the `nf-config` command |
 
 
-たとえば`mac-gfortran`に相当する環境では，
+
+たとえば`apple`に相当する環境では，
 
 ```make
-make arch=mac-gfortran
+make arch=apple
 ```
 
 とすることで，その環境に適したコンパイルオプションが自動的に選択される．また，幾つかの環境では，
 
 ```make
-make arch=eic debug=true
+make arch=apple debug=true
 ```
 
 のように`debug=true`オプションを付けると，コンパイルオプション`FFLAGS`がデバッグに適したものに変更されるようになっている．これらの変数は
@@ -59,7 +54,7 @@ make arch=eic debug=true
 
 ## `NetCDF`の利用
 
-本コードの速度構造入力の一部には`NetCDF`形式を採用しており，ライブラリとモジュール情報ファイルが必要である．
+本コードの入力と出力の一部には`NetCDF`形式を採用しており，ライブラリとモジュール情報ファイルが必要である．
 具体的には，
 
 - `libnetcdf.*`:   `NetCDF`ライブラリファイル
@@ -67,8 +62,8 @@ make arch=eic debug=true
 - `netcdf.mod`:    Fortranモジュール情報ファイル
 
 がコンパイル時に必要となる．
-ライブラリの拡張子は`*.a`（static）の場合と`*.so`（dynamic）の場合がある．
-また，Fortran90の仕様により，`NetCDF.mod`はのコンパイルと同じコンパイラにより作成されていなければならない．
+ライブラリの拡張子は`*.a`（static）の場合と`*.so*`（dynamic）の場合がある．
+また，Fortranの仕様により，`netcdf.mod`はのコンパイルと同じコンパイラにより作成されていなければならない．
 特にLinux環境等において，`yum, apt, brew`等のパッケージ管理システムにより導入した`NetCDF`では，`gfortran`以外のコンパイラを用いることができない．そのような場合は，別の場所に用の`NetCDF`を自力でコンパイルする必要がある．
 
 ## 埋め込みパラメータの調整

@@ -1,16 +1,16 @@
 # 新機能紹介
 
-## Version 26.XX (2026-XX-XX)
+## Version 26.09 (2026-09-XX)
 
 !!! warning
     このバージョンは公開準備中です．
 
 ### Viscoelastic PML
 
-これまでのOpenSWPCでは，Perfectly Matched Layer (PML) 領域内においては完全弾性体が仮定されていました（Maeda et al., 2017[^Maeda2017]）．
+これまでのOpenSWPCでは，Perfectly Matched Layer (PML) 領域内においては完全弾性体が仮定されていました（[Maeda et al., 2017](https://doi.org/10.1186/s40623-017-0687-2)）．
 これは計算の単純化に寄与していましたが，特に減衰の強い媒質においては，物理分散による周波数に依存しない速度低下を再現できず，内部領域とPMLとの間の速度不整合により人工反射波を生じる原因となっていました．
 
-本バージョンからは，PML領域内でも内部領域と全く同じGeneralized Zener Bodyの粘弾性体モデルとPMLを融合させ（Martin and Komatitsch, 2009[^Martin2009]）ることでPMLの性能を大幅に向上させました．
+本バージョンからは，[Martin and Komatitsch (2009)](https://doi.org/10.1111/j.1365-246X.2009.04278.x) を参考にPML領域内でも内部領域と全く同じGeneralized Zener Bodyの粘弾性体モデルとPMLを融合させることでPMLの性能を大幅に向上させました．
 
 ![Viscoelastic PML](./fig/ver26_visco-PML.png){ width="80%" }
 /// caption
@@ -25,18 +25,18 @@
 
 PML領域のみで必要とされる配列変数のメモリ確保方法の刷新と，FP64（倍精度）とFP32（単精度）の混合精度演算のうちFP64の利用が必要な変数の精査により，メモリ使用量を大幅に削減しました．
 
-![Memory reduction](./fig/ver26_memory-reduction.png){ width="100%" }
+![Memory reduction](./fig/ver26_memory-reduction.png){ width="70%" }
 /// caption
 三辺のグリッド数が等しい（$N_x = N_y = N_z$）場合の，従来バージョンに対する新バージョンの必要メモリサイズの削減比率．
 ///
 
-上図は前項のPMLの新しい実装の効果も含めた，Version 26.XX における必要メモリ量のVersion 25.05に対する削減比率を示します．モデルサイズが小さいと粘弾性PMLの採用によるメモリ量増大の影響が大きいですが，モデルサイズが増大するほどメモリ削減の効果が強くなり，一般的な3次元地震波動伝播数値シミュレーションで採用されるグリッド数（$10^3 \sim 10^4$）においては使用メモリ量が30%以上削減されます．
+上図は前項のPMLの新しい実装の効果も含めた，Version 26.09 における必要メモリ量のVersion 25.05に対する削減比率を示します．モデルサイズが小さいと粘弾性PMLの採用によるメモリ量増大の影響が大きいですが，モデルサイズが増大するほどメモリ削減の効果が強くなり，一般的な3次元地震波動伝播数値シミュレーションで採用されるグリッド数（$10^3 \sim 10^4$）においては使用メモリ量が30%以上削減されます．
 
 ### Color Universal Design (CUD) for `read_snp.x` 
 
-付属ツール `read_snp.x` によるスナップショットファイルの可視化には，2種類のデータに対して赤系と緑系の色が採用されていました．Version 26.XX では色覚多様性に対応するためのあらたなカラーパレットを設計し， `-color cud` オプションとして提供します．さらに，地形や速度構造の背景色の彩度を調整する `-bgsat` オプションも設けました．
+付属ツール `read_snp.x` によるスナップショットファイルの可視化には，2種類のデータに対して赤系と緑系の色が採用されていました．Version 26.09 では色覚多様性に対応するためのあらたなカラーパレットを設計し， `-color cud` オプションとして提供します．さらに，地形や速度構造の背景色の彩度を調整する `-bgsat` オプションも設けました．
 
-![](./fig/ver26_cud-mode.png)
+![cud-mode](./fig/ver26_cud-mode.png){ width="90%" }
 /// caption
 `read_snp.x` による可視化のカラーモードの比較．
 ///
@@ -44,24 +44,31 @@ PML領域のみで必要とされる配列変数のメモリ確保方法の刷�
 ### Fullspace-mode reactivated
 
 通常は真空（空気）層のため吸収境界条件を必要としないモデルの上端にもPMLを配置する `fullspace_mode` を実装しました．
-このモードはVersion 5.0から5.1 にかけて実装されていましたが，当時発生した技術的トラブルのため，公開をとりやめていました．Version 26.XX ではそもそもPMLの実装を全面的に書き直したため，当時の問題は消失しています．
+このモードはVersion 5.0から5.1 にかけて実装されていましたが，当時発生した技術的トラブルのため，公開をとりやめていました．Version 26.09 ではそもそもPMLの実装を全面的に書き直したため，当時の問題は消失しています．
+
+### A new source time function
+
+非対称cosine型震源時間関数 `asymcos` ([Ji et al., 2003](https://doi.org/10.1029/2002JB001764)) を実装した．
 
 ### Updated pre-set build environment
 
 `makefile.arch` と `makefile-tools.arch` を整理し，GPUマシンの例を2つ追加しました．
 
-### 波形フォーマット `csf` の削除
+### Removed features
+
+#### Waveform: csf-format
 
 独自フォーマット `csf` による波形出力機能を削除しました．今後，複数のファイルをまとめて出力したい場合には，SACフォーマットをtarアーカイブにした `tar_st` あるいは `tar_node` が使えます．
+
+#### Snapshot: native-format
+
+出力スナップショット形式はNetCDFだけをサポートすることとしました．
 
 ### Version-dependent manual
 
 マニュアルWebページ上部のセレクタから，OpenSWPCのバージョンに応じてマニュアルを選択できるようになりました．Version 25.05以前の従来のマニュアルはまとめて `legacy` として提供されています．
 
-
-[^Maeda2017]: Maeda, T., Takemura, S., & Furumura, T. (2017). OpenSWPC: An open-source integrated parallel simulation code for modeling seismic wave propagation in 3D heterogeneous viscoelastic media, _Earth, Planets and Space_, _69_, 102. doi:[10.1186/s40623-017-0687-2](https://doi.org/10.1186/s40623-017-0687-2). 
-
-[^Martin2009]: Martin, R. & Komatitsch, D. (2009). An unsplit convolutional perfectly matched layer technique improved at gazing incidence for teh vicoelastic wave equation, _Geophysical Journal International_, _179_, 333-344. doi:[10.1111/j.1365-246X.2009.04278.x](https://doi.org/10.1111/j.1365-246X.2009.04278.x).
+[^Martin2009]: Martin, R. & Komatitsch, D. (2009). An unsplit convolutional perfectly matched layer technique improved at gazing incidence for teh vicoelastic wave equation, _Geophysical Journal International_, _179_, 333-344. doi:[10.1111/j.1365-246X.2009.04278.x]().
 
 ## Version 25.05 (2025-05-20)
 
@@ -83,7 +90,7 @@ Laterally Homogeneous Medium (`lhm`) と同じ形式入力ファイルから，�
 
 ![](./fig/lhm-lgm.png){ width="80%" }
 /// caption
-構造モデルファイル `example/lhm.dat` を用いた `swpc_psv` の数値シミュレーションスナップショットの例．<br>左は `vmodel="lhm"`，右は `vmodel="lgm"` で計算したもの．
+構造モデルファイル `example/lhm.dat` を用いた `swpc_psv` の数値シミュレーションスナップショットの例．左は `vmodel="lhm"`，右は `vmodel="lgm"` で計算したもの．
 ///
 
 一方，`lgm` モデルでも速度不連続面を表現することができる．すなわち，`lgm` は`lhm` を含んだスーパーセットである．また，ランダム媒質を重畳した `lhm_rmed` に対応する `lgm_rmed` も提供される．
