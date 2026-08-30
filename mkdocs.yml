@@ -31,9 +31,9 @@ theme:
 
 nav:
   - index.md
+  - getting_started.md
   - New_Feature.md
   - How to build:
-      - 1._SetUp/0100_trial.md
       - 1._SetUp/0101_env.md
       - 1._SetUp/0102_tree.md
       - 1._SetUp/0103_compile.md

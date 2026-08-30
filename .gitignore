@@ -6,3 +6,6 @@
 
 # Build HTML
 docs
+
+__pycache__
+*_files
