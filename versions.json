@@ -1,10 +1,5 @@
 [
   {
-    "version": "legacy",
-    "title": "<=25.05.2",
-    "aliases": []
-  },
-  {
     "version": "develop",
     "title": "Develop",
     "aliases": []
