@@ -36,7 +36,7 @@ The above figure shows the reduction in required memory in Version 26.09 relativ
 
 The visualization of snapshot files by the bundled `read_snp.x` tool previously used reddish and greenish colors for the two types of data. In Version 26.09, a new color palette designed to accommodate diverse color vision has been introduced and is available through the `-color cud` option. A new `-bgsat` option has also been added to adjust the saturation of the background colors representing topography and velocity structure.
 
-![](./fig/ver26_cud-mode.png)[ width="90%" ]
+![](./fig/ver26_cud-mode.png){ width="90%" }
 /// caption
 Comparison of color modes for visualization with `read_snp.x`.
 ///
