@@ -15,5 +15,10 @@
     "aliases": [
       "latest"
     ]
+  },
+  {
+    "version": "25.05.2",
+    "title": "<=25.05.2",
+    "aliases": []
   }
 ]
