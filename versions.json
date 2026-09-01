@@ -2,13 +2,18 @@
   {
     "version": "legacy",
     "title": "<=25.05.2",
-    "aliases": [
-      "latest"
-    ]
+    "aliases": []
   },
   {
     "version": "develop",
     "title": "Develop",
     "aliases": []
+  },
+  {
+    "version": "26.09",
+    "title": "26.09",
+    "aliases": [
+      "latest"
+    ]
   }
 ]
