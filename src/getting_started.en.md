@@ -1,4 +1,4 @@
-# Trial of OpenSWPC
+# Getting Started
 
 [Google Colaboratory](https://colab.research.google.com/) is a cloud-based Python platform provided by Google Research. Since the Google Colaboratory is working under [Ubuntu Linux](https://ubuntu.com), we can compile and try to execute small examples of the OpenSWPC without preparing physical Linux server on your office. Computing in this cloud environment is a perfect demonstration to get an overview of OpenSWPC.
 
