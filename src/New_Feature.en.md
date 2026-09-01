@@ -1,9 +1,6 @@
 # New features
 
-## Version 26.09 (2026-09-XX)
-
-!!! warning
-    This version is under prepation. 
+## Version 26.09 (2026-09-01)
 
 ### Viscoelastic PML
 

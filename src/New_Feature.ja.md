@@ -1,9 +1,6 @@
 # 新機能紹介
 
-## Version 26.09 (2026-09-XX)
-
-!!! warning
-    このバージョンは公開準備中です．
+## Version 26.09 (2026-09-01)
 
 ### Viscoelastic PML
 

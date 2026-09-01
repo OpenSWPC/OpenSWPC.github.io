@@ -1,6 +1,3 @@
-!!! warning
-    このマニュアルは **development snapshot** です．リリース済みのバージョンとは整合していない可能性があります．[リリース済みバージョンのマニュアル](../../latest/ja)をご利用ください．
-
 # OpenSWPC ユーザーズガイド
 
 ![](./fig/logo_h.png)
