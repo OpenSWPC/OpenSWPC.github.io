@@ -195,7 +195,7 @@ An example of processing OpenSWPC input/output in Python is included in [this ma
 ### Updated documentation
 #### Try OpenSWPC on cloud!
 
-See [this example](./1._SetUp/0100_trial.en.md). This is also would be a nice guide to compile the OpenSWPC in Ubuntu Linux. 
+See [this example](./getting_started.ja.md). This is also would be a nice guide to compile the OpenSWPC in Ubuntu Linux. 
 
 #### Better switching between EN/JP documentation
 
