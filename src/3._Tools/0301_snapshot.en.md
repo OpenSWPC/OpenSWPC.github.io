@@ -40,8 +40,7 @@ read_snp.x -i snapshotfile [-h] [-ppm|-bmp] [-pall]
     ```
 
   `-ppm`, `-bmp`
-  : Visualize and export the image files in ppm or bmp format. The `ppm`
-    or `bmp` directory will be automatically created in the current
+  : Visualize and export the image files in ppm or bmp format. Directory for images will be automatically created under the current
     directory and image files with sequential numbers will be stored
     there. If the snapshot file is displacement or velocity, the
     absolute values of the vertical and horizontal amplitudes will be
@@ -82,7 +81,15 @@ read_snp.x -i snapshotfile [-h] [-ppm|-bmp] [-pall]
   : Do *not* plot the elapsed time in the snapshot figures.
 
   `-lpf ng` 
-  : A second-order Butterworth low-pass filter is applied in the frequency domain. `ng` specifies the number of pixel points in the snapshot corresponding to the cutoff wavelength.
+  : A second-order Butterworth low-pass filter is applied in the wavenumber domain. `ng` specifies the number of pixel points in the snapshot corresponding to the cutoff wavelength.
+
+
+  `-bgsat n`
+  : Adjust the brightness of the background structure or topography by using the parameter `n`. `n=100` (default) produces full color, while `n=0` produces grayscale.
+
+  `-color mode`
+  : Color palette selection. When `mode`=`legacy` (default), red and green are selected; when `mode`=`cud`, the Color Universal Design orange and light blue are selected.
+
 
 
 ## `diff_snp.x`
