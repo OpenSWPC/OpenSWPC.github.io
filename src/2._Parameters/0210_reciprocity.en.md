@@ -86,9 +86,7 @@ response of all components, three independent simulations with
 `green_cmp=’x’`, `’y’`, and `’z’` are necessary.
 
 The virtual source location should be given in the Cartesian or
-geographical coordinates and depth (the format is described in Table
-[\[table:greenf\]](#table:greenf){reference-type="ref"
-reference="table:greenf"}) with unique integer ID numbers (`gid`).
+geographical coordinates and depth with unique integer ID numbers (`gid`).
 Multiple virtual source locations can be specified in the simulation.
 The `gid`s do not need to be sequential.
 

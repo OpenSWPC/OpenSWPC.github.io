@@ -1,5 +1,12 @@
 # New features
 
+## Version 26.09.1 (2026-09-13)
+
+This is a minor bug-fix version. 
+
+- Fix the improper calculation of epicentral distance and event location in SAC headers in single-force mode
+- Improved horizontal boundary treatment for PML, which is particularly efficient to reduce artificial reflection in plane-wave mode
+
 ## Version 26.09 (2026-09-01)
 
 ### Viscoelastic PML
