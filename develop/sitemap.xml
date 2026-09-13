@@ -120,13 +120,6 @@
         <xhtml:link rel="alternate" hreflang="ja" href="https://OpenSPWC.github.io/developja/2._Parameters/0208_abc/"/>
     </url>
     <url>
-        <loc>https://OpenSPWC.github.io/develop/2._Parameters/0209_checkpoint/</loc>
-        <lastmod>2026-09-13</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://OpenSPWC.github.io/develop/2._Parameters/0209_checkpoint/"/>
-        <xhtml:link rel="alternate" hreflang="ja" href="https://OpenSPWC.github.io/developja/2._Parameters/0209_checkpoint/"/>
-    </url>
-    <url>
         <loc>https://OpenSPWC.github.io/develop/2._Parameters/0210_reciprocity/</loc>
         <lastmod>2026-09-13</lastmod>
         <changefreq>daily</changefreq>
@@ -314,13 +307,6 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ja" href="https://OpenSPWC.github.io/develop/ja/2._Parameters/0208_abc/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://OpenSPWC.github.io/develop2._Parameters/0208_abc/"/>
-    </url>
-    <url>
-        <loc>https://OpenSPWC.github.io/develop/ja/2._Parameters/0209_checkpoint/</loc>
-        <lastmod>2026-09-13</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="ja" href="https://OpenSPWC.github.io/develop/ja/2._Parameters/0209_checkpoint/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://OpenSPWC.github.io/develop2._Parameters/0209_checkpoint/"/>
     </url>
     <url>
         <loc>https://OpenSPWC.github.io/develop/ja/2._Parameters/0210_reciprocity/</loc>
