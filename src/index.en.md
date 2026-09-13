@@ -1,6 +1,3 @@
-!!! warning
-    This manual is a **development snapshot**, and thus it might not differ from behavior of the released version software.
-
 # OpenSWPC Users' Guide
 
 ![](./fig/logo_h.png)
