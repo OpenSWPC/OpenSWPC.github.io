@@ -229,7 +229,7 @@
   
     
   
-  Home
+  OpenSWPC Users' Guide
 
       </a>
     </li>
@@ -418,7 +418,7 @@
         
   
   <span class="md-ellipsis">
-    Home
+    OpenSWPC Users' Guide
     
   </span>
   
@@ -1336,8 +1336,7 @@ following example.</p>
 </code></pre></div></td></tr></table></div>
 </dd>
 <dt><code>-ppm</code>, <code>-bmp</code></dt>
-<dd>Visualize and export the image files in ppm or bmp format. The <code>ppm</code>
-or <code>bmp</code> directory will be automatically created in the current
+<dd>Visualize and export the image files in ppm or bmp format. Directory for images will be automatically created under the current
 directory and image files with sequential numbers will be stored
 there. If the snapshot file is displacement or velocity, the
 absolute values of the vertical and horizontal amplitudes will be
@@ -1371,7 +1370,11 @@ The data file will be created in the automatically created <code>bin</code> or
 <dt><code>-notim</code></dt>
 <dd>Do <em>not</em> plot the elapsed time in the snapshot figures.</dd>
 <dt><code>-lpf ng</code></dt>
-<dd>A second-order Butterworth low-pass filter is applied in the frequency domain. <code>ng</code> specifies the number of pixel points in the snapshot corresponding to the cutoff wavelength.</dd>
+<dd>A second-order Butterworth low-pass filter is applied in the wavenumber domain. <code>ng</code> specifies the number of pixel points in the snapshot corresponding to the cutoff wavelength.</dd>
+<dt><code>-bgsat n</code></dt>
+<dd>Adjust the brightness of the background structure or topography by using the parameter <code>n</code>. <code>n=100</code> (default) produces full color, while <code>n=0</code> produces grayscale.</dd>
+<dt><code>-color mode</code></dt>
+<dd>Color palette selection. When <code>mode</code>=<code>legacy</code> (default), red and green are selected; when <code>mode</code>=<code>cud</code>, the Color Universal Design orange and light blue are selected.</dd>
 </dl>
 <h2 id="diff_snpx"><code>diff_snp.x</code><a class="headerlink" href="#diff_snpx" title="Permanent link">&para;</a></h2>
 <p>This program takes the difference between two snapshots and exports it
