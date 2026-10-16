@@ -1,5 +1,12 @@
 # 新機能紹介
 
+## Versino 26.09.2 (2026-10-16)
+
+This is a minor bug-fix version. 
+
+- Improved boundary treatment in plane-wave mode.
+- Fixed an MPI datatype mismatch for SH code introduced in version 26.09.
+
 ## Version 26.09.1 (2026-09-13)
 
 This is a minor bug-fix version. 
